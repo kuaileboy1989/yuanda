@@ -11,7 +11,7 @@
 -
   !record {model: res.users, id: res_users_purchase_requisition_manager}:
     groups_id:
-      - purchase.group_purchase_manager
+      - purchase_requisition.group_purchase_requisition_manager
 -
   Create a user as 'Purchase Requisition User'
 -
@@ -25,4 +25,4 @@
 -
   !record {model: res.users, id: res_users_purchase_requisition_user}:
     groups_id:
-      - purchase.group_purchase_user
+      - purchase_requisition.group_purchase_requisition_user

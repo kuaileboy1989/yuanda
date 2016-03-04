@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
+<openerp>
+    <data noupdate="0">
 
         <!-- Definición de posiciones fiscales Régimen Nacional, Recargo de Equivalencia,
         Extracomunitario, Intracomunitario y Retención de IRPFs
@@ -965,4 +966,5 @@
             <field name="account_dest_id" ref="pgc_7051_child"/>
         </record>
 
-</odoo>
+    </data>
+</openerp>

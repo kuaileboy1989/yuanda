@@ -1,8 +1,27 @@
 # -*- coding: utf-8 -*-
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 {
     'name': 'Events Organisation',
     'version': '0.1',
-    'website': 'https://www.odoo.com/page/events',
+    'website' : 'https://www.odoo.com/page/events',
     'category': 'Tools',
     'summary': 'Trainings, Conferences, Meetings, Exhibitions, Registrations',
     'description': """
@@ -17,24 +36,27 @@ Key Features
 * Manage your Events and Registrations
 * Use emails to automatically confirm and send acknowledgements for any event registration
 """,
-    'depends': ['base_setup', 'mail', 'marketing', 'web_tip'],
+    'author': 'OpenERP SA',
+    'depends': ['base_setup', 'board', 'email_template', 'marketing'],
     'data': [
         'security/event_security.xml',
         'security/ir.model.access.csv',
         'wizard/event_confirm_view.xml',
-        'views/event_views.xml',
+        'event_view.xml',
+        'event_data.xml',
         'report/report_event_registration_view.xml',
-        'report/event_event_templates.xml',
-        'report/event_event_reports.xml',
-        'data/event_data.xml',
-        'data/event_data_tip.xml',
-        'views/event_config_settings_views.xml',
-        'views/event_templates.xml',
-        'data/email_template_data.xml',
+        'res_partner_view.xml',
+        'email_template.xml',
+        'views/event.xml',
     ],
     'demo': [
-        'data/event_demo.xml',
+        'event_demo.xml',
+    ],
+    'test': [
+        'test/ui/event_users.yml',
+        'test/process/event_draft2done.yml'
     ],
     'installable': True,
     'auto_install': False,
 }
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

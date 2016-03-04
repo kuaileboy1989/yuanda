@@ -6,9 +6,7 @@
                 var self = this;
                 $.fn.share.defaults.shareable = shareable;
                 $.fn.share.defaults.shareable.on('mouseup',function(){
-                    if ($(this).parents('body.editor_enable').length === 0) {
-                        self.popOver();
-                    }
+                    self.popOver();
                 });
                 $.fn.share.defaults.shareable.on('mousedown',function(){
                     self.destroy();

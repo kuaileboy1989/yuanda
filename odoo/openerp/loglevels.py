@@ -1,5 +1,23 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
 import sys
 
@@ -55,40 +73,24 @@ def ustr(value, hint_encoding='utf-8', errors='strict'):
     :raise: UnicodeError if value cannot be coerced to unicode
     :return: unicode string representing the given value
     """
-    # We use direct type comparison instead of `isinstance`
-    # as much as possible, in order to make the most common
-    # cases faster (isinstance/issubclass are significantly slower)
-    ttype = type(value)
-
-    if ttype is unicode:
-        return value
-
-    # special short-circuit for str, as we still needs to support
-    # str subclasses such as `openerp.tools.unquote`
-    if ttype is str or issubclass(ttype, str):
-
-        # try hint_encoding first, avoids call to get_encoding()
-        # for the most common case
-        try:
-            return unicode(value, hint_encoding, errors=errors)
-        except Exception:
-            pass
-
-        # rare: no luck with hint_encoding, attempt other ones
-        for ln in get_encodings(hint_encoding):
-            try:
-                return unicode(value, ln, errors=errors)
-            except Exception:
-                pass
-
     if isinstance(value, Exception):
         return exception_to_unicode(value)
 
-    # fallback for non-string values
-    try:
-        return unicode(value)
-    except Exception:
-        raise UnicodeError('unable to convert %r' % (value,))
+    if isinstance(value, unicode):
+        return value
+
+    if not isinstance(value, basestring):
+        try:
+            return unicode(value)
+        except Exception:
+            raise UnicodeError('unable to convert %r' % (value,))
+
+    for ln in get_encodings(hint_encoding):
+        try:
+            return unicode(value, ln, errors=errors)
+        except Exception:
+            pass
+    raise UnicodeError('unable to convert %r' % (value,))
 
 
 def exception_to_unicode(e):
@@ -100,3 +102,5 @@ def exception_to_unicode(e):
         return unicode(e)
     except Exception:
         return u"Unknown message"
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

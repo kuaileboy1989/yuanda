@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
-import json
+try:
+    import simplejson as json
+except ImportError:
+    import json
+
 import logging
 import pprint
 import werkzeug
@@ -21,7 +25,7 @@ class BuckarooController(http.Controller):
         '/payment/buckaroo/cancel',
         '/payment/buckaroo/error',
         '/payment/buckaroo/reject',
-    ], type='http', auth='none', csrf=False)
+    ], type='http', auth='none')
     def buckaroo_return(self, **post):
         """ Buckaroo."""
         _logger.info('Buckaroo: entering form_feedback with post data %s', pprint.pformat(post))  # debug

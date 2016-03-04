@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from urllib2 import urlopen, Request, HTTPError
 
 import base64

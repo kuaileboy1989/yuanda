@@ -1,5 +1,23 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2011 OpenERP S.A (<http://www.openerp.com>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
 import logging
 
@@ -7,12 +25,30 @@ from openerp.osv import fields, osv
 from openerp.tools.translate import _
 from openerp.tools import email_split
 from openerp import SUPERUSER_ID
-from openerp.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
 # welcome email sent to portal users
 # (note that calling '_' has no effect except exporting those strings for translation)
+WELCOME_EMAIL_SUBJECT = _("Your Odoo account at %(company)s")
+WELCOME_EMAIL_BODY = _("""Dear %(name)s,
+
+You have been given access to %(company)s's %(portal)s.
+
+Your login account data is:
+  Username: %(login)s
+  Portal: %(portal_url)s
+  Database: %(db)s 
+
+You can set or change your password via the following url:
+   %(signup_url)s
+
+%(welcome_message)s
+
+--
+Odoo - Open Source Business Applications
+http://www.openerp.com
+""")
 
 
 def extract_email(email):
@@ -84,7 +120,6 @@ class wizard_user(osv.osv_memory):
         'partner_id': fields.many2one('res.partner', string='Contact', required=True, readonly=True),
         'email': fields.char(string='Email', size=240),
         'in_portal': fields.boolean('In Portal'),
-        'user_id': fields.many2one('res.users', string='Login User'),
     }
 
     def get_error_messages(self, cr, uid, ids, context=None):
@@ -94,8 +129,8 @@ class wizard_user(osv.osv_memory):
         error_emails = []
         error_user = []
         ctx = dict(context or {}, active_test=False)
-        for wizard_user in self.browse(cr, SUPERUSER_ID, ids, ctx):
-            if wizard_user.in_portal and not wizard_user.partner_id.user_ids:
+        for wizard_user in self.browse(cr, SUPERUSER_ID, ids, context):
+            if wizard_user.in_portal and not self._retrieve_user(cr, SUPERUSER_ID, wizard_user, context):
                 email = extract_email(wizard_user.email)
                 if not email:
                     error_empty.append(wizard_user.partner_id)
@@ -125,26 +160,22 @@ class wizard_user(osv.osv_memory):
     def action_apply(self, cr, uid, ids, context=None):
         error_msg = self.get_error_messages(cr, uid, ids, context=context)
         if error_msg:
-            raise UserError( "\n\n".join(error_msg))
+            raise osv.except_osv(_('Contacts Error'), "\n\n".join(error_msg))
 
-        for wizard_user in self.browse(cr, SUPERUSER_ID, ids, dict(context, active_test=False)):
+        for wizard_user in self.browse(cr, SUPERUSER_ID, ids, context):
             portal = wizard_user.wizard_id.portal_id
-            user = wizard_user.partner_id.user_ids and wizard_user.partner_id.user_ids[0] or False
+            user = self._retrieve_user(cr, SUPERUSER_ID, wizard_user, context)
             if wizard_user.partner_id.email != wizard_user.email:
                 wizard_user.partner_id.write({'email': wizard_user.email})
             if wizard_user.in_portal:
-                user_id = False
                 # create a user if necessary, and make sure it is in the portal group
                 if not user:
-                    user_id = self._create_user(cr, SUPERUSER_ID, wizard_user.id, context)
-                else:
-                    user_id = user.id
-                wizard_user.write({'user_id': user_id})
-                if (not wizard_user.user_id.active) or (portal not in wizard_user.user_id.groups_id):
-                    wizard_user.user_id.write({'active': True, 'groups_id': [(4, portal.id)]})
+                    user = self._create_user(cr, SUPERUSER_ID, wizard_user, context)
+                if (not user.active) or (portal not in user.groups_id):
+                    user.write({'active': True, 'groups_id': [(4, portal.id)]})
                     # prepare for the signup process
-                    wizard_user.user_id.partner_id.signup_prepare()
-                    self._send_email(cr, uid, wizard_user.id, context)
+                    user.partner_id.signup_prepare()
+                    self._send_email(cr, uid, wizard_user, context)
                 wizard_user.refresh()
             else:
                 # remove the user (if it exists) from the portal group
@@ -155,12 +186,22 @@ class wizard_user(osv.osv_memory):
                     else:
                         user.write({'groups_id': [(3, portal.id)]})
 
-    def _create_user(self, cr, uid, ids, context=None):
+    def _retrieve_user(self, cr, uid, wizard_user, context=None):
+        """ retrieve the (possibly inactive) user corresponding to wizard_user.partner_id
+            @param wizard_user: browse record of model portal.wizard.user
+            @return: browse record of model res.users
+        """
+        context = dict(context or {}, active_test=False)
+        res_users = self.pool.get('res.users')
+        domain = [('partner_id', '=', wizard_user.partner_id.id)]
+        user_ids = res_users.search(cr, uid, domain, context=context)
+        return user_ids and res_users.browse(cr, uid, user_ids[0], context=context) or False
+
+    def _create_user(self, cr, uid, wizard_user, context=None):
         """ create a new user for wizard_user.partner_id
             @param wizard_user: browse record of model portal.wizard.user
             @return: browse record of model res.users
         """
-        wizard_user = self.browse(cr, uid, ids, context=context)
         res_users = self.pool.get('res.users')
         create_context = dict(context or {}, noshortcut=True, no_reset_password=True)       # to prevent shortcut creation
         values = {
@@ -169,32 +210,50 @@ class wizard_user(osv.osv_memory):
             'partner_id': wizard_user.partner_id.id,
             'groups_id': [(6, 0, [])],
         }
-        return res_users.create(cr, uid, values, context=create_context)
+        user_id = res_users.create(cr, uid, values, context=create_context)
+        return res_users.browse(cr, uid, user_id, context)
 
-    def _send_email(self, cr, uid, ids, context=None):
+    def _send_email(self, cr, uid, wizard_user, context=None):
         """ send notification email to a new portal user
             @param wizard_user: browse record of model portal.wizard.user
             @return: the id of the created mail.mail record
         """
-        wizard_user = self.browse(cr, uid, ids, context=context)
         res_partner = self.pool['res.partner']
+        this_context = context
         this_user = self.pool.get('res.users').browse(cr, SUPERUSER_ID, uid, context)
         if not this_user.email:
-            raise UserError(_('You must have an email address in your User Preferences to send emails.'))
+            raise osv.except_osv(_('Email Required'),
+                _('You must have an email address in your User Preferences to send emails.'))
 
         # determine subject and body in the portal user's language
-        user = wizard_user.user_id
-        context = dict(context or {}, lang=user.lang)
+        user = self._retrieve_user(cr, SUPERUSER_ID, wizard_user, context)
+        context = dict(this_context or {}, lang=user.lang)
         ctx_portal_url = dict(context, signup_force_type_in_url='')
         portal_url = res_partner._get_signup_url_for_action(cr, uid,
                                                             [user.partner_id.id],
                                                             context=ctx_portal_url)[user.partner_id.id]
         res_partner.signup_prepare(cr, uid, [user.partner_id.id], context=context)
 
-        context.update({'dbname': cr.dbname, 'portal_url': portal_url})
-        template_id = self.pool['ir.model.data'].xmlid_to_res_id(cr, uid, 'portal.mail_template_data_portal_welcome')
-        if template_id:
-            self.pool['mail.template'].send_mail(cr, uid, template_id, wizard_user.id, force_send=True, context=context)
-        else:
-            _logger.warning("No email template found for sending email to the portal user")
-        return True
+        data = {
+            'company': this_user.company_id.name,
+            'portal': wizard_user.wizard_id.portal_id.name,
+            'welcome_message': wizard_user.wizard_id.welcome_message or "",
+            'db': cr.dbname,
+            'name': user.name,
+            'login': user.login,
+            'signup_url': user.signup_url,
+            'portal_url': portal_url,
+        }
+        mail_mail = self.pool.get('mail.mail')
+        mail_values = {
+            'email_from': this_user.email,
+            'email_to': user.email,
+            'subject': _(WELCOME_EMAIL_SUBJECT) % data,
+            'body_html': '<pre>%s</pre>' % (_(WELCOME_EMAIL_BODY) % data),
+            'state': 'outgoing',
+            'type': 'email',
+        }
+        mail_id = mail_mail.create(cr, uid, mail_values, context=this_context)
+        return mail_mail.send(cr, uid, [mail_id], context=this_context)
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -775,7 +775,7 @@ method should simply set the value of the field to compute on every record in
 .. code-block:: python
 
     import random
-    from openerp import models, fields, api
+    from openerp import models, fields
 
     class ComputedModel(models.Model):
         _name = 'test.computed'
@@ -808,7 +808,7 @@ field whenever some of its dependencies have been modified::
         @api.depends('value')
         def _compute_name(self):
             for record in self:
-                record.name = "Record with value %s" % record.value
+                self.name = "Record with value %s" % self.value
 
 .. exercise:: Computed fields
 
@@ -983,30 +983,18 @@ Tree views can take supplementary attributes to further customize their
 behavior:
 
 ``colors``
-    .. deprecated:: 9.0
-        replaced by ``decoration-{$name}``
-
-``decoration-{$name}``
-    allow changing the style of a row's text based on the corresponding
-    record's attributes.
-
-    Values are Python expressions. For each record, the expression is evaluated
-    with the record's attributes as context values and if ``true``, the
-    corresponding style is applied to the row. Other context values are
-    ``uid`` (the id of the current user) and ``current_date`` (the current date
-    as a string of the form ``yyyy-MM-dd``).
-
-    ``{$name}`` can be ``bf`` (``font-weight: bold``), ``it``
-    (``font-style: italic``), or any bootstrap contextual color (``danger``,
-    ``info``, ``muted``, ``primary``, ``success`` or ``warning``).
+    mappings of colors to conditions. If the condition evaluates to ``True``,
+    the corresponding color is applied to the row:
 
     .. code-block:: xml
 
-        <tree string="Idea Categories" decoration-info="state=='draft'"
-            decoration-danger="state=='trashed'">
+        <tree string="Idea Categories" colors="blue:state=='draft';red:state=='trashed'">
             <field name="name"/>
             <field name="state"/>
         </tree>
+
+    Clauses are separated by ``;``, the color and condition are separated by
+    ``:``.
 
 ``editable``
     Either ``"top"`` or ``"bottom"``. Makes the tree view editable in-place
@@ -1128,11 +1116,11 @@ their root element is ``<gantt>``.
 
 .. code-block:: xml
 
-    <gantt string="Ideas"
-           date_start="invent_date"
-           date_stop="date_finished"
-           progress="progress"
-           default_group_by="inventor_id" />
+    <gantt string="Ideas" date_start="invent_date" color="inventor_id">
+        <level object="idea.idea" link="id" domain="[]">
+            <field name="inventor_id"/>
+        </level>
+    </gantt>
 
 .. exercise:: Gantt charts
 
@@ -1153,15 +1141,13 @@ Graph views
 Graph views allow aggregated overview and analysis of models, their root
 element is ``<graph>``.
 
-.. note::
-    Pivot views (element ``<pivot>``) a multidimensional table, allows the
-    selection of filers and dimensions to get the right aggregated dataset
-    before moving to a more graphical overview. The pivot view shares the same
-    content definition as graph views.
-
 Graph views have 4 display modes, the default mode is selected using the
 ``@type`` attribute.
 
+Pivot
+    a multidimensional table, allows the selection of filers and dimensions
+    to get the right aggregated dataset before moving to a more graphical
+    overview
 Bar (default)
     a bar chart, the first dimension is used to define groups on the
     horizontal axis, other dimensions define aggregated bars within each group.
@@ -1856,7 +1842,6 @@ Examples can be easily adapted from XML-RPC to JSON-RPC.
     * https://github.com/syleam/openobject-library
     * https://github.com/nicolas-van/openerp-client-lib
     * https://pypi.python.org/pypi/oersted/
-    * https://github.com/abhishek-jaiswal/php-openerp-lib
 
 .. [#autofields] it is possible to :attr:`disable the automatic creation of some
                  fields <openerp.models.Model._log_access>`

@@ -1,17 +1,17 @@
-# Translation of Odoo Server.
+# Translation of OpenERP Server.
 # This file contains the translation of the following modules:
 # * l10n_pl
 # 
 # Translators:
-# Grazziano Duarte <g.negocios@outlook.com.br>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo 9.0\n"
+"Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-18 08:19+0000\n"
-"PO-Revision-Date: 2015-12-08 16:25+0000\n"
-"Last-Translator: Grazziano Duarte <g.negocios@outlook.com.br>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/odoo/odoo-9/language/pt_BR/)\n"
+"POT-Creation-Date: 2012-11-24 02:53+0000\n"
+"PO-Revision-Date: 2015-05-21 08:59+0000\n"
+"Last-Translator: Martin Trigaux\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/odoo-8/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,9 +19,29 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: l10n_pl
-#: model:ir.actions.client,name:l10n_pl.action_client_l10n_pl_menu
-msgid "Open Account Dashboard Menu"
-msgstr "Abra o menu do painel Contabilidade"
+#: model:account.account.type,name:l10n_pl.account_type_view
+msgid "Widok"
+msgstr "Ver"
+
+#. module: l10n_pl
+#: model:account.account.type,name:l10n_pl.account_type_asset
+msgid "Aktywa"
+msgstr "Ativos"
+
+#. module: l10n_pl
+#: model:account.account.type,name:l10n_pl.account_type_equity
+msgid "Kapitał własny"
+msgstr "Equidade"
+
+#. module: l10n_pl
+#: model:account.account.type,name:l10n_pl.account_type_income
+msgid "Dochody"
+msgstr "Receita"
+
+#. module: l10n_pl
+#: model:account.account.type,name:l10n_pl.account_type_payable
+msgid "Zobowiązania"
+msgstr "Passivo"
 
 #. module: l10n_pl
 #: model:account.account.type,name:l10n_pl.account_type_tax
@@ -29,16 +49,16 @@ msgid "Podatki"
 msgstr "Impostos"
 
 #. module: l10n_pl
-#: model:ir.ui.menu,name:l10n_pl.account_reports_pl_statements_menu
-msgid "Polish Statements"
-msgstr "Extratos Poloneses"
+#: model:account.account.type,name:l10n_pl.account_type_receivable
+msgid "Należności"
+msgstr "Recebíveis"
 
 #. module: l10n_pl
-#: model:account.account.type,name:l10n_pl.account_type_nonbalance
-msgid "Pozabilansowe"
-msgstr "Fora do balanço"
+#: model:account.account.type,name:l10n_pl.account_type_cash
+msgid "Gotówka"
+msgstr "Numerário"
 
 #. module: l10n_pl
-#: model:account.account.type,name:l10n_pl.account_type_settlement
-msgid "Rozrachunki"
-msgstr "Contas"
+#: model:account.account.type,name:l10n_pl.account_type_expense
+msgid "Wydatki"
+msgstr "Despesas"

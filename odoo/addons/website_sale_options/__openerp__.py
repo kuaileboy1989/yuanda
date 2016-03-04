@@ -8,6 +8,7 @@ OpenERP E-Commerce
 ==================
 
         """,
+    'author': 'OpenERP SA',
     'depends': ['website_sale'],
     'data': [
         'views/views.xml',

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
+<openerp>
     <data noupdate="1">
 
-        <record id="base.group_hr_manager" model="res.groups">
-            <field name="implied_ids" eval="[(4, ref('base.group_hr_attendance'))]"/>
+        <record id="base.group_hr_attendance" model="res.groups">
+            <field name="name">Attendances</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
         </record>
+
         <record id="property_rule_attendace_manager" model="ir.rule">
             <field name="name">Manager Attendance</field>
             <field name="model_id" ref="model_hr_attendance"/>
@@ -19,4 +21,5 @@
         </record>
 
     </data>
-</odoo>
+</openerp>
+

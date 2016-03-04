@@ -1,16 +1,34 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
-
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2013-Today OpenERP SA (<http://www.openerp.com>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 import collections
+
 import datetime
-import pytz
 import re
 
+import pytz
+
 import openerp
+import openerp.tools
 from openerp.addons.web import http
 from openerp.addons.web.http import request
-from openerp.tools import html_escape
-
 
 class website_event(http.Controller):
     @http.route(['''/event/<model("event.event"):event>/track/<model("event.track", "[('event_id','=',event[0])]"):track>'''], type='http', auth="public", website=True)
@@ -21,7 +39,7 @@ class website_event(http.Controller):
         return request.website.render("website_event_track.track_view", values)
 
     def _prepare_calendar(self, event, event_track_ids):
-        local_tz = pytz.timezone(event.date_tz or 'UTC')
+        local_tz = pytz.timezone(event.timezone_of_event or 'UTC')
         locations = {}                  # { location: [track, start_date, end_date, rowspan]}
         dates = []                      # [ (date, {}) ]
         for track in event_track_ids:
@@ -125,23 +143,45 @@ class website_event(http.Controller):
     def event_track_proposal_post(self, event, **post):
         cr, uid, context = request.cr, request.uid, request.context
 
+        tobj = request.registry['event.track']
+
         tags = []
         for tag in event.allowed_track_tag_ids:
             if post.get('tag_'+str(tag.id)):
                 tags.append(tag.id)
 
-        track_obj = request.registry['event.track']
-        track_id = track_obj.create(cr, openerp.SUPERUSER_ID, {
+        e = openerp.tools.escape
+        track_description = '''<section data-snippet-id="text-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2>%s</h2>
+            </div>
+            <div class="col-md-12">
+                <p>%s</p>
+            </div>
+            <div class="col-md-12">
+                <h3>About The Author</h3>
+                <p>%s</p>
+            </div>
+        </div>
+    </div>
+</section>''' % (e(post['track_name']), 
+            e(post['description']), e(post['biography']))
+
+        track_id = tobj.create(cr, openerp.SUPERUSER_ID, {
             'name': post['track_name'],
-            'partner_name': post['partner_name'],
-            'partner_email': post['email_from'],
-            'partner_phone': post['phone'],
-            'partner_biography': html_escape(post['biography']),
             'event_id': event.id,
             'tag_ids': [(6, 0, tags)],
             'user_id': False,
-            'description': html_escape(post['description']),
+            'description': track_description
         }, context=context)
-        track = track_obj.browse(cr, uid, track_id, context=context)
-        values = {'track': track, 'event': event}
+
+        tobj.message_post(cr, openerp.SUPERUSER_ID, [track_id], body="""Proposed By: %s<br/>
+          Mail: <a href="mailto:%s">%s</a><br/>
+          Phone: %s""" % (e(post['partner_name']), e(post['email_from']), 
+            e(post['email_from']), e(post['phone'])), context=context)
+
+        track = tobj.browse(cr, uid, track_id, context=context)
+        values = {'track': track, 'event':event}
         return request.website.render("website_event_track.event_track_proposal_success", values)

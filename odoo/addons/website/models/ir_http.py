@@ -2,7 +2,6 @@
 import logging
 import os
 import re
-import time
 import traceback
 
 import werkzeug
@@ -28,7 +27,7 @@ class ir_http(orm.AbstractModel):
     _inherit = 'ir.http'
 
     rerouting_limit = 10
-    _geoip_resolver = None
+    geo_ip_resolver = None
 
     def _get_converters(self):
         return dict(
@@ -38,12 +37,9 @@ class ir_http(orm.AbstractModel):
         )
 
     def _auth_method_public(self):
+        # TODO: select user_id from matching website
         if not request.session.uid:
-            website = self.pool['website'].get_current_website(request.cr, openerp.SUPERUSER_ID, context=request.context)
-            if website:
-                request.uid = website.user_id.id
-            else:
-                request.uid = self.pool['ir.model.data'].xmlid_to_res_id(request.cr, openerp.SUPERUSER_ID, 'base', 'public_user')
+            request.uid = self.pool['ir.model.data'].xmlid_to_res_id(request.cr, openerp.SUPERUSER_ID, 'base.public_user')
         else:
             request.uid = request.session.uid
 
@@ -68,39 +64,11 @@ class ir_http(orm.AbstractModel):
                 return code
         return False
 
-    def _geoip_setup_resolver(self):
-        if self._geoip_resolver is None:
-            try:
-                import GeoIP
-                # updated database can be downloaded on MaxMind website
-                # http://dev.maxmind.com/geoip/legacy/install/city/
-                geofile = config.get('geoip_database')
-                if os.path.exists(geofile):
-                    self._geoip_resolver = GeoIP.open(geofile, GeoIP.GEOIP_STANDARD)
-                else:
-                    self._geoip_resolver = False
-                    logger.warning('GeoIP database file %r does not exists, apt-get install geoip-database-contrib or download it from http://dev.maxmind.com/geoip/legacy/install/city/', geofile)
-            except ImportError:
-                self._geoip_resolver = False
-
-    def _geoip_resolve(self):
-        if 'geoip' not in request.session:
-            record = {}
-            if self._geoip_resolver and request.httprequest.remote_addr:
-                record = self._geoip_resolver.record_by_addr(request.httprequest.remote_addr) or {}
-            request.session['geoip'] = record
-
-    def get_page_key(self):
-        return (self._name, "cache", request.uid, request.lang, request.httprequest.full_path)
-
     def _dispatch(self):
         first_pass = not hasattr(request, 'website')
         request.website = None
         func = None
         try:
-            if request.httprequest.method == 'GET' and '//' in request.httprequest.path:
-                new_url = request.httprequest.path.replace('//', '/') + '?' + request.httprequest.query_string
-                return werkzeug.utils.redirect(new_url, 301)
             func, arguments = self._find_handler()
             request.website_enabled = func.routing.get('website', False)
         except werkzeug.exceptions.NotFound:
@@ -113,22 +81,37 @@ class ir_http(orm.AbstractModel):
             func and func.routing.get('multilang', func.routing['type'] == 'http')
         )
 
-        self._geoip_setup_resolver()
-        self._geoip_resolve()
+        if 'geoip' not in request.session:
+            record = {}
+            if self.geo_ip_resolver is None:
+                try:
+                    import GeoIP
+                    # updated database can be downloaded on MaxMind website
+                    # http://dev.maxmind.com/geoip/legacy/install/city/
+                    geofile = config.get('geoip_database')
+                    if os.path.exists(geofile):
+                        self.geo_ip_resolver = GeoIP.open(geofile, GeoIP.GEOIP_STANDARD)
+                    else:
+                        self.geo_ip_resolver = False
+                        logger.warning('GeoIP database file %r does not exists', geofile)
+                except ImportError:
+                    self.geo_ip_resolver = False
+            if self.geo_ip_resolver and request.httprequest.remote_addr:
+                record = self.geo_ip_resolver.record_by_addr(request.httprequest.remote_addr) or {}
+            request.session['geoip'] = record
 
         cook_lang = request.httprequest.cookies.get('website_lang')
         if request.website_enabled:
             try:
                 if func:
                     self._authenticate(func.routing['auth'])
-                elif request.uid is None:
+                else:
                     self._auth_method_public()
             except Exception as e:
                 return self._handle_exception(e)
 
             request.redirect = lambda url, code=302: werkzeug.utils.redirect(url_for(url), code)
             request.website = request.registry['website'].get_current_website(request.cr, request.uid, context=request.context)
-            request.context['website_id'] = request.website.id
             langs = [lg[0] for lg in request.website.get_languages()]
             path = request.httprequest.path.split('/')
             if first_pass:
@@ -158,38 +141,11 @@ class ir_http(orm.AbstractModel):
                     redirect.set_cookie('website_lang', request.lang)
                     return redirect
                 elif url_lang:
-                    request.uid = None
                     path.pop(1)
                     return self.reroute('/'.join(path) or '/')
-            if path[1] == request.website.default_lang_code:
-                request.context['edit_translations'] = False
-            if not request.context.get('tz'):
-                request.context['tz'] = request.session.get('geoip', {}).get('time_zone')
             # bind modified context
             request.website = request.website.with_context(request.context)
-
-        # cache for auth public
-        cache_time = getattr(func, 'routing', {}).get('cache')
-        cache_enable = cache_time and request.httprequest.method == "GET" and request.website.user_id.id == request.uid
-        cache_response = None
-        if cache_enable:
-            key = self.get_page_key()
-            try:
-                r = self.pool.cache[key]
-                if r['time'] + cache_time > time.time():
-                    cache_response = openerp.http.Response(r['content'], mimetype=r['mimetype'])
-                else:
-                    del self.pool.cache[key]
-            except KeyError:
-                pass
-
-        if cache_response:
-            request.cache_save = False
-            resp = cache_response
-        else:
-            request.cache_save = key if cache_enable else False
-            resp = super(ir_http, self)._dispatch()
-
+        resp = super(ir_http, self)._dispatch()
         if request.website_enabled and cook_lang != request.lang and hasattr(resp, 'set_cookie'):
             resp.set_cookie('website_lang', request.lang)
         return resp
@@ -247,22 +203,13 @@ class ir_http(orm.AbstractModel):
                     # if parent excplicitely returns a plain response, then we don't touch it
                     return response
             except Exception, e:
-                if openerp.tools.config['dev_mode'] and (not isinstance(exception, ir_qweb.QWebException) or not exception.qweb.get('cause')):
-                    raise
                 exception = e
 
             values = dict(
                 exception=exception,
                 traceback=traceback.format_exc(exception),
             )
-
-            if isinstance(exception, werkzeug.exceptions.HTTPException):
-                if exception.code is None:
-                    # Hand-crafted HTTPException likely coming from abort(),
-                    # usually for a redirect response -> return it directly
-                    return exception
-                else:
-                    code = exception.code
+            code = getattr(exception, 'code', code)
 
             if isinstance(exception, openerp.exceptions.AccessError):
                 code = 403
@@ -271,6 +218,11 @@ class ir_http(orm.AbstractModel):
                 values.update(qweb_exception=exception)
                 if isinstance(exception.qweb.get('cause'), openerp.exceptions.AccessError):
                     code = 403
+
+            if isinstance(exception, werkzeug.exceptions.HTTPException) and code is None:
+                # Hand-crafted HTTPException likely coming from abort(),
+                # usually for a redirect response -> return it directly
+                return exception
 
             if code == 500:
                 logger.error("500 Internal Server Error:\n\n%s", values['traceback'])
@@ -296,18 +248,6 @@ class ir_http(orm.AbstractModel):
             except Exception:
                 html = request.website._render('website.http_error', values)
             return werkzeug.wrappers.Response(html, status=code, content_type='text/html;charset=utf-8')
-
-    def binary_content(self, xmlid=None, model='ir.attachment', id=None, field='datas', unique=False, filename=None, filename_field='datas_fname', download=False, mimetype=None, default_mimetype='application/octet-stream', env=None):
-        env = env or request.env
-        obj = None
-        if xmlid:
-            obj = env.ref(xmlid, False)
-        elif id and model in self.pool:
-            obj = env[model].browse(int(id))
-        if obj and 'website_published' in obj._fields:
-            if env[obj._name].sudo().search([('id', '=', obj.id), ('website_published', '=', True)]):
-                env = env(user=openerp.SUPERUSER_ID)
-        return super(ir_http, self).binary_content(xmlid=xmlid, model=model, id=id, field=field, unique=unique, filename=filename, filename_field=filename_field, download=download, mimetype=mimetype, default_mimetype=default_mimetype, env=env)
 
 class ModelConverter(ir.ir_http.ModelConverter):
     def __init__(self, url_map, model=False, domain='[]'):
@@ -342,17 +282,15 @@ class PageConverter(werkzeug.routing.PathConverter):
     """ Only point of this converter is to bundle pages enumeration logic """
     def generate(self, cr, uid, query=None, args={}, context=None):
         View = request.registry['ir.ui.view']
-        domain = [('page', '=', True)]
-        query = query and query.startswith('website.') and query[8:] or query
-        if query:
-            domain += [('key', 'like', query)]
-
-        views = View.search_read(cr, uid, domain, fields=['key', 'priority', 'write_date'], order='name', context=context)
+        views = View.search_read(cr, uid, [['page', '=', True]],
+            fields=['xml_id','priority','write_date'], order='name', context=context)
         for view in views:
-            xid = view['key'].startswith('website.') and view['key'][8:] or view['key']
+            xid = view['xml_id'].startswith('website.') and view['xml_id'][8:] or view['xml_id']
             # the 'page/homepage' url is indexed as '/', avoid aving the same page referenced twice
             # when we will have an url mapping mechanism, replace this by a rule: page/homepage --> /
             if xid=='homepage': continue
+            if query and query.lower() not in xid.lower():
+                continue
             record = {'loc': xid}
             if view['priority'] <> 16:
                 record['__priority'] = min(round(view['priority'] / 32.0,1), 1)

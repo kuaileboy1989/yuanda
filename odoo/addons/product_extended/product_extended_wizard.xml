@@ -14,8 +14,9 @@
                       <field name="recursive"/>
                   </group>
                   <footer>
-                      <button name="compute_from_bom" string="Set price on BoM" type="object" class="btn-primary"/>
-                      <button string="Cancel" class="btn-default" special="cancel" />
+                      <button name="compute_from_bom" string="Set price on BoM" type="object" class="oe_highlight"/>
+                      or
+                      <button string="Cancel" class="oe_link" special="cancel" />
                   </footer>
               </form>
             </field>

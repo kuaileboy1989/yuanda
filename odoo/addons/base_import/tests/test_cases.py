@@ -2,11 +2,9 @@
 
 import csv
 import io
-import unittest
+import unittest2
 
-from openerp.tests.common import TransactionCase, can_import
-from openerp.modules.module import get_module_resource
-from openerp.tools import mute_logger
+from openerp.tests.common import TransactionCase
 
 from .. import models
 
@@ -195,12 +193,9 @@ class test_preview(TransactionCase):
         id = Import.create(self.cr, self.uid, {
             'res_model': 'res.users',
             'file': u"로그인,언어\nbob,1\n".encode('euc_kr'),
-            'file_type': 'text/csv',
-            'file_name': 'kr_data.csv',
         })
         return Import, id
 
-    @mute_logger('openerp.addons.base_import.models')
     def test_encoding(self):
         Import, id = self.make_import()
         result = Import.parse_preview(self.cr, self.uid, id, {
@@ -209,7 +204,6 @@ class test_preview(TransactionCase):
         })
         self.assertTrue('error' in result)
 
-    @mute_logger('openerp.addons.base_import.models')
     def test_csv_errors(self):
         Import, id = self.make_import()
 
@@ -227,15 +221,14 @@ class test_preview(TransactionCase):
         })
         self.assertTrue('error' in result)
 
-    def test_csv_success(self):
+    def test_success(self):
         Import = self.registry('base_import.import')
         id = Import.create(self.cr, self.uid, {
             'res_model': 'base_import.tests.models.preview',
             'file': 'name,Some Value,Counter\n'
                     'foo,1,2\n'
                     'bar,3,4\n'
-                    'qux,5,6\n',
-            'file_type': 'text/csv'
+                    'qux,5,6\n'
         })
 
         result = Import.parse_preview(self.cr, self.uid, id, {
@@ -243,7 +236,7 @@ class test_preview(TransactionCase):
             'separator': ',',
             'headers': True,
         })
-        self.assertIsNone(result.get('error'))
+
         self.assertEqual(result['matches'], {0: ['name'], 1: ['somevalue'], 2: None})
         self.assertEqual(result['headers'], ['name', 'Some Value', 'Counter'])
         # Order depends on iteration order of fields_get
@@ -261,100 +254,6 @@ class test_preview(TransactionCase):
         # Ensure we only have the response fields we expect
         self.assertItemsEqual(result.keys(), ['matches', 'headers', 'fields', 'preview'])
 
-    @unittest.skipUnless(can_import('xlrd'), "XLRD module not available")
-    def test_xls_success(self):
-
-        Import = self.registry('base_import.import')
-        xls_file_path = get_module_resource('base_import', 'tests', 'test.xls')
-        file_content = open(xls_file_path, 'rb').read()
-        id = Import.create(self.cr, self.uid, {
-            'res_model': 'base_import.tests.models.preview',
-            'file': file_content,
-            'file_type': 'application/vnd.ms-excel'
-        })
-
-        result = Import.parse_preview(self.cr, self.uid, id, {
-            'headers': True,
-        })
-        self.assertIsNone(result.get('error'))
-        self.assertEqual(result['matches'], {0: ['name'], 1: ['somevalue'], 2: None})
-        self.assertEqual(result['headers'], ['name', 'Some Value', 'Counter'])
-        self.assertItemsEqual(result['fields'], [
-            ID_FIELD,
-            {'id': 'name', 'name': 'name', 'string': 'Name', 'required':False, 'fields': []},
-            {'id': 'somevalue', 'name': 'somevalue', 'string': 'Some Value', 'required':True, 'fields': []},
-            {'id': 'othervalue', 'name': 'othervalue', 'string': 'Other Variable', 'required':False, 'fields': []},
-        ])
-        self.assertEqual(result['preview'], [
-            ['foo', '1', '2'],
-            ['bar', '3', '4'],
-            ['qux', '5', '6'],
-        ])
-        # Ensure we only have the response fields we expect
-        self.assertItemsEqual(result.keys(), ['matches', 'headers', 'fields', 'preview'])
-
-    @unittest.skipUnless(can_import('xlrd.xlsx'), "XLRD/XLSX not available")
-    def test_xlsx_success(self):
-        Import = self.registry('base_import.import')
-        xlsx_file_path = get_module_resource('base_import', 'tests', 'test.xlsx')
-        file_content = open(xlsx_file_path, 'rb').read()
-        id = Import.create(self.cr, self.uid, {
-            'res_model': 'base_import.tests.models.preview',
-            'file': file_content,
-            'file_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-        })
-
-        result = Import.parse_preview(self.cr, self.uid, id, {
-            'headers': True,
-        })
-        self.assertIsNone(result.get('error'))
-        self.assertEqual(result['matches'], {0: ['name'], 1: ['somevalue'], 2: None})
-        self.assertEqual(result['headers'], ['name', 'Some Value', 'Counter'])
-        self.assertItemsEqual(result['fields'], [
-            ID_FIELD,
-            {'id': 'name', 'name': 'name', 'string': 'Name', 'required':False, 'fields': []},
-            {'id': 'somevalue', 'name': 'somevalue', 'string': 'Some Value', 'required':True, 'fields': []},
-            {'id': 'othervalue', 'name': 'othervalue', 'string': 'Other Variable', 'required':False, 'fields': []},
-        ])
-        self.assertEqual(result['preview'], [
-            ['foo', '1', '2'],
-            ['bar', '3', '4'],
-            ['qux', '5', '6'],
-        ])
-        # Ensure we only have the response fields we expect
-        self.assertItemsEqual(result.keys(), ['matches', 'headers', 'fields', 'preview'])
-
-    @unittest.skipUnless(can_import('odf'), "ODFPY not available")
-    def test_ods_success(self):
-        Import = self.registry('base_import.import')
-        ods_file_path = get_module_resource('base_import', 'tests', 'test.ods')
-        file_content = open(ods_file_path, 'rb').read()
-        id = Import.create(self.cr, self.uid, {
-            'res_model': 'base_import.tests.models.preview',
-            'file': file_content,
-            'file_type': 'application/vnd.oasis.opendocument.spreadsheet'
-        })
-
-        result = Import.parse_preview(self.cr, self.uid, id, {
-            'headers': True,
-        })
-        self.assertIsNone(result.get('error'))
-        self.assertEqual(result['matches'], {0: ['name'], 1: ['somevalue'], 2: None})
-        self.assertEqual(result['headers'], ['name', 'Some Value', 'Counter'])
-        self.assertItemsEqual(result['fields'], [
-            ID_FIELD,
-            {'id': 'name', 'name': 'name', 'string': 'Name', 'required':False, 'fields': []},
-            {'id': 'somevalue', 'name': 'somevalue', 'string': 'Some Value', 'required':True, 'fields': []},
-            {'id': 'othervalue', 'name': 'othervalue', 'string': 'Other Variable', 'required':False, 'fields': []},
-        ])
-        self.assertEqual(result['preview'], [
-            ['foo', '1', '2'],
-            ['bar', '3', '4'],
-            ['aux', '5', '6'],
-        ])
-        # Ensure we only have the response fields we expect
-        self.assertItemsEqual(result.keys(), ['matches', 'headers', 'fields', 'preview'])
-
 class test_convert_import_data(TransactionCase):
     """ Tests conversion of base_import.import input into data which
     can be fed to Model.import_data
@@ -366,9 +265,7 @@ class test_convert_import_data(TransactionCase):
             'file': 'name,Some Value,Counter\n'
                     'foo,1,2\n'
                     'bar,3,4\n'
-                    'qux,5,6\n',
-            'file_type': 'text/csv'
-
+                    'qux,5,6\n'
         })
         record = Import.browse(self.cr, self.uid, id)
         data, fields = Import._convert_import_data(
@@ -392,8 +289,7 @@ class test_convert_import_data(TransactionCase):
             'file': 'name,Some Value,Counter\n'
                     'foo,1,2\n'
                     'bar,3,4\n'
-                    'qux,5,6\n',
-            'file_type': 'text/csv'
+                    'qux,5,6\n'
         })
         record = Import.browse(self.cr, self.uid, id)
         data, fields = Import._convert_import_data(
@@ -417,8 +313,7 @@ class test_convert_import_data(TransactionCase):
             'file': 'name,Some Value,Counter\n'
                     'foo,1,2\n'
                     ',3,\n'
-                    ',5,6\n',
-            'file_type': 'text/csv'
+                    ',5,6\n'
         })
         record = Import.browse(self.cr, self.uid, id)
         data, fields = Import._convert_import_data(
@@ -440,8 +335,7 @@ class test_convert_import_data(TransactionCase):
                     '\n'
                     'bar,2\n'
                     '     \n'
-                    '\t \n',
-            'file_type': 'text/csv'
+                    '\t \n'
         })
         record = Import.browse(self.cr, self.uid, id)
         data, fields = Import._convert_import_data(
@@ -460,9 +354,7 @@ class test_convert_import_data(TransactionCase):
         id = Import.create(self.cr, self.uid, {
             'res_model': 'base_import.tests.models.preview',
             'file': 'name,Some Value,Counter\n'
-                    'foo,1,2\n',
-            'file_type': 'text/csv'
-
+                    'foo,1,2\n'
         })
 
         record = Import.browse(self.cr, self.uid, id)
@@ -478,8 +370,7 @@ class test_convert_import_data(TransactionCase):
         id = Import.create(self.cr, self.uid, {
             'res_model': 'base_import.tests.models.preview',
             'file': 'name,Some Value,Counter\n'
-                    'foo,1,2\n',
-            'file_type': 'text/csv'
+                    'foo,1,2\n'
         })
 
         record = Import.browse(self.cr, self.uid, id)
@@ -502,10 +393,10 @@ class test_convert_import_data(TransactionCase):
         writer.writerow(["name", "Some Value"])
         writer.writerow(data_row)
 
+
         id = Import.create(self.cr, self.uid, {
             'res_model': 'base_import.tests.models.preview',
-            'file': output.getvalue(),
-            'file_type': 'text/csv',
+            'file': output.getvalue()
         })
         record = Import.browse(self.cr, self.uid, id)
         data, _ = Import._convert_import_data(
@@ -535,8 +426,7 @@ class test_failures(TransactionCase):
         Import = self.env['base_import.import']
         imp = Import.create({
             'res_model': 'ir.attachment',
-            'file': fout.getvalue(),
-            'file_type': 'text/csv'
+            'file': fout.getvalue()
         })
         [results] = imp.do(
             ['name', 'db_datas'],

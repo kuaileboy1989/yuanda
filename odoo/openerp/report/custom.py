@@ -1,5 +1,23 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+##############################################################################
+#    
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#
+##############################################################################
 
 import os
 import time
@@ -11,13 +29,13 @@ import print_xml
 import render
 from interface import report_int
 import common
+from openerp.osv.osv import except_osv
 from openerp.osv.orm import BaseModel
 from pychart import *
 import misc
 import cStringIO
 from lxml import etree
 from openerp.tools.translate import _
-from openerp.exceptions import UserError
 
 class external_pdf(render.render):
     def __init__(self, pdf):
@@ -533,7 +551,7 @@ class report_custom(report_int):
         colors = map(lambda x:fill_style.Plain(bgcolor=x), misc.choice_colors(len(results)))
 
         if reduce(lambda x,y : x+y, map(lambda x : x[1],results)) == 0.0:
-            raise UserError(_("The sum of the data (2nd field) is null.\nWe can't draw a pie chart !"))
+            raise except_osv(_('Error'), _("The sum of the data (2nd field) is null.\nWe can't draw a pie chart !"))
 
         plot = pie_plot.T(data=results, arc_offsets=[0,10,0,10],
                           shadow = (2, -2, fill_style.gray50),
@@ -602,3 +620,7 @@ class report_custom(report_int):
         self.obj.render()
         return True
 report_custom('report.custom')
+
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+

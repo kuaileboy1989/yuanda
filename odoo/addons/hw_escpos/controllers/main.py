@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import commands
 import logging
-import json
+import simplejson
 import os
 import os.path
 import io

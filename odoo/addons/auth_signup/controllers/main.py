@@ -1,5 +1,23 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2012-today OpenERP SA (<http://www.openerp.com>)
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>
+#
+##############################################################################
 import logging
 import werkzeug
 
@@ -66,7 +84,7 @@ class AuthSignupHome(openerp.addons.web.controllers.main.Home):
                 qcontext['error'] = _("Could not reset your password")
                 _logger.exception('error when resetting password')
             except Exception, e:
-                qcontext['error'] = e.message
+                qcontext['error'] = _(e.message)
 
 
         return request.render('auth_signup.reset_password', qcontext)
@@ -93,7 +111,6 @@ class AuthSignupHome(openerp.addons.web.controllers.main.Home):
                     qcontext.setdefault(k, v)
             except:
                 qcontext['error'] = _("Invalid signup token")
-                qcontext['invalid_token'] = True
         return qcontext
 
     def do_signup(self, qcontext):
@@ -101,9 +118,7 @@ class AuthSignupHome(openerp.addons.web.controllers.main.Home):
         values = dict((key, qcontext.get(key)) for key in ('login', 'name', 'password'))
         assert any([k for k in values.values()]), "The form was not properly filled in."
         assert values.get('password') == qcontext.get('confirm_password'), "Passwords do not match; please retype them."
-        supported_langs = [lang['code'] for lang in request.registry['res.lang'].search_read(request.cr, openerp.SUPERUSER_ID, [], ['code'])]
-        if request.lang in supported_langs:
-            values['lang'] = request.lang
+        values['lang'] = request.lang
         self._signup_with_values(qcontext.get('token'), values)
         request.cr.commit()
 
@@ -112,4 +127,6 @@ class AuthSignupHome(openerp.addons.web.controllers.main.Home):
         request.cr.commit()     # as authenticate will use its own cursor we need to commit the current transaction
         uid = request.session.authenticate(db, login, password)
         if not uid:
-            raise SignupError(_('Authentication Failed.'))
+            raise SignupError(_('Authentification Failed.'))
+
+# vim:expandtab:tabstop=4:softtabstop=4:shiftwidth=4:

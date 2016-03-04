@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <openerp>
     <data>
-        <report
-            id="report_user_label"
-            model="res.users"
+        <report id="report_user_label"
+            model="res.users" 
+            name="point_of_sale.user.label"
             string="User Labels"
-            report_type="qweb-pdf"
-            name="point_of_sale.report_userlabel"
-            file="point_of_sale.report_userlabel"
+            xml="point_of_sale/report/user_label.xml"
+            xsl="point_of_sale/report/user_label.xsl"
         />
 
         <report
@@ -26,8 +25,10 @@
             report_type="qweb-pdf"
             name="point_of_sale.report_receipt"
             file="point_of_sale.report_receipt"
-            paperformat="point_of_sale.paperformat_posreceipt"
         />
+        <record id="action_report_pos_receipt" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="point_of_sale.paperformat_posreceipt"/>
+        </record>
 
         <report
             id="pos_lines_report"

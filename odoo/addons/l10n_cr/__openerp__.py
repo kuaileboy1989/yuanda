@@ -34,7 +34,7 @@
 
 {
     'name': 'Costa Rica - Accounting',
-    'version': '1.0',
+    'version': '0.1',
     'url': 'https://github.com/CLEARCORP/odoo-costa-rica',
     'author': 'ClearCorp S.A.',
     'website': 'http://clearcorp.co.cr',
@@ -45,21 +45,29 @@ Chart of accounts for Costa Rica.
 
 Includes:
 ---------
+    * account.type
     * account.account.template
     * account.tax.template
+    * account.tax.code.template
     * account.chart.template
 
 Everything is in English with Spanish translation. Further translations are welcome,
 please go to http://translations.launchpad.net/openerp-costa-rica.
     """,
-    'depends': ['account'],
+    'depends': ['account', 'account_chart', 'base'],
+    'demo': [],
     'data': [
-        'data/l10n_cr_base_data.xml',
-        'data/account_chart_template.xml',
+        'l10n_cr_base_data.xml',
+        'data/account_account_type.xml',
         'data/account_account_template.xml',
-        'data/account_chart_template_after.xml',
+        'data/account_tax_code_template.xml',
+        'data/account_chart_template.xml',
         'data/account_tax_template.xml',
-        'data/account.chart.template.yml',
+        'l10n_wizard.xml',
     ],
+    'license': 'Other OSI approved licence',
     'installable': True,
+    'auto_install': False,
 }
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

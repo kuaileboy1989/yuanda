@@ -1,7 +1,24 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2014-Today OpenERP SA (<http://www.openerp.com>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
-from openerp import api
 from openerp.osv import osv, fields
 from itertools import groupby
 
@@ -25,7 +42,7 @@ class SaleLayoutCategory(osv.Model):
     _name = 'sale_layout.category'
     _order = 'sequence, id'
     _columns = {
-        'name': fields.char('Name', required=True, translate=True),
+        'name': fields.char('Name', required=True),
         'sequence': fields.integer('Sequence', required=True),
         'subtotal': fields.boolean('Add subtotal'),
         'separator': fields.boolean('Add separator'),
@@ -51,7 +68,7 @@ class AccountInvoice(osv.Model):
         :Parameters:
             -'invoice_id' (int): specify the concerned invoice.
         """
-        ordered_lines = self.browse(cr, uid, invoice_id, context=context).invoice_line_ids
+        ordered_lines = self.browse(cr, uid, invoice_id, context=context).invoice_line
         # We chose to group first by category model and, if not present, by invoice name
         sortkey = lambda x: x.sale_layout_cat_id if x.sale_layout_cat_id else ''
 
@@ -106,15 +123,3 @@ class SaleOrderLine(osv.Model):
         if line.categ_sequence:
             invoice_vals['categ_sequence'] = line.categ_sequence
         return invoice_vals
-
-    @api.multi
-    def _prepare_invoice_line(self, qty):
-        """
-        Prepare the dict of values to create the new invoice line for a sales order line.
-
-        :param qty: float quantity to invoice
-        """
-        res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
-        if self.sale_layout_cat_id:
-            res['sale_layout_cat_id'] = self.sale_layout_cat_id.id
-        return res

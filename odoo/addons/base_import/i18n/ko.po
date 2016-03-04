@@ -3,14 +3,16 @@
 # * base_import
 # 
 # Translators:
+# Goh Gangtai <gangtai.goh@gmail.com>, 2015
+# MinGi KYUNG <moonend@gmail.com>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo 9.0\n"
+"Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-18 13:40+0000\n"
-"PO-Revision-Date: 2016-01-25 08:56+0000\n"
-"Last-Translator: Martin Trigaux\n"
-"Language-Team: Korean (http://www.transifex.com/odoo/odoo-9/language/ko/)\n"
+"POT-Creation-Date: 2015-01-21 14:07+0000\n"
+"PO-Revision-Date: 2015-10-22 00:25+0000\n"
+"Last-Translator: Goh Gangtai <gangtai.goh@gmail.com>\n"
+"Language-Team: Korean (http://www.transifex.com/odoo/odoo-8/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,14 +21,30 @@ msgstr ""
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:466
+#: code:addons/base_import/static/src/js/import.js:437
 #, python-format
 msgid "(%d more)"
-msgstr ""
+msgstr "(%d more)"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:281
+#: code:addons/base_import/static/src/xml/import.xml:369
+#, python-format
+msgid ""
+". The issue is\n"
+"            usually an incorrect file encoding."
+msgstr "이 문제는 대체로 파일 인코딩이 잘못된 것이 원인입니다."
+
+#. module: base_import
+#. openerp-web
+#: code:addons/base_import/static/src/xml/import.xml:26
+#, python-format
+msgid ".CSV"
+msgstr ".CSV"
+
+#. module: base_import
+#. openerp-web
+#: code:addons/base_import/static/src/js/import.js:254
 #, python-format
 msgid ""
 "A single column was found in the file, this often means the file separator "
@@ -35,7 +53,7 @@ msgstr "이 파일에 단 하나의 컬럼이 발견되었고, 이것은 파일�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:161
+#: code:addons/base_import/static/src/xml/import.xml:160
 #, python-format
 msgid ""
 "According to your need, you should use \n"
@@ -46,7 +64,7 @@ msgstr "필요에 따라 관련된 레코드를 참조하는 \n                 
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:234
+#: code:addons/base_import/static/src/xml/import.xml:233
 #, python-format
 msgid ""
 "As an example, here is \n"
@@ -57,7 +75,7 @@ msgstr "예로서, 여기 \n\t\t\t데모 데이터에 기초하여 가져올 수
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:299
+#: code:addons/base_import/static/src/xml/import.xml:298
 #, python-format
 msgid ""
 "As an example, suppose you have a SQL database \n"
@@ -70,7 +88,7 @@ msgstr "예로서, 당신은 당신이 가져올 두 개의 테이블을 가진\
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:331
+#: code:addons/base_import/static/src/xml/import.xml:330
 #, python-format
 msgid ""
 "As you can see in this file, Fabien and Laurence \n"
@@ -86,19 +104,7 @@ msgstr "이 파일에서 볼 수 있듯이 Fabien과 Laurence 는 \n\t\tBigees �
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:87
-#, python-format
-msgid ""
-"Because CSV files are used internally and in\n"
-"                        multiple external processes, interoperability is a\n"
-"                        significant issue. To limit incorrect\n"
-"                        interpretation of data, they are strictly limited\n"
-"                        to dates following"
-msgstr ""
-
-#. module: base_import
-#. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:106
+#: code:addons/base_import/static/src/xml/import.xml:105
 #, python-format
 msgid ""
 "By default the Import preview is set on commas as \n"
@@ -111,57 +117,57 @@ msgstr "기본적으로 가져 오기 미리보기가 텍스트 구분 기호로
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:21
+#: code:addons/base_import/static/src/xml/import.xml:30
 #, python-format
-msgid "CSV Format Options…"
-msgstr ""
+msgid "CSV File:"
+msgstr "CSV 파일:"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:217
+#: code:addons/base_import/static/src/xml/import.xml:216
 #, python-format
 msgid "CSV file for Manufacturer, Retailer"
-msgstr ""
-
-#. module: base_import
-#. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:181
-#, python-format
-msgid "CSV file for Products"
-msgstr ""
+msgstr "제조사, 소매상 등록을 위한 CSV 파일"
 
 #. module: base_import
 #. openerp-web
 #: code:addons/base_import/static/src/xml/import.xml:180
 #, python-format
-msgid "CSV file for categories"
-msgstr ""
+msgid "CSV file for Products"
+msgstr "물품 등록을 위한 CSV 파일"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:250
+#: code:addons/base_import/static/src/xml/import.xml:179
+#, python-format
+msgid "CSV file for categories"
+msgstr "카테고리 등록을 위한 CSV 파일"
+
+#. module: base_import
+#. openerp-web
+#: code:addons/base_import/static/src/xml/import.xml:249
 #, python-format
 msgid "Can I import several times the same record?"
 msgstr "같은 레코드를 여러번 가져올 수 있습니까?"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:358
+#: code:addons/base_import/static/src/xml/import.xml:20
 #, python-format
 msgid "Cancel"
 msgstr "취소"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:205
-#: code:addons/base_import/static/src/js/import.js:216
+#: code:addons/base_import/static/src/js/import.js:179
+#: code:addons/base_import/static/src/js/import.js:190
 #, python-format
 msgid "Comma"
-msgstr ""
+msgstr "쉼표"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:159
+#: code:addons/base_import/static/src/xml/import.xml:158
 #, python-format
 msgid ""
 "Country/Database \n"
@@ -170,7 +176,7 @@ msgstr "국가/데이터베이스 \\n                       ID: 21"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:153
+#: code:addons/base_import/static/src/xml/import.xml:152
 #, python-format
 msgid ""
 "Country/Database ID: the unique Odoo ID for a \n"
@@ -179,14 +185,14 @@ msgstr "국가/데이터베이스 ID : 레코드에 대한 고유 Odoo ID\\n    
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:160
+#: code:addons/base_import/static/src/xml/import.xml:159
 #, python-format
 msgid "Country/External ID: base.be"
 msgstr "국가/외부 ID : base.be"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:155
+#: code:addons/base_import/static/src/xml/import.xml:154
 #, python-format
 msgid ""
 "Country/External ID: the ID of this record \n"
@@ -196,124 +202,100 @@ msgstr "국가/External ID: 이 레코드의 ID \n        다른 애플리케이
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:159
+#: code:addons/base_import/static/src/xml/import.xml:158
 #, python-format
 msgid "Country: Belgium"
 msgstr "국가: 벨기에"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:152
+#: code:addons/base_import/static/src/xml/import.xml:151
 #, python-format
 msgid "Country: the name or code of the country"
-msgstr ""
+msgstr "국가: 이름 또는 국가코드"
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_import_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_noreadonly_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_readonly_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_required_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_states_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_stillreadonly_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_related_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_related_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_child_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_preview_create_uid
+#: field:base_import.import,create_uid:0
+#: field:base_import.tests.models.char,create_uid:0
+#: field:base_import.tests.models.char.noreadonly,create_uid:0
+#: field:base_import.tests.models.char.readonly,create_uid:0
+#: field:base_import.tests.models.char.required,create_uid:0
+#: field:base_import.tests.models.char.states,create_uid:0
+#: field:base_import.tests.models.char.stillreadonly,create_uid:0
+#: field:base_import.tests.models.m2o,create_uid:0
+#: field:base_import.tests.models.m2o.related,create_uid:0
+#: field:base_import.tests.models.m2o.required,create_uid:0
+#: field:base_import.tests.models.m2o.required.related,create_uid:0
+#: field:base_import.tests.models.o2m,create_uid:0
+#: field:base_import.tests.models.o2m.child,create_uid:0
+#: field:base_import.tests.models.preview,create_uid:0
 msgid "Created by"
-msgstr "작성자"
+msgstr "생성자:"
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_import_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_noreadonly_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_readonly_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_required_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_states_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_stillreadonly_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_related_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_related_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_child_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_preview_create_date
+#: field:base_import.import,create_date:0
+#: field:base_import.tests.models.char,create_date:0
+#: field:base_import.tests.models.char.noreadonly,create_date:0
+#: field:base_import.tests.models.char.readonly,create_date:0
+#: field:base_import.tests.models.char.required,create_date:0
+#: field:base_import.tests.models.char.states,create_date:0
+#: field:base_import.tests.models.char.stillreadonly,create_date:0
+#: field:base_import.tests.models.m2o,create_date:0
+#: field:base_import.tests.models.m2o.related,create_date:0
+#: field:base_import.tests.models.m2o.required,create_date:0
+#: field:base_import.tests.models.m2o.required.related,create_date:0
+#: field:base_import.tests.models.o2m,create_date:0
+#: field:base_import.tests.models.o2m.child,create_date:0
+#: field:base_import.tests.models.preview,create_date:0
 msgid "Created on"
-msgstr "작성일"
+msgstr "생성일:"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:244
+#: code:addons/base_import/static/src/xml/import.xml:243
 #, python-format
 msgid "Customers and their respective contacts"
 msgstr "고객들과 각각의 연락처"
 
 #. module: base_import
-#: code:addons/base_import/models.py:147 code:addons/base_import/models.py:153
+#: code:addons/base_import/models.py:116 code:addons/base_import/models.py:122
 #, python-format
 msgid "Database ID"
-msgstr ""
-
-#. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_import_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_noreadonly_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_readonly_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_required_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_states_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_stillreadonly_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_related_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_related_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_child_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_preview_display_name
-msgid "Display Name"
-msgstr "표시 이름"
+msgstr "데이터베이스 ID"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:315
+#: code:addons/base_import/static/src/js/import.js:288
 #, python-format
 msgid "Don't import"
-msgstr ""
+msgstr "가져오지 않기"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:91
+#: code:addons/base_import/static/src/js/import.js:77
 #, python-format
 msgid "Encoding:"
-msgstr "암호화 :"
-
-#. module: base_import
-#: code:addons/base_import/models.py:204
-#, python-format
-msgid "Error cell found while reading XLS/XLSX file: %s"
-msgstr ""
+msgstr "암호화:"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:443
+#: code:addons/base_import/static/src/js/import.js:414
 #, python-format
 msgid "Everything seems valid."
-msgstr ""
+msgstr "모든 것이 올바르게 설정되었습니다."
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/models.py:112 code:addons/base_import/models.py:146
-#: code:addons/base_import/static/src/xml/import.xml:69
-#: code:addons/base_import/static/src/xml/import.xml:74
+#: code:addons/base_import/models.py:81 code:addons/base_import/models.py:115
+#: code:addons/base_import/static/src/xml/import.xml:87
+#: code:addons/base_import/static/src/xml/import.xml:92
 #, python-format
 msgid "External ID"
-msgstr "외부 ID"
+msgstr "External ID"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:325
+#: code:addons/base_import/static/src/xml/import.xml:324
 #, python-format
 msgid ""
 "External ID,Name,Is a \n"
@@ -322,55 +304,48 @@ msgstr "External ID, Name 은 \n        회사, 관련 회사/External ID 이다
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:313
+#: code:addons/base_import/static/src/xml/import.xml:312
 #, python-format
 msgid "External ID,Name,Is a Company"
 msgstr "External ID, Name은 회사이다"
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_import_file
+#: field:base_import.import,file:0
 msgid "File"
 msgstr "파일"
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_import_file_name
-msgid "File Name"
-msgstr "파일명"
+#. openerp-web
+#: code:addons/base_import/static/src/xml/import.xml:39
+#, python-format
+msgid "File Format Options…"
+msgstr "파일 형식 옵션"
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_import_file_type
+#: field:base_import.import,file_name:0
+msgid "File Name"
+msgstr "파일 이름"
+
+#. module: base_import
+#: field:base_import.import,file_type:0
 msgid "File Type"
-msgstr ""
+msgstr "파일 타입"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:238
+#: code:addons/base_import/static/src/xml/import.xml:237
 #, python-format
 msgid "File for some Quotations"
 msgstr "몇몇 견적에 대한 파일"
 
 #. module: base_import
-#: model:ir.model.fields,help:base_import.field_base_import_import_file
+#: help:base_import.import,file:0
 msgid "File to check and/or import, raw binary (not base64)"
 msgstr "가져오려는 파일 점검, 바이너리 (base64 아님)"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:12
-#, python-format
-msgid "File:"
-msgstr "파일 :"
-
-#. module: base_import
-#. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:384
-#, python-format
-msgid "For CSV files, the issue could be an incorrect encoding."
-msgstr ""
-
-#. module: base_import
-#. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:149
+#: code:addons/base_import/static/src/xml/import.xml:148
 #, python-format
 msgid ""
 "For example, to \n"
@@ -380,19 +355,7 @@ msgstr "에를 들어 계약의 나라를 참조하기 위해서 \n        Odoo�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:93
-#, python-format
-msgid ""
-"For more familiar or\n"
-"                        flexible formatting, use Excel files, date cells\n"
-"                        are stored as genuine dates and the familiar and\n"
-"                        locale-aware display of dates is independent from\n"
-"                        the way it is stored."
-msgstr ""
-
-#. module: base_import
-#. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:157
+#: code:addons/base_import/static/src/xml/import.xml:156
 #, python-format
 msgid ""
 "For the country \n"
@@ -401,35 +364,35 @@ msgstr "벨기에 국가에 대해서 \n        당신은 가져오는 3가지 �
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:60
+#: code:addons/base_import/static/src/xml/import.xml:78
 #, python-format
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "자주 묻는 질문들"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:490
+#: code:addons/base_import/static/src/js/import.js:461
 #, python-format
 msgid "Get all possible values"
 msgstr "가능한 값을 모두 갖는다"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:477
+#: code:addons/base_import/static/src/js/import.js:448
 #, python-format
 msgid "Here are the possible values:"
 msgstr "여기 가능한 값들:"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:385
+#: code:addons/base_import/static/src/xml/import.xml:371
 #, python-format
 msgid "Here is the start of the file we could not import:"
 msgstr "이것이 가져오지 못한 파일의 시작 부분이다:"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:120
+#: code:addons/base_import/static/src/xml/import.xml:119
 #, python-format
 msgid ""
 "How can I change the CSV file format options when \n"
@@ -438,7 +401,7 @@ msgstr "내가 사용하는 스프레드시트 앱에서 어떻게 CSV 파일 �
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:208
+#: code:addons/base_import/static/src/xml/import.xml:207
 #, python-format
 msgid ""
 "How can I import a many2many relationship field \n"
@@ -447,7 +410,7 @@ msgstr "어떻게 many2many 관계 필드를 가져올 수 있습니까? \n     
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:223
+#: code:addons/base_import/static/src/xml/import.xml:222
 #, python-format
 msgid ""
 "How can I import a one2many relationship (e.g. several \n"
@@ -456,7 +419,7 @@ msgstr "어떻게 하나의 one2many 관계를 가져올 수 있나요?\n       
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:282
+#: code:addons/base_import/static/src/xml/import.xml:281
 #, python-format
 msgid ""
 "How to export/import different tables from an SQL \n"
@@ -465,7 +428,7 @@ msgstr "어떻게 SQL 애플리케이션에서 Odoo로 다른 테이블을 내�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:199
+#: code:addons/base_import/static/src/xml/import.xml:198
 #, python-format
 msgid ""
 "However if you do not wish to change your \n"
@@ -476,29 +439,28 @@ msgstr "어떻게든 제품 분류의 구성을 변경하기를 원하지 않으
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:69
-#: code:addons/base_import/static/src/xml/import.xml:74
-#: model:ir.model.fields,field_description:base_import.field_base_import_import_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_noreadonly_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_readonly_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_required_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_states_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_stillreadonly_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_related_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_related_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_child_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_preview_id
+#: code:addons/base_import/static/src/xml/import.xml:87
+#: code:addons/base_import/static/src/xml/import.xml:92
+#: field:base_import.import,id:0 field:base_import.tests.models.char,id:0
+#: field:base_import.tests.models.char.noreadonly,id:0
+#: field:base_import.tests.models.char.readonly,id:0
+#: field:base_import.tests.models.char.required,id:0
+#: field:base_import.tests.models.char.states,id:0
+#: field:base_import.tests.models.char.stillreadonly,id:0
+#: field:base_import.tests.models.m2o,id:0
+#: field:base_import.tests.models.m2o.related,id:0
+#: field:base_import.tests.models.m2o.required,id:0
+#: field:base_import.tests.models.m2o.required.related,id:0
+#: field:base_import.tests.models.o2m,id:0
+#: field:base_import.tests.models.o2m.child,id:0
+#: field:base_import.tests.models.preview,id:0
 #, python-format
 msgid "ID"
 msgstr "ID"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:190
+#: code:addons/base_import/static/src/xml/import.xml:189
 #, python-format
 msgid ""
 "If for example you have two product categories \n"
@@ -515,7 +477,7 @@ msgstr "만약 두 개의 제품 분류가 있고 자식 이름이 \"Sellable\" 
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:51
+#: code:addons/base_import/static/src/xml/import.xml:69
 #, python-format
 msgid ""
 "If the file contains\n"
@@ -526,7 +488,7 @@ msgstr "만약 파일이 컬럼 이름을 포함하고 있으면\nOdoo는 컬럼
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:40
+#: code:addons/base_import/static/src/xml/import.xml:58
 #, python-format
 msgid ""
 "If the model uses openchatter, history tracking                             "
@@ -536,7 +498,7 @@ msgstr "모델이 openchatter를 사용하면 기록 추적은 가져오기 동�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:272
+#: code:addons/base_import/static/src/xml/import.xml:271
 #, python-format
 msgid ""
 "If you do not set all fields in your CSV file, \n"
@@ -549,7 +511,7 @@ msgstr "만약 CSV 파일안에 모든 필드를 구성하지 않았다면\nOdoo
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:124
+#: code:addons/base_import/static/src/xml/import.xml:123
 #, python-format
 msgid ""
 "If you edit and save CSV files in speadsheet \n"
@@ -563,7 +525,7 @@ msgstr "스프레드시트 애플리케이션에서 CSV 파일을 수정하고 �
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:253
+#: code:addons/base_import/static/src/xml/import.xml:252
 #, python-format
 msgid ""
 "If you import a file that contains one of the \n"
@@ -578,7 +540,7 @@ msgstr "가져오기 파일에 \"External ID\" 혹은 \"Database ID\" 컬럼이 
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:286
+#: code:addons/base_import/static/src/xml/import.xml:285
 #, python-format
 msgid ""
 "If you need to import data from different tables, \n"
@@ -591,7 +553,7 @@ msgstr "만약 다른 테이블에 있는 데이터를 가져와야 한다면,\n
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:227
+#: code:addons/base_import/static/src/xml/import.xml:226
 #, python-format
 msgid ""
 "If you want to import sales order having several \n"
@@ -605,29 +567,29 @@ msgstr "만약 여러 주문라인을 가진 판매 주문을 가져온다면; �
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:357
-#: code:addons/base_import/static/src/xml/import.xml:417
+#: code:addons/base_import/static/src/xml/import.xml:18
+#: code:addons/base_import/static/src/xml/import.xml:405
 #, python-format
 msgid "Import"
 msgstr "가져오기"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:147
+#: code:addons/base_import/static/src/xml/import.xml:7
 #, python-format
-msgid "Import a File"
-msgstr ""
+msgid "Import a CSV File"
+msgstr "CSV 파일 불러오기"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:383
+#: code:addons/base_import/static/src/xml/import.xml:369
 #, python-format
 msgid "Import preview failed due to:"
 msgstr "가져오기 미리보기를 실패했습니다:"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:66
+#: code:addons/base_import/static/src/xml/import.xml:84
 #, python-format
 msgid ""
 "In order to re-create relationships between\n"
@@ -638,75 +600,57 @@ msgstr "다른 레코드 사이의 관계성을 재생성하기 위해서,\n원�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:324
+#: code:addons/base_import/static/src/xml/import.xml:323
 #, python-format
 msgid "It will produce the following CSV file:"
 msgstr "아래 CSV 파일을 따라 만들어 낼 것입니다:"
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_import___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_noreadonly___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_readonly___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_required___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_states___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_stillreadonly___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_related___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_related___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_child___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_preview___last_update
-msgid "Last Modified on"
-msgstr "최근 수정"
-
-#. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_import_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_noreadonly_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_readonly_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_required_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_states_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_stillreadonly_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_related_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_related_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_child_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_preview_write_uid
+#: field:base_import.import,write_uid:0
+#: field:base_import.tests.models.char,write_uid:0
+#: field:base_import.tests.models.char.noreadonly,write_uid:0
+#: field:base_import.tests.models.char.readonly,write_uid:0
+#: field:base_import.tests.models.char.required,write_uid:0
+#: field:base_import.tests.models.char.states,write_uid:0
+#: field:base_import.tests.models.char.stillreadonly,write_uid:0
+#: field:base_import.tests.models.m2o,write_uid:0
+#: field:base_import.tests.models.m2o.related,write_uid:0
+#: field:base_import.tests.models.m2o.required,write_uid:0
+#: field:base_import.tests.models.m2o.required.related,write_uid:0
+#: field:base_import.tests.models.o2m,write_uid:0
+#: field:base_import.tests.models.o2m.child,write_uid:0
+#: field:base_import.tests.models.preview,write_uid:0
 msgid "Last Updated by"
-msgstr "최근 갱신한 사람"
+msgstr "최근 업데이트한 사람:"
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_import_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_noreadonly_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_readonly_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_required_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_states_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_stillreadonly_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_related_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_related_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_child_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_preview_write_date
+#: field:base_import.import,write_date:0
+#: field:base_import.tests.models.char,write_date:0
+#: field:base_import.tests.models.char.noreadonly,write_date:0
+#: field:base_import.tests.models.char.readonly,write_date:0
+#: field:base_import.tests.models.char.required,write_date:0
+#: field:base_import.tests.models.char.states,write_date:0
+#: field:base_import.tests.models.char.stillreadonly,write_date:0
+#: field:base_import.tests.models.m2o,write_date:0
+#: field:base_import.tests.models.m2o.related,write_date:0
+#: field:base_import.tests.models.m2o.required,write_date:0
+#: field:base_import.tests.models.m2o.required.related,write_date:0
+#: field:base_import.tests.models.o2m,write_date:0
+#: field:base_import.tests.models.o2m.child,write_date:0
+#: field:base_import.tests.models.preview,write_date:0
 msgid "Last Updated on"
-msgstr "최근 갱신 날짜"
+msgstr "최근 업데이트 날짜:"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:37
+#: code:addons/base_import/static/src/xml/import.xml:55
 #, python-format
 msgid "Map your data to Odoo"
 msgstr "Odoo에 데이터를 나타냅니다"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:130
+#: code:addons/base_import/static/src/xml/import.xml:129
 #, python-format
 msgid ""
 "Microsoft Excel will allow \n"
@@ -716,32 +660,32 @@ msgid ""
 msgstr "MS 엑셀은 저장할 때 인코딩을 수정할 수 있도록 합니다\n('Save As' 다이얼로그 > 'Tools' 콤보 -> Encoding )"
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_import_res_model
+#: field:base_import.import,res_model:0
 msgid "Model"
 msgstr "모델"
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_preview_name
+#: field:base_import.tests.models.preview,name:0
 msgid "Name"
-msgstr "이름"
+msgstr "명칭"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:63
+#: code:addons/base_import/static/src/xml/import.xml:81
 #, python-format
 msgid "Need to import data from an other application?"
 msgstr "다른 애플리케이션에서 데이터를 가져와야 하나요?"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:363
+#: code:addons/base_import/static/src/js/import.js:336
 #, python-format
 msgid "Normal Fields"
 msgstr "보통 필드들"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:111
+#: code:addons/base_import/static/src/xml/import.xml:110
 #, python-format
 msgid ""
 "Note that if your CSV file \n"
@@ -752,69 +696,67 @@ msgid ""
 msgstr "만약 CSV 파일이 분리기호로 표를 가지면, \nOdoo는 분리를 검출하지 못합니다. 이럴경우 스프레드시트의\n형식 선택을 변경해야 합니다.\n아래 질문을 살펴보세요."
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_preview_othervalue
+#: field:base_import.tests.models.preview,othervalue:0
 msgid "Other Variable"
 msgstr "다른 변수"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:241
+#: code:addons/base_import/static/src/xml/import.xml:240
 #, python-format
 msgid "Purchase orders with their respective purchase order lines"
 msgstr "각자 구매 주문 라인들에 관련한 구매 주문들"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:93
+#: code:addons/base_import/static/src/js/import.js:79
 #, python-format
 msgid "Quoting:"
-msgstr "인용하기:"
+msgstr "인용중:"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:364
+#: code:addons/base_import/static/src/js/import.js:337
 #, python-format
 msgid "Relation Fields"
 msgstr "관련 필드"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:17
+#: code:addons/base_import/static/src/xml/import.xml:35
 #, python-format
 msgid "Reload data to check changes."
-msgstr "변경을 점검하기 위해 데이터를 리로드합니다"
+msgstr "변경을 점검하기 위해 데이터를 리로드합니다."
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:9
+#: code:addons/base_import/static/src/xml/import.xml:24
 #, python-format
-msgid ""
-"Select the file to import. If you need a sample importable file, you\n"
-"            can use the export tool to generate one."
-msgstr ""
+msgid "Select the"
+msgstr "선택하기"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:206
+#: code:addons/base_import/static/src/js/import.js:180
 #, python-format
 msgid "Semicolon"
-msgstr ""
+msgstr "세미콜론"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:92
+#: code:addons/base_import/static/src/js/import.js:78
 #, python-format
 msgid "Separator:"
-msgstr "구분자 :"
+msgstr "구분자:"
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_preview_somevalue
+#: field:base_import.tests.models.preview,somevalue:0
 msgid "Some Value"
 msgstr "어떤 값"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:142
+#: code:addons/base_import/static/src/xml/import.xml:141
 #, python-format
 msgid ""
 "Some fields define a relationship with another \n"
@@ -825,32 +767,32 @@ msgid ""
 "                        To help you import such fields, Odoo provides 3 \n"
 "                        mechanisms. You must use one and only one mechanism \n"
 "                        per field you want to import."
-msgstr "어떤 필드들은 다른 객체와 관계성을 선언합니다.\n예를들어, 계약의 국가는 'Counrtry' 객체의 레코드에 연결하고 있습니다"
+msgstr "어떤 필드들은 다른 객체와 관계성을 선언합니다.\n예를들어, 계약의 국가는 'Counrtry' 객체의 레코드에 연결하고 있습니다\n이런 필드를 가져올때 Odoo는 다른 레코드 사이 연결을 재생성 할 것입니다.\n이런 필드의 가져오기를 돕기위해 Odoo는 3가지 방법을 제공합니다.\n가져오기를 원하는 필드에 이 중에 하나만 사용해야 합니다."
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:208
+#: code:addons/base_import/static/src/js/import.js:182
 #, python-format
 msgid "Space"
-msgstr ""
+msgstr "스페이스"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:207
+#: code:addons/base_import/static/src/js/import.js:181
 #, python-format
 msgid "Tab"
-msgstr ""
+msgstr "탭"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:74
+#: code:addons/base_import/static/src/xml/import.xml:92
 #, python-format
 msgid "The"
 msgstr "The"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:49
+#: code:addons/base_import/static/src/xml/import.xml:67
 #, python-format
 msgid ""
 "The first row of the\n"
@@ -859,7 +801,7 @@ msgstr "컬럼의 라벨을 포함한 \n파일의 첫번째 행"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:242
+#: code:addons/base_import/static/src/xml/import.xml:241
 #, python-format
 msgid ""
 "The following CSV file shows how to import \n"
@@ -868,7 +810,7 @@ msgstr "아래 CSV 파일은 어떻게 고객과 그들 각각의 연락처를 \
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:239
+#: code:addons/base_import/static/src/xml/import.xml:238
 #, python-format
 msgid ""
 "The following CSV file shows how to import purchase \n"
@@ -877,19 +819,19 @@ msgstr "아래 CSV 파일은 어떻게 구매 주문을 그들 각각의 \n주�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:212
+#: code:addons/base_import/static/src/xml/import.xml:211
 #, python-format
 msgid ""
 "The tags should be separated by a comma without any \n"
-"                        spacing. For example, if you want your customer to be \n"
-"                        linked to both tags 'Manufacturer' and 'Retailer' \n"
-"                        then you will encode \"Manufacturer,\n"
+"                        spacing. For example, if you want you customer to be \n"
+"                        lined to both tags 'Manufacturer' and 'Retailer' \n"
+"                        then you will encode it as follow \"Manufacturer,\n"
 "                        Retailer\" in the same column of your CSV file."
-msgstr ""
+msgstr "태그들은 공백없이 콤마로 나뉘어져 있습니다.\n예를들어 고객이 'Manufacturer'와 'Retailer' 태그에\n줄맞춰지기를 원하면 CSV 파일의 같은 컬럼 안에 \n'Manufacturer', 'Retailer' 같이 이어서 인코드해야 합니다."
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:340
+#: code:addons/base_import/static/src/xml/import.xml:339
 #, python-format
 msgid ""
 "The two files produced are ready to be imported in \n"
@@ -902,14 +844,14 @@ msgstr "산출한 두 파일은 Odoo에 변경없이 가져올 준비가 되었�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:312
+#: code:addons/base_import/static/src/xml/import.xml:311
 #, python-format
 msgid "This SQL command will create the following CSV file:"
 msgstr "이 SQL 명령은 아래 CSV 파일을 만듭니다."
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:260
+#: code:addons/base_import/static/src/xml/import.xml:259
 #, python-format
 msgid ""
 "This feature \n"
@@ -920,7 +862,7 @@ msgstr "이 특징은\n자주 사용하는 스프레드시트 애플리케이션
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:317
+#: code:addons/base_import/static/src/xml/import.xml:316
 #, python-format
 msgid ""
 "To create the CSV file for persons, linked to \n"
@@ -930,7 +872,7 @@ msgstr "사람을 위한 CSV 파일을 생성하기 위해, 회사에 연결하�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:291
+#: code:addons/base_import/static/src/xml/import.xml:290
 #, python-format
 msgid ""
 "To manage relations between tables, \n"
@@ -945,27 +887,14 @@ msgstr "테이블 사이의 관계를 다루기 위해서,\nOdoo의 \"External I
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:43
+#: code:addons/base_import/static/src/xml/import.xml:61
 #, python-format
 msgid "Track history during import"
 msgstr "가져오는 중의 기록 추적"
 
 #. module: base_import
-#: code:addons/base_import/models.py:173
-#, python-format
-msgid "Unable to load \"{extension}\" file: requires Python module \"{modname}\""
-msgstr ""
-
-#. module: base_import
-#: code:addons/base_import/models.py:174
-#, python-format
-msgid ""
-"Unsupported file format \"{}\", import only supports CSV, ODS, XLS and XLSX"
-msgstr ""
-
-#. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:166
+#: code:addons/base_import/static/src/xml/import.xml:165
 #, python-format
 msgid ""
 "Use \n"
@@ -978,7 +907,7 @@ msgstr "국가/데이터베이스 ID 사용: 이런 표기를 잘 사용해야 �
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:171
+#: code:addons/base_import/static/src/xml/import.xml:170
 #, python-format
 msgid ""
 "Use \n"
@@ -988,7 +917,7 @@ msgstr "국가/External ID 사용하기: 제3자 애플리케이션에서 데이
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:164
+#: code:addons/base_import/static/src/xml/import.xml:163
 #, python-format
 msgid ""
 "Use Country: This is \n"
@@ -998,14 +927,14 @@ msgstr "국가 사용하기: 이것은 수동으로 생성한  CSV 파일에서 
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:355
+#: code:addons/base_import/static/src/xml/import.xml:15
 #, python-format
 msgid "Validate"
 msgstr "검증"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:306
+#: code:addons/base_import/static/src/xml/import.xml:305
 #, python-format
 msgid ""
 "We will first export all companies and their \n"
@@ -1014,23 +943,23 @@ msgstr "모든 회사와 그들의 \"External ID\"를 먼저 내보낼 것입니
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:186
+#: code:addons/base_import/static/src/xml/import.xml:185
 #, python-format
 msgid "What can I do if I have multiple matches for a field?"
 msgstr "만약 한 필드가 여러개 일치하면 어떻게 할까요?"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:102
+#: code:addons/base_import/static/src/xml/import.xml:101
 #, python-format
 msgid ""
-"What can I do when the Import preview table isn't\n"
+"What can I do when the Import preview table isn't \n"
 "                        displayed correctly?"
-msgstr ""
+msgstr "가져오기 미리보기 테이블이 제대로 보여지지 않으면\n어떻게 하겠습니까?"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:268
+#: code:addons/base_import/static/src/xml/import.xml:267
 #, python-format
 msgid ""
 "What happens if I do not provide a value for a \n"
@@ -1039,7 +968,7 @@ msgstr "만약 지정한 필드에 대해 값을 준비할 수 없다면 어떤 
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:138
+#: code:addons/base_import/static/src/xml/import.xml:137
 #, python-format
 msgid ""
 "What's the difference between Database ID and \n"
@@ -1048,7 +977,7 @@ msgstr "데이터베이스 ID와 External ID 사이의 다른점은 무었인가
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:174
+#: code:addons/base_import/static/src/xml/import.xml:173
 #, python-format
 msgid ""
 "When you use External IDs, you can import CSV files \n"
@@ -1061,118 +990,41 @@ msgstr "External ID들을 사용할 때, CSV파일들 안의 \n\"External ID\" �
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:83
-#, python-format
-msgid "Why don't CSV file use my date format?"
-msgstr ""
-
-#. module: base_import
-#. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:72
+#: code:addons/base_import/static/src/xml/import.xml:90
 #, python-format
 msgid "XXX/External ID"
 msgstr ""
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:72
+#: code:addons/base_import/static/src/xml/import.xml:90
 #, python-format
 msgid "XXX/ID"
 msgstr ""
 
 #. module: base_import
-#: code:addons/base_import/models.py:376
+#: code:addons/base_import/models.py:271
 #, python-format
 msgid "You must configure at least one field to import"
 msgstr "가져오기 위해서 최소 한 개의 필드를 구성해야 합니다."
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:460
+#: code:addons/base_import/static/src/js/import.js:431
 #, python-format
 msgid "at row %d"
 msgstr "%d 행에"
 
 #. module: base_import
-#: model:ir.model,name:base_import.model_base_import_import
-msgid "base_import.import"
-msgstr ""
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_char
-msgid "base_import.tests.models.char"
-msgstr ""
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_char_noreadonly
-msgid "base_import.tests.models.char.noreadonly"
-msgstr ""
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_char_readonly
-msgid "base_import.tests.models.char.readonly"
-msgstr ""
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_char_required
-msgid "base_import.tests.models.char.required"
-msgstr ""
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_char_states
-msgid "base_import.tests.models.char.states"
-msgstr ""
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_char_stillreadonly
-msgid "base_import.tests.models.char.stillreadonly"
-msgstr ""
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_m2o
-msgid "base_import.tests.models.m2o"
-msgstr ""
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_m2o_related
-msgid "base_import.tests.models.m2o.related"
-msgstr ""
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_m2o_required
-msgid "base_import.tests.models.m2o.required"
-msgstr ""
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_m2o_required_related
-msgid "base_import.tests.models.m2o.required.related"
-msgstr ""
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_o2m
-msgid "base_import.tests.models.o2m"
-msgstr ""
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_o2m_child
-msgid "base_import.tests.models.o2m.child"
-msgstr ""
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_preview
-msgid "base_import.tests.models.preview"
-msgstr ""
-
-#. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:462
+#: code:addons/base_import/static/src/js/import.js:433
 #, python-format
 msgid "between rows %d and %d"
 msgstr "%d 과 %d 행 사이에"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:69
+#: code:addons/base_import/static/src/xml/import.xml:87
 #, python-format
 msgid ""
 "column in Odoo. When you\n"
@@ -1182,28 +1034,28 @@ msgstr "Odoo 안의 컬럼. 다른 한 레코드를\n가져올 때 첫번째 레
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:314
+#: code:addons/base_import/static/src/xml/import.xml:313
 #, python-format
 msgid "company_1,Bigees,True"
 msgstr ""
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:315
+#: code:addons/base_import/static/src/xml/import.xml:314
 #, python-format
 msgid "company_2,Organi,True"
 msgstr ""
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:316
+#: code:addons/base_import/static/src/xml/import.xml:315
 #, python-format
 msgid "company_3,Boum,True"
 msgstr ""
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:308
+#: code:addons/base_import/static/src/xml/import.xml:307
 #, python-format
 msgid ""
 "copy \n"
@@ -1214,7 +1066,7 @@ msgstr ""
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:319
+#: code:addons/base_import/static/src/xml/import.xml:318
 #, python-format
 msgid ""
 "copy (select \n"
@@ -1226,75 +1078,82 @@ msgstr ""
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:304
+#: code:addons/base_import/static/src/xml/import.xml:303
 #, python-format
 msgid "dump of such a PostgreSQL database"
 msgstr "PostgreSQL 데이터베이스 덤프"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:327
+#: code:addons/base_import/static/src/xml/import.xml:26
+#, python-format
+msgid ""
+"file to import. If you need a sample importable file, you\n"
+"            can use the export tool to generate one."
+msgstr "가져오려는 파일. 샘플 가져오기 파일이 필요하면, 하나를\n생성하기 위해 내보내기 도구를 사용할 수 있습니다."
+
+#. module: base_import
+#. openerp-web
+#: code:addons/base_import/static/src/xml/import.xml:19
+#, python-format
+msgid "or"
+msgstr "또는"
+
+#. module: base_import
+#. openerp-web
+#: code:addons/base_import/static/src/xml/import.xml:326
 #, python-format
 msgid "person_1,Fabien,False,company_1"
 msgstr ""
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:328
+#: code:addons/base_import/static/src/xml/import.xml:327
 #, python-format
 msgid "person_2,Laurence,False,company_1"
 msgstr ""
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:329
+#: code:addons/base_import/static/src/xml/import.xml:328
 #, python-format
 msgid "person_3,Eric,False,company_2"
 msgstr ""
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:330
+#: code:addons/base_import/static/src/xml/import.xml:329
 #, python-format
 msgid "person_4,Ramsy,False,company_3"
 msgstr ""
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:92
-#, python-format
-msgid ""
-"the\n"
-"                        ISO 8601 format"
-msgstr ""
-
-#. module: base_import
-#. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:72
+#: code:addons/base_import/static/src/xml/import.xml:90
 #, python-format
 msgid "to the original unique identifier."
 msgstr "원래 유일한 식별자에게"
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_noreadonly_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_readonly_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_required_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_states_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_stillreadonly_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_related_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_related_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_child_parent_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_child_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_value
+#: field:base_import.tests.models.char,value:0
+#: field:base_import.tests.models.char.noreadonly,value:0
+#: field:base_import.tests.models.char.readonly,value:0
+#: field:base_import.tests.models.char.required,value:0
+#: field:base_import.tests.models.char.states,value:0
+#: field:base_import.tests.models.char.stillreadonly,value:0
+#: field:base_import.tests.models.m2o,value:0
+#: field:base_import.tests.models.m2o.related,value:0
+#: field:base_import.tests.models.m2o.required,value:0
+#: field:base_import.tests.models.m2o.required.related,value:0
+#: field:base_import.tests.models.o2m,value:0
+#: field:base_import.tests.models.o2m.child,parent_id:0
+#: field:base_import.tests.models.o2m.child,value:0
 msgid "unknown"
 msgstr "알 수 없음"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:74
+#: code:addons/base_import/static/src/xml/import.xml:92
 #, python-format
 msgid ""
 "will also be used to update the original\n"

@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import json
+try:
+    import simplejson as json
+except ImportError:
+    import json
 import logging
 import werkzeug
 
@@ -42,14 +45,14 @@ class SipsController(http.Controller):
 
     @http.route([
         '/payment/sips/ipn/'],
-        type='http', auth='none', methods=['POST'], csrf=False)
+        type='http', auth='none', methods=['POST'])
     def sips_ipn(self, **post):
         """ Sips IPN. """
         self.sips_validate_data(**post)
         return ''
 
     @http.route([
-        '/payment/sips/dpn'], type='http', auth="none", methods=['POST'], csrf=False)
+        '/payment/sips/dpn'], type='http', auth="none", methods=['POST'])
     def sips_dpn(self, **post):
         """ Sips DPN """
         return_url = self._get_return_url(**post)

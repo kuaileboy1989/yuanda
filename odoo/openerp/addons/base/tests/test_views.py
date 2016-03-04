@@ -2,7 +2,7 @@
 from functools import partial
 import itertools
 
-import unittest
+import unittest2
 
 from lxml import etree as ET
 from lxml.builder import E
@@ -431,26 +431,22 @@ class TestNoModel(ViewCase):
         """
         Test if translations work correctly without a model
         """
-        self.env['res.lang'].load_lang('fr_FR')
-        ARCH = '<template name="foo">%s</template>'
-        TEXT_EN = "Copyright copyrighter"
-        TEXT_FR = u"Copyrighter, tous droits réservés"
-        view = self.env['ir.ui.view'].create({
-            'name': 'dummy',
-            'arch': ARCH % TEXT_EN,
-            'inherit_id': False,
-            'type': 'qweb',
-        })
-        self.env['ir.translation'].create({
-            'type': 'model',
-            'name': 'ir.ui.view,arch_db',
-            'res_id': view.id,
+        View = self.registry('ir.ui.view')
+        self.registry('res.lang').load_lang(self.cr, self.uid, 'fr_FR')
+        orig_text = "Copyright copyrighter"
+        translated_text = u"Copyrighter, tous droits réservés"
+        self.text_para.text = orig_text 
+        self.registry('ir.translation').create(self.cr, self.uid, {
+            'name': 'website',
+            'type': 'view',
             'lang': 'fr_FR',
-            'src': TEXT_EN,
-            'value': TEXT_FR,
+            'src': orig_text,
+            'value': translated_text,
         })
-        view = view.with_context(lang='fr_FR')
-        self.assertEqual(view.arch, ARCH % TEXT_FR)
+        sarch = View.translate_qweb(self.cr, self.uid, None, self.arch, 'fr_FR')
+
+        self.text_para.text = translated_text
+        self.assertEqual(sarch, self.arch)
 
 class TestTemplating(ViewCase):
     def setUp(self):
@@ -548,6 +544,7 @@ class TestTemplating(ViewCase):
                         'data-oe-id': str(id2),
                         'data-oe-field': 'arch',
                         'data-oe-xpath': '/xpath/item/content[1]',
+                        'data-oe-source-id': str(id)
                     }), {
                         'order': '2',
                     }),
@@ -556,7 +553,7 @@ class TestTemplating(ViewCase):
                     'data-oe-model': 'ir.ui.view',
                     'data-oe-id': str(id),
                     'data-oe-field': 'arch',
-                    'data-oe-xpath': '/root[1]/item[1]',
+                    'data-oe-xpath': '/root[1]/item[1]'
                 })
             )
         )
@@ -666,7 +663,7 @@ class test_views(ViewCase):
             name='base view',
             model=model,
             priority=1,
-            arch_db="""<?xml version="1.0"?>
+            arch="""<?xml version="1.0"?>
                         <tree string="view">
                           <field name="url"/>
                         </tree>
@@ -680,7 +677,7 @@ class test_views(ViewCase):
             model=model,
             priority=1,
             inherit_id=vid,
-            arch_db="""<?xml version="1.0"?>
+            arch="""<?xml version="1.0"?>
                         <xpath expr="//field[@name='url']" position="before">
                           <field name="name"/>
                         </xpath>
@@ -694,7 +691,7 @@ class test_views(ViewCase):
             model=model,
             priority=5,
             inherit_id=vid,
-            arch_db="""<?xml version="1.0"?>
+            arch="""<?xml version="1.0"?>
                         <xpath expr="//field[@name='name']" position="after">
                           <field name="target"/>
                         </xpath>
@@ -710,10 +707,11 @@ class test_views(ViewCase):
             'model': 'ir.ui.view',
             'arch': """
                 <form string="Base title" version="7.0">
-                    <separator name="separator" string="Separator" colspan="4"/>
+                    <separator string="separator" colspan="4"/>
                     <footer>
-                        <button name="action_next" type="object" string="Next button" class="btn-primary"/>
-                        <button string="Skip" special="cancel" class="btn-default"/>
+                        <button name="action_next" type="object" string="Next button"/>
+                        or
+                        <button string="Skip" special="cancel" />
                     </footer>
                 </form>
             """
@@ -732,7 +730,7 @@ class test_views(ViewCase):
                             <button name="action_next" type="object" string="New button"/>
                         </footer>
                     </footer>
-                    <separator name="separator" position="replace">
+                    <separator string="separator" position="replace">
                         <p>Replacement data</p>
                     </separator>
                 </data>
@@ -745,10 +743,7 @@ class test_views(ViewCase):
             'priority': 17,
             'arch': """
                 <footer position="attributes">
-                    <attribute name="thing">bob tata lolo</attribute>
-                    <attribute name="thing" add="bibi and co" remove="tata" separator=" " />
-                    <attribute name="otherthing">bob, tata,lolo</attribute>
-                    <attribute name="otherthing" remove="tata, bob"/>
+                    <attribute name="thing">bob</attribute>
                 </footer>
             """
         })
@@ -768,7 +763,7 @@ class test_views(ViewCase):
                 E.p("Replacement data"),
                 E.footer(
                     E.button(name="action_next", type="object", string="New button"),
-                    thing="bob lolo bibi and co", otherthing="lolo"
+                    thing="bob"
                 ),
                 string="Replacement title", version="7.0"))
 
@@ -780,10 +775,11 @@ class test_views(ViewCase):
             'model': 'ir.ui.view.custom',
             'arch': """
                 <form string="Base title" version="7.0">
-                    <separator name="separator" string="Separator" colspan="4"/>
+                    <separator string="separator" colspan="4"/>
                     <footer>
-                        <button name="action_next" type="object" string="Next button" class="btn-primary"/>
-                        <button string="Skip" special="cancel" class="btn-default"/>
+                        <button name="action_next" type="object" string="Next button"/>
+                        or
+                        <button string="Skip" special="cancel" />
                     </footer>
                 </form>
             """
@@ -802,7 +798,7 @@ class test_views(ViewCase):
                             <button name="action_next" type="object" string="New button"/>
                         </footer>
                     </footer>
-                    <separator name="separator" position="replace">
+                    <separator string="separator" position="replace">
                         <p>Replacement data</p>
                     </separator>
                 </data>

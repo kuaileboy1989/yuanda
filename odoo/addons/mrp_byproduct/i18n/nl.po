@@ -3,15 +3,15 @@
 # * mrp_byproduct
 # 
 # Translators:
-# Yenthe Van Ginneken <yenthespam@gmail.com>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo 9.0\n"
+"Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-07 14:40+0000\n"
-"PO-Revision-Date: 2015-09-10 14:51+0000\n"
-"Last-Translator: Yenthe Van Ginneken <yenthespam@gmail.com>\n"
-"Language-Team: Dutch (http://www.transifex.com/odoo/odoo-9/language/nl/)\n"
+"POT-Creation-Date: 2015-01-21 14:08+0000\n"
+"PO-Revision-Date: 2015-07-17 07:40+0000\n"
+"Last-Translator: Martin Trigaux\n"
+"Language-Team: Dutch (http://www.transifex.com/odoo/odoo-8/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -24,7 +24,7 @@ msgid "Bill of Material"
 msgstr "Materiaallijst"
 
 #. module: mrp_byproduct
-#: model:ir.model.fields,field_description:mrp_byproduct.field_mrp_subproduct_bom_id
+#: field:mrp.subproduct,bom_id:0
 msgid "BoM"
 msgstr "Materiaallijst"
 
@@ -34,8 +34,7 @@ msgid "Byproduct"
 msgstr "Bijproducten"
 
 #. module: mrp_byproduct
-#: model:ir.model.fields,field_description:mrp_byproduct.field_mrp_bom_sub_products
-#: model:ir.ui.view,arch_db:mrp_byproduct.mrp_subproduct_view
+#: view:mrp.bom:mrp_byproduct.mrp_subproduct_view field:mrp.bom,sub_products:0
 msgid "Byproducts"
 msgstr "Bijproducten"
 
@@ -45,17 +44,17 @@ msgid "Change Quantity of Products"
 msgstr "Wijzig de hoeveelheid van producten"
 
 #. module: mrp_byproduct
-#: model:ir.model.fields,field_description:mrp_byproduct.field_mrp_subproduct_create_uid
+#: field:mrp.subproduct,create_uid:0
 msgid "Created by"
 msgstr "Aangemaakt door"
 
 #. module: mrp_byproduct
-#: model:ir.model.fields,field_description:mrp_byproduct.field_mrp_subproduct_create_date
+#: field:mrp.subproduct,create_date:0
 msgid "Created on"
 msgstr "Aangemaakt op"
 
 #. module: mrp_byproduct
-#: model:ir.model.fields,help:mrp_byproduct.field_mrp_subproduct_subproduct_type
+#: help:mrp.subproduct,subproduct_type:0
 msgid ""
 "Define how the quantity of byproducts will be set on the production orders "
 "using this BoM.  'Fixed' depicts a situation where the quantity of created "
@@ -67,32 +66,22 @@ msgid ""
 msgstr "Geef aan hoe de hoeveelheid bijproducten zal worden ingesteld op de productieorders met behulp van deze materiaallijst. 'Vaste' geeft een situatie aan waarbij de hoeveelheid aangemaakt bijproduct gelijk is aan de hoeveelheid set op de materiaallijst, ongeacht hoeveel er gemaakt zijn in de productieorder. Tegenovergesteld is, 'Variabel'. Dit betekent dat de hoeveelheid wordt berekend als '(hoeveelheid bijproduct ingesteld op de materiaallijst/hoeveelheid van de vervaardigde producten ingesteld op de materiaallijst* hoeveelheid vervaardigde product in de productieorder.)'"
 
 #. module: mrp_byproduct
-#: model:ir.model.fields,field_description:mrp_byproduct.field_mrp_subproduct_display_name
-msgid "Display Name"
-msgstr "Naam weergeven"
-
-#. module: mrp_byproduct
 #: selection:mrp.subproduct,subproduct_type:0
 msgid "Fixed"
-msgstr "Vastgezet"
+msgstr "Opgelost"
 
 #. module: mrp_byproduct
-#: model:ir.model.fields,field_description:mrp_byproduct.field_mrp_subproduct_id
+#: field:mrp.subproduct,id:0
 msgid "ID"
 msgstr "ID"
 
 #. module: mrp_byproduct
-#: model:ir.model.fields,field_description:mrp_byproduct.field_mrp_subproduct___last_update
-msgid "Last Modified on"
-msgstr "Laatst gewijzigd op"
-
-#. module: mrp_byproduct
-#: model:ir.model.fields,field_description:mrp_byproduct.field_mrp_subproduct_write_uid
+#: field:mrp.subproduct,write_uid:0
 msgid "Last Updated by"
 msgstr "Laatst bijgewerkt door"
 
 #. module: mrp_byproduct
-#: model:ir.model.fields,field_description:mrp_byproduct.field_mrp_subproduct_write_date
+#: field:mrp.subproduct,write_date:0
 msgid "Last Updated on"
 msgstr "Laatst bijgewerkt op"
 
@@ -102,27 +91,27 @@ msgid "Manufacturing Order"
 msgstr "Productieorder"
 
 #. module: mrp_byproduct
-#: model:ir.model.fields,field_description:mrp_byproduct.field_mrp_subproduct_product_id
+#: field:mrp.subproduct,product_id:0
 msgid "Product"
 msgstr "Product"
 
 #. module: mrp_byproduct
-#: model:ir.model.fields,field_description:mrp_byproduct.field_mrp_subproduct_product_qty
+#: field:mrp.subproduct,product_qty:0
 msgid "Product Qty"
-msgstr "Producthoeveelheid"
+msgstr "Aantal"
 
 #. module: mrp_byproduct
-#: model:ir.model.fields,field_description:mrp_byproduct.field_mrp_subproduct_product_uom
+#: field:mrp.subproduct,product_uom:0
 msgid "Product Unit of Measure"
 msgstr "Maateenheid product"
 
 #. module: mrp_byproduct
-#: model:ir.model.fields,field_description:mrp_byproduct.field_mrp_subproduct_subproduct_type
+#: field:mrp.subproduct,subproduct_type:0
 msgid "Quantity Type"
 msgstr "Hoeveelheid type"
 
 #. module: mrp_byproduct
-#: code:addons/mrp_byproduct/mrp_byproduct.py:45
+#: code:addons/mrp_byproduct/mrp_byproduct.py:63
 #, python-format
 msgid ""
 "The Product Unit of Measure you chose has a different category than in the "
@@ -132,10 +121,10 @@ msgstr "De maateenheid van het door u gekozen product heeft een andere categorie
 #. module: mrp_byproduct
 #: selection:mrp.subproduct,subproduct_type:0
 msgid "Variable"
-msgstr "Variabel"
+msgstr "Variabele"
 
 #. module: mrp_byproduct
-#: code:addons/mrp_byproduct/mrp_byproduct.py:45
+#: code:addons/mrp_byproduct/mrp_byproduct.py:63
 #, python-format
 msgid "Warning"
 msgstr "Waarschuwing"

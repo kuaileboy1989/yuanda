@@ -1,9 +1,28 @@
 # -*- coding: utf-8 -*-
-from openerp import models, api, _
-from openerp.exceptions import UserError
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
+from openerp.osv import osv
+from openerp.tools.translate import _
 
-class AccountInvoiceConfirm(models.TransientModel):
+class account_invoice_confirm(osv.osv_memory):
     """
     This wizard will confirm the all the selected draft invoices
     """
@@ -11,19 +30,21 @@ class AccountInvoiceConfirm(models.TransientModel):
     _name = "account.invoice.confirm"
     _description = "Confirm the selected invoices"
 
-    @api.multi
-    def invoice_confirm(self):
-        context = dict(self._context or {})
+    def invoice_confirm(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
         active_ids = context.get('active_ids', []) or []
 
-        for record in self.env['account.invoice'].browse(active_ids):
+        proxy = self.pool['account.invoice']
+        for record in proxy.browse(cr, uid, active_ids, context=context):
             if record.state not in ('draft', 'proforma', 'proforma2'):
-                raise UserError(_("Selected invoice(s) cannot be confirmed as they are not in 'Draft' or 'Pro-Forma' state."))
+                raise osv.except_osv(_('Warning!'), _("Selected invoice(s) cannot be confirmed as they are not in 'Draft' or 'Pro-Forma' state."))
             record.signal_workflow('invoice_open')
+            
         return {'type': 'ir.actions.act_window_close'}
 
 
-class AccountInvoiceCancel(models.TransientModel):
+class account_invoice_cancel(osv.osv_memory):
     """
     This wizard will cancel the all the selected invoices.
     If in the journal, the option allow cancelling entry is not selected then it will give warning message.
@@ -32,13 +53,17 @@ class AccountInvoiceCancel(models.TransientModel):
     _name = "account.invoice.cancel"
     _description = "Cancel the Selected Invoices"
 
-    @api.multi
-    def invoice_cancel(self):
-        context = dict(self._context or {})
+    def invoice_cancel(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+        proxy = self.pool['account.invoice']
         active_ids = context.get('active_ids', []) or []
 
-        for record in self.env['account.invoice'].browse(active_ids):
-            if record.state in ('cancel', 'paid'):
-                raise UserError(_("Selected invoice(s) cannot be cancelled as they are already in 'Cancelled' or 'Done' state."))
+        for record in proxy.browse(cr, uid, active_ids, context=context):
+            if record.state in ('cancel','paid'):
+                raise osv.except_osv(_('Warning!'), _("Selected invoice(s) cannot be cancelled as they are already in 'Cancelled' or 'Done' state."))
             record.signal_workflow('invoice_cancel')
         return {'type': 'ir.actions.act_window_close'}
+
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

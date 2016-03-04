@@ -9,6 +9,7 @@ Display best tweets
 ========================
 
         """,
+    'author': 'OpenERP SA',
     'depends': ['website'],
     'data': [
         'security/ir.model.access.csv',

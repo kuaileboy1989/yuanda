@@ -10,7 +10,7 @@ class BankStatement(models.Model):
 
     @api.multi
     def button_draft(self):
-        self.state = 'open'
+        self.state = 'draft'
 
     @api.multi
     def button_cancel(self):

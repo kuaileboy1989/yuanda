@@ -4,6 +4,7 @@
     'name': 'Marketing',
     'version': '1.1',
     'depends': ['base', 'base_setup'],
+    'author': 'OpenERP SA',
     'category': 'Hidden/Dependency',
     'description': """
 Menu for Marketing.
@@ -17,7 +18,7 @@ Contains the installer for marketing-related modules.
         'marketing_view.xml',
         'res_config_view.xml',
     ],
-    'demo': [],
+    'demo': ['marketing_demo.xml'],
     'installable': True,
     'auto_install': False,
 }

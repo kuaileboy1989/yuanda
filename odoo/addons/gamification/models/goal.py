@@ -1,12 +1,29 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2013 OpenERP SA (<http://www.openerp.com>)
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>
+#
+##############################################################################
 
 from openerp import SUPERUSER_ID
-from openerp.osv import fields, osv, expression
+from openerp.osv import fields, osv
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT as DF
 from openerp.tools.safe_eval import safe_eval
 from openerp.tools.translate import _
-from openerp.exceptions import UserError
 
 import logging
 import time
@@ -64,8 +81,6 @@ class gamification_goal_definition(osv.Model):
         'model_id': fields.many2one('ir.model',
             string='Model',
             help='The model object for the field to evaluate'),
-        # model_inherited_model_ids can be removed in master.
-        # It was only used to force a domain in the form view which is now set by `on_change_model_id`
         'model_inherited_model_ids': fields.related('model_id', 'inherited_model_ids', type="many2many", obj="ir.model",
             string="Inherited models", readonly="True"),
         'field_id': fields.many2one('ir.model.fields',
@@ -130,7 +145,7 @@ class gamification_goal_definition(osv.Model):
                 obj.search(cr, uid, domain, context=context, count=True)
             except (ValueError, SyntaxError), e:
                 msg = e.message or (e.msg + '\n' + e.text)
-                raise UserError(_("The domain for the definition %s seems incorrect, please check it.\n\n%s") % (definition.name, msg))
+                raise osv.except_osv(_('Error!'),_("The domain for the definition %s seems incorrect, please check it.\n\n%s" % (definition.name, msg)))
         return True
 
     def create(self, cr, uid, vals, context=None):
@@ -148,14 +163,12 @@ class gamification_goal_definition(osv.Model):
         return res
 
     def on_change_model_id(self, cr, uid, ids, model_id, context=None):
-        """Force domain for the `field_id` and `field_date_id` fields"""
+        """Prefill field model_inherited_model_ids"""
         if not model_id:
-            return {'domain': {'field_id': expression.FALSE_DOMAIN, 'field_date_id': expression.FALSE_DOMAIN}}
+            return {'value': {'model_inherited_model_ids': []}}
         model = self.pool['ir.model'].browse(cr, uid, model_id, context=context)
-        model_fields_domain = ['|', ('model_id', '=', model_id), ('model_id', 'in', model.inherited_model_ids.ids)]
-        model_date_fields_domain = expression.AND([[('ttype', 'in', ('date', 'datetime'))], model_fields_domain])
-        return {'domain': {'field_id': model_fields_domain, 'field_date_id': model_date_fields_domain}}
-
+        # format (6, 0, []) to construct the domain ('model_id', 'in', m and m[0] and m[0][2])
+        return {'value': {'model_inherited_model_ids': [(6, 0, [m.id for m in model.inherited_model_ids])]}}
 
 class gamification_goal(osv.Model):
     """Goal instance for a user
@@ -243,16 +256,14 @@ class gamification_goal(osv.Model):
 
         :return: data to write on the goal object
         """
-        temp_obj = self.pool['mail.template']
         if goal.remind_update_delay and goal.last_update:
             delta_max = timedelta(days=goal.remind_update_delay)
             last_update = datetime.strptime(goal.last_update, DF).date()
             if date.today() - last_update > delta_max:
                 # generate a remind report
-                temp_obj = self.pool.get('mail.template')
-                template_id = self.pool['ir.model.data'].get_object_reference(cr, uid, 'gamification', 'email_template_goal_reminder')[0]
-                template = temp_obj.get_email_template(cr, uid, template_id, goal.id, context=context)
-                body_html = temp_obj.render_template(cr, uid, template.body_html, 'gamification.goal', goal.id, context=template._context)
+                temp_obj = self.pool.get('email.template')
+                template_id = self.pool['ir.model.data'].get_object(cr, uid, 'gamification', 'email_template_goal_reminder', context)
+                body_html = temp_obj.render_template(cr, uid, template_id.body_html, 'gamification.goal', goal.id, context=context)
                 self.pool['mail.thread'].message_post(cr, uid, 0, body=body_html, partner_ids=[goal.user_id.partner_id.id], context=context, subtype='mail.mt_comment')
                 return {'to_update': True}
         return {}
@@ -443,7 +454,7 @@ class gamification_goal(osv.Model):
         for goal in self.browse(cr, uid, ids, context=context):
             if goal.state != "draft" and ('definition_id' in vals or 'user_id' in vals):
                 # avoid drag&drop in kanban view
-                raise UserError(_('Can not modify the configuration of a started goal'))
+                raise osv.except_osv(_('Error!'), _('Can not modify the configuration of a started goal'))
 
             if vals.get('current'):
                 if 'no_remind_goal' in context:

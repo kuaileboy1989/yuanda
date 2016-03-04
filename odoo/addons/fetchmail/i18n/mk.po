@@ -3,14 +3,15 @@
 # * fetchmail
 # 
 # Translators:
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo 9.0\n"
+"Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-07 14:40+0000\n"
-"PO-Revision-Date: 2015-10-13 13:52+0000\n"
+"POT-Creation-Date: 2015-01-21 14:08+0000\n"
+"PO-Revision-Date: 2015-07-17 07:08+0000\n"
 "Last-Translator: Martin Trigaux\n"
-"Language-Team: Macedonian (http://www.transifex.com/odoo/odoo-9/language/mk/)\n"
+"Language-Team: Macedonian (http://www.transifex.com/odoo/odoo-8/language/mk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -18,38 +19,38 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
 
 #. module: fetchmail
-#: model:ir.ui.view,arch_db:fetchmail.view_email_server_tree
+#: view:fetchmail.server:fetchmail.view_email_server_tree
 msgid "# of emails"
 msgstr "# од емаилови"
 
 #. module: fetchmail
-#: model:ir.ui.view,arch_db:fetchmail.view_email_server_form
+#: view:fetchmail.server:fetchmail.view_email_server_form
 msgid "Actions to Perform on Incoming Mails"
 msgstr "Акции што треба да се извршат на влезните маилови"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_active
+#: field:fetchmail.server,active:0
 msgid "Active"
 msgstr "Активно"
 
 #. module: fetchmail
-#: model:ir.ui.view,arch_db:fetchmail.view_email_server_form
+#: view:fetchmail.server:fetchmail.view_email_server_form
 msgid "Advanced"
 msgstr "Напредно"
 
 #. module: fetchmail
-#: model:ir.ui.view,arch_db:fetchmail.view_email_server_form
+#: view:fetchmail.server:fetchmail.view_email_server_form
 msgid "Advanced Options"
 msgstr "Напредни опции"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_configuration
-#: model:ir.ui.view,arch_db:fetchmail.view_email_server_form
+#: view:fetchmail.server:fetchmail.view_email_server_form
+#: field:fetchmail.server,configuration:0
 msgid "Configuration"
 msgstr "Конфигурација"
 
 #. module: fetchmail
-#: model:ir.ui.view,arch_db:fetchmail.inherit_view_general_configuration
+#: view:base.config.settings:fetchmail.inherit_view_general_configuration
 msgid "Configure the incoming email gateway"
 msgstr "Конфигурирање на портал за влезна е-пошта"
 
@@ -59,64 +60,65 @@ msgid "Confirmed"
 msgstr "Потврдено"
 
 #. module: fetchmail
-#: code:addons/fetchmail/fetchmail.py:150
+#: code:addons/fetchmail/fetchmail.py:163
 #, python-format
-msgid "Connection test failed: %s"
-msgstr ""
+msgid "Connection test failed!"
+msgstr "Неуспешно тестирање на конекција!"
 
 #. module: fetchmail
-#: model:ir.model.fields,help:fetchmail.field_fetchmail_server_is_ssl
+#: help:fetchmail.server,is_ssl:0
 msgid ""
 "Connections are encrypted with SSL/TLS through a dedicated port (default: "
 "IMAPS=993, POP3S=995)"
 msgstr "Врската е енкриптирана со SSL/TLS преку зададен порт (стандардно: IMAPS=993, POP3S=995)"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_object_id
+#: field:fetchmail.server,object_id:0
 msgid "Create a New Record"
 msgstr "Креирајте нов извештај"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_config_settings_create_uid
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_create_uid
+#: field:fetchmail.config.settings,create_uid:0
+#: field:fetchmail.server,create_uid:0
 msgid "Created by"
 msgstr "Креирано од"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_config_settings_create_date
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_create_date
+#: field:fetchmail.config.settings,create_date:0
+#: field:fetchmail.server,create_date:0
 msgid "Created on"
 msgstr "Креирано на"
 
 #. module: fetchmail
-#: model:ir.model.fields,help:fetchmail.field_fetchmail_server_priority
+#: help:fetchmail.server,priority:0
 msgid "Defines the order of processing, lower values mean higher priority"
 msgstr "Го дефинира редоследот на обработка, пониски вредности значат повисок приоритет"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_config_settings_display_name
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_display_name
-msgid "Display Name"
-msgstr "Прикажи име"
-
-#. module: fetchmail
-#: model:ir.ui.view,arch_db:fetchmail.view_email_server_form
+#: view:fetchmail.server:fetchmail.view_email_server_form
 msgid "Fetch Now"
 msgstr "Земи сега"
 
 #. module: fetchmail
-#: model:ir.model.fields,help:fetchmail.field_fetchmail_server_server
+#: code:addons/fetchmail/fetchmail.py:163
+#, python-format
+msgid ""
+"Here is what we got instead:\n"
+" %s."
+msgstr "Еве што добиваме наместо:\n %s."
+
+#. module: fetchmail
+#: help:fetchmail.server,server:0
 msgid "Hostname or IP of the mail server"
 msgstr "Име на хостот или IP-адреса на меил серверот"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_config_settings_id
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_id
+#: field:fetchmail.config.settings,id:0 field:fetchmail.server,id:0
 msgid "ID"
 msgstr "ID"
 
 #. module: fetchmail
-#: model:ir.ui.view,arch_db:fetchmail.view_email_server_search
+#: view:fetchmail.server:fetchmail.view_email_server_search
 msgid "IMAP"
 msgstr "IMAP"
 
@@ -126,18 +128,18 @@ msgid "IMAP Server"
 msgstr "IMAP сервер"
 
 #. module: fetchmail
-#: model:ir.ui.view,arch_db:fetchmail.view_email_server_search
+#: view:fetchmail.server:fetchmail.view_email_server_search
 msgid "If SSL required."
 msgstr "Доколку е потребно SSL."
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_mail_mail_fetchmail_server_id
+#: field:mail.mail,fetchmail_server_id:0
 msgid "Inbound Mail Server"
 msgstr "Сервер за влезна пошта"
 
 #. module: fetchmail
-#: model:ir.ui.view,arch_db:fetchmail.view_email_server_form
-#: model:ir.ui.view,arch_db:fetchmail.view_email_server_search
+#: view:fetchmail.server:fetchmail.view_email_server_form
+#: view:fetchmail.server:fetchmail.view_email_server_search
 msgid "Incoming Mail Server"
 msgstr "Сервер за влезна пошта"
 
@@ -148,35 +150,29 @@ msgid "Incoming Mail Servers"
 msgstr "Сервери за влезна пошта"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_attach
+#: field:fetchmail.server,attach:0
 msgid "Keep Attachments"
 msgstr "Чувај прилози"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_original
+#: field:fetchmail.server,original:0
 msgid "Keep Original"
 msgstr "Чувај оригинал"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_date
+#: field:fetchmail.server,date:0
 msgid "Last Fetch Date"
 msgstr "ПОследен датум за земање"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_config_settings___last_update
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server___last_update
-msgid "Last Modified on"
-msgstr "Последна промена на"
-
-#. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_config_settings_write_uid
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_write_uid
+#: field:fetchmail.config.settings,write_uid:0
+#: field:fetchmail.server,write_uid:0
 msgid "Last Updated by"
 msgstr "Последно ажурирање од"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_config_settings_write_date
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_write_date
+#: field:fetchmail.config.settings,write_date:0
+#: field:fetchmail.server,write_date:0
 msgid "Last Updated on"
 msgstr "Последно ажурирање на"
 
@@ -186,18 +182,18 @@ msgid "Local Server"
 msgstr "Локален сервер"
 
 #. module: fetchmail
-#: model:ir.ui.view,arch_db:fetchmail.view_email_server_form
+#: view:fetchmail.server:fetchmail.view_email_server_form
 msgid "Login Information"
 msgstr "Информации за логирање"
 
 #. module: fetchmail
+#: field:fetchmail.server,message_ids:0
 #: model:ir.actions.act_window,name:fetchmail.act_server_history
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_message_ids
 msgid "Messages"
 msgstr "Пораки"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_name
+#: field:fetchmail.server,name:0
 msgid "Name"
 msgstr "Име"
 
@@ -207,7 +203,7 @@ msgid "Not Confirmed"
 msgstr "Не е потврдено"
 
 #. module: fetchmail
-#: model:ir.model.fields,help:fetchmail.field_fetchmail_server_action_id
+#: help:fetchmail.server,action_id:0
 msgid ""
 "Optional custom server action to trigger for each incoming mail, on the "
 "record that was created or updated by this mail"
@@ -216,10 +212,10 @@ msgstr "Опционална предефинарана серверска ак�
 #. module: fetchmail
 #: model:ir.model,name:fetchmail.model_mail_mail
 msgid "Outgoing Mails"
-msgstr "Излезни e-mail пораки"
+msgstr "Излезни мејлови"
 
 #. module: fetchmail
-#: model:ir.ui.view,arch_db:fetchmail.view_email_server_search
+#: view:fetchmail.server:fetchmail.view_email_server_search
 msgid "POP"
 msgstr "POP"
 
@@ -234,22 +230,22 @@ msgid "POP/IMAP Server"
 msgstr "POP/IMAP сервер"
 
 #. module: fetchmail
-#: model:ir.ui.view,arch_db:fetchmail.view_email_server_tree
+#: view:fetchmail.server:fetchmail.view_email_server_tree
 msgid "POP/IMAP Servers"
 msgstr "POP/IMAP сервери"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_password
+#: field:fetchmail.server,password:0
 msgid "Password"
 msgstr "Лозинка"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_port
+#: field:fetchmail.server,port:0
 msgid "Port"
 msgstr "Порта"
 
 #. module: fetchmail
-#: model:ir.model.fields,help:fetchmail.field_fetchmail_server_object_id
+#: help:fetchmail.server,object_id:0
 msgid ""
 "Process each incoming mail as part of a conversation corresponding to this "
 "document type. This will create new documents for new conversations, or "
@@ -257,87 +253,87 @@ msgid ""
 msgstr "Обработи го секја влезна пошта како дел од конверзацијата која одговара на овој тип на документ. Ова ќе креира нови документи за нови конверзации, или прикачете ги е-поштите кои следат на постојните разговори (документи)."
 
 #. module: fetchmail
-#: model:ir.ui.view,arch_db:fetchmail.view_email_server_form
+#: view:fetchmail.server:fetchmail.view_email_server_form
 msgid "Reset Confirmation"
 msgstr "Ресетирај конфирмација"
 
 #. module: fetchmail
-#: model:ir.ui.view,arch_db:fetchmail.view_email_server_search
+#: view:fetchmail.server:fetchmail.view_email_server_search
 msgid "SSL"
 msgstr "SSL"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_is_ssl
+#: field:fetchmail.server,is_ssl:0
 msgid "SSL/TLS"
 msgstr "SSL/TLS"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_script
+#: field:fetchmail.server,script:0
 msgid "Script"
 msgstr "Скрипта"
 
 #. module: fetchmail
-#: model:ir.ui.view,arch_db:fetchmail.view_email_server_search
+#: view:fetchmail.server:fetchmail.view_email_server_search
 msgid "Search Incoming Mail Servers"
 msgstr "Барај сервери за влезна пошта"
 
 #. module: fetchmail
-#: model:ir.ui.view,arch_db:fetchmail.view_email_server_form
+#: view:fetchmail.server:fetchmail.view_email_server_form
 msgid "Server & Login"
 msgstr "Сервер и логирање"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_action_id
+#: field:fetchmail.server,action_id:0
 msgid "Server Action"
 msgstr "Акции на сервер"
 
 #. module: fetchmail
-#: model:ir.ui.view,arch_db:fetchmail.view_email_server_form
+#: view:fetchmail.server:fetchmail.view_email_server_form
 msgid "Server Information"
 msgstr "Информации за сервер"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_server
+#: field:fetchmail.server,server:0
 msgid "Server Name"
 msgstr "Име на сервер"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_priority
+#: field:fetchmail.server,priority:0
 msgid "Server Priority"
 msgstr "Приоритет на серверот"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_type
+#: field:fetchmail.server,type:0
 msgid "Server Type"
 msgstr "Тип на сервер"
 
 #. module: fetchmail
-#: model:ir.ui.view,arch_db:fetchmail.view_email_server_search
+#: view:fetchmail.server:fetchmail.view_email_server_search
 msgid "Server type IMAP."
 msgstr "Сервер тип IMAP."
 
 #. module: fetchmail
-#: model:ir.ui.view,arch_db:fetchmail.view_email_server_search
+#: view:fetchmail.server:fetchmail.view_email_server_search
 msgid "Server type POP."
 msgstr "Сервер тип POP."
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_state
+#: field:fetchmail.server,state:0
 msgid "Status"
 msgstr "Статус"
 
 #. module: fetchmail
-#: model:ir.ui.view,arch_db:fetchmail.view_email_server_form
+#: view:fetchmail.server:fetchmail.view_email_server_form
 msgid "Test & Confirm"
 msgstr "Тестирај и потврди"
 
 #. module: fetchmail
-#: model:ir.model.fields,field_description:fetchmail.field_fetchmail_server_user
+#: field:fetchmail.server,user:0
 msgid "Username"
 msgstr "Корисничко име"
 
 #. module: fetchmail
-#: model:ir.model.fields,help:fetchmail.field_fetchmail_server_original
+#: help:fetchmail.server,original:0
 msgid ""
 "Whether a full original copy of each email should be kept for referenceand "
 "attached to each processed message. This will usually double the size of "
@@ -345,13 +341,8 @@ msgid ""
 msgstr "Доколку целосната оригинална копија од секој емаил треба да биде зачувана за референца и прикачена на секоја обработена порака. Ова двојно ќе ја зголеми големината на вашата база на податоци."
 
 #. module: fetchmail
-#: model:ir.model.fields,help:fetchmail.field_fetchmail_server_attach
+#: help:fetchmail.server,attach:0
 msgid ""
 "Whether attachments should be downloaded. If not enabled, incoming emails "
 "will be stripped of any attachments before being processed"
 msgstr "Ако прилозите треба да бидат превземени. Доколку не е овозможено, влезните е-маилови ќе бидат лишени од сите прилози пред да бидат обработени."
-
-#. module: fetchmail
-#: model:ir.model,name:fetchmail.model_fetchmail_config_settings
-msgid "fetchmail.config.settings"
-msgstr "fetchmail.config.settings"

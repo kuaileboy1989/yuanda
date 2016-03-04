@@ -1,8 +1,8 @@
 
 from openerp import models
 from openerp.tools import mute_logger
+from openerp.osv.orm import except_orm
 from openerp.tests import common
-from openerp.exceptions import AccessError
 
 
 class TestAPI(common.TransactionCase):
@@ -244,14 +244,14 @@ class TestAPI(common.TransactionCase):
 
         # demo user can read but not modify company data
         demo_partners[0].company_id.name
-        with self.assertRaises(AccessError):
+        with self.assertRaises(except_orm):
             demo_partners[0].company_id.write({'name': 'Pricks'})
 
         # remove demo user from all groups
         demo.write({'groups_id': [(5,)]})
 
         # demo user can no longer access partner data
-        with self.assertRaises(AccessError):
+        with self.assertRaises(except_orm):
             demo_partners[0].company_id.name
 
     @mute_logger('openerp.models')
@@ -272,20 +272,7 @@ class TestAPI(common.TransactionCase):
     @mute_logger('openerp.models')
     def test_60_cache(self):
         """ Check the record cache behavior """
-        Partners = self.env['res.partner']
-        pids = []
-        data = {
-            'partner One': ['Partner One - One', 'Partner One - Two'],
-            'Partner Two': ['Partner Two - One'],
-            'Partner Three': ['Partner Three - One'],
-        }
-        for p in data:
-            pids.append(Partners.create({
-                'name': p,
-                'child_ids': [(0, 0, {'name': c}) for c in data[p]],
-            }).id)
-
-        partners = Partners.search([('id', 'in', pids)])
+        partners = self.env['res.partner'].search([('child_ids', '!=', False)])
         partner1, partner2 = partners[0], partners[1]
         children1, children2 = partner1.child_ids, partner2.child_ids
         self.assertTrue(children1)
@@ -354,7 +341,7 @@ class TestAPI(common.TransactionCase):
         # check with many records
         ps = self.env['res.partner'].search([('name', 'ilike', 'a')])
         self.assertTrue(len(ps) > 1)
-        with self.assertRaises(ValueError):
+        with self.assertRaises(except_orm):
             ps.ensure_one()
 
         p1 = ps[0]
@@ -363,7 +350,7 @@ class TestAPI(common.TransactionCase):
 
         p0 = self.env['res.partner'].browse()
         self.assertEqual(len(p0), 0)
-        with self.assertRaises(ValueError):
+        with self.assertRaises(except_orm):
             p0.ensure_one()
 
     @mute_logger('openerp.models')
@@ -409,21 +396,21 @@ class TestAPI(common.TransactionCase):
         self.assertNotEqual(ps._name, ms._name)
         self.assertNotEqual(ps, ms)
 
-        with self.assertRaises(TypeError):
+        with self.assertRaises(except_orm):
             res = ps + ms
-        with self.assertRaises(TypeError):
+        with self.assertRaises(except_orm):
             res = ps - ms
-        with self.assertRaises(TypeError):
+        with self.assertRaises(except_orm):
             res = ps & ms
-        with self.assertRaises(TypeError):
+        with self.assertRaises(except_orm):
             res = ps | ms
-        with self.assertRaises(TypeError):
+        with self.assertRaises(except_orm):
             res = ps < ms
-        with self.assertRaises(TypeError):
+        with self.assertRaises(except_orm):
             res = ps <= ms
-        with self.assertRaises(TypeError):
+        with self.assertRaises(except_orm):
             res = ps > ms
-        with self.assertRaises(TypeError):
+        with self.assertRaises(except_orm):
             res = ps >= ms
 
     @mute_logger('openerp.models')

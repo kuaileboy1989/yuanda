@@ -14,7 +14,7 @@
     partner_invoice_id: base.res_partner_address_3
     partner_shipping_id: base.res_partner_address_3
     note: crossdock route
-    payment_term_id: account.account_payment_term
+    payment_term: account.account_payment_term
     order_line:
       - product_id: product_with_no_seller
         product_uom_qty: 1
@@ -22,8 +22,7 @@
 -
   I confirm the sales order.
 -
-  !python {model: sale.order}: |
-    self.action_confirm(cr, uid, ref("sale_order_route_dropship01"), context=context)
+  !workflow {model: sale.order, ref: sale_order_route_dropship01, action: order_confirm}
 -
   I check there is a procurement in exception that has the procurement group of the sales order created before.
 -
@@ -35,7 +34,7 @@
 -
   I set the at least one supplier on the product.
 -
-  !record {model: product.product, id: product_with_no_seller, view: False}:
+  !record {model: product.product, id: product_with_no_seller}:
     seller_ids:
       - delay: 1
         name: base.res_partner_2

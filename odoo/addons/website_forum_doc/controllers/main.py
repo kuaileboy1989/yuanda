@@ -68,3 +68,4 @@ class WebsiteDoc(http.Controller):
             'documentation_stage_id': stage_ids and stage_ids[0] or False
         }, context=context)
         return request.redirect('/forum/'+str(forum.id)+'/question/'+str(post_id))
+

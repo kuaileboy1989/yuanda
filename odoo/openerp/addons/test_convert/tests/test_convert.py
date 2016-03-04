@@ -1,5 +1,5 @@
 import collections
-import unittest
+import unittest2
 from lxml import etree as ET
 from lxml.builder import E
 
@@ -72,10 +72,12 @@ class TestEvalXML(common.TransactionCase):
         with self.assertRaises(IOError):
             self.eval_xml(Field('test_nofile.txt', type='file'), obj)
 
-    @unittest.skip("not tested")
+    @unittest2.skip("not tested")
     def test_xml(self):
         pass
 
-    @unittest.skip("not tested")
+    @unittest2.skip("not tested")
     def test_html(self):
         pass
+
+

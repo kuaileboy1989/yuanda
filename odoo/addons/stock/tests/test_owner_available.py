@@ -1,9 +1,18 @@
-# -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
-
-# Author: Leonardo Pistone
-# Copyright 2015 Camptocamp SA
-
+#    Author: Leonardo Pistone
+#    Copyright 2015 Camptocamp SA
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from openerp.addons.stock.tests.common import TestStockCommon
 
 
@@ -26,9 +35,7 @@ class TestVirtualAvailable(TestStockCommon):
         })
 
         self.picking_out = self.env['stock.picking'].create({
-            'picking_type_id': self.ref('stock.picking_type_out'),
-            'location_id': self.stock_location,
-            'location_dest_id': self.customer_location})
+            'picking_type_id': self.ref('stock.picking_type_out')})
         self.env['stock.move'].create({
             'name': 'a move',
             'product_id': self.productA.id,
@@ -36,13 +43,10 @@ class TestVirtualAvailable(TestStockCommon):
             'product_uom': self.productA.uom_id.id,
             'picking_id': self.picking_out.id,
             'location_id': self.stock_location,
-            'location_dest_id': self.customer_location
-            })
+            'location_dest_id': self.customer_location})
 
         self.picking_out_2 = self.env['stock.picking'].create({
-            'picking_type_id': self.ref('stock.picking_type_out'),
-            'location_id': self.stock_location,
-            'location_dest_id': self.customer_location})
+            'picking_type_id': self.ref('stock.picking_type_out')})
         self.env['stock.move'].create({
             'restrict_partner_id': self.ref('base.res_partner_4'),
             'name': 'another move',
@@ -51,8 +55,7 @@ class TestVirtualAvailable(TestStockCommon):
             'product_uom': self.productA.uom_id.id,
             'picking_id': self.picking_out_2.id,
             'location_id': self.stock_location,
-            'location_dest_id': self.customer_location
-            })
+            'location_dest_id': self.customer_location})
 
 
     def test_without_owner(self):

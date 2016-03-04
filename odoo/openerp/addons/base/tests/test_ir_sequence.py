@@ -9,7 +9,7 @@
 # This assume an existing database.
 import psycopg2
 import psycopg2.errorcodes
-import unittest
+import unittest2
 
 import openerp
 from openerp.tests import common
@@ -25,18 +25,22 @@ def cursor():
 
 def drop_sequence(code):
     cr = cursor()
-    s = registry('ir.sequence')
-    ids = s.search(cr, ADMIN_USER_ID, [('code', '=', code)])
-    s.unlink(cr, ADMIN_USER_ID, ids)
+    for model in ['ir.sequence', 'ir.sequence.type']:
+        s = registry(model)
+        ids = s.search(cr, ADMIN_USER_ID, [('code', '=', code)])
+        s.unlink(cr, ADMIN_USER_ID, ids)
     cr.commit()
     cr.close()
 
-class test_ir_sequence_standard(unittest.TestCase):
+class test_ir_sequence_standard(unittest2.TestCase):
     """ A few tests for a 'Standard' (i.e. PostgreSQL) sequence. """
 
     def test_ir_sequence_create(self):
         """ Try to create a sequence object. """
         cr = cursor()
+        d = dict(code='test_sequence_type', name='Test sequence type')
+        c = registry('ir.sequence.type').create(cr, ADMIN_USER_ID, d, {})
+        assert c
         d = dict(code='test_sequence_type', name='Test sequence')
         c = registry('ir.sequence').create(cr, ADMIN_USER_ID, d, {})
         assert c
@@ -76,12 +80,15 @@ class test_ir_sequence_standard(unittest.TestCase):
     def tearDownClass(cls):
         drop_sequence('test_sequence_type')
 
-class test_ir_sequence_no_gap(unittest.TestCase):
+class test_ir_sequence_no_gap(unittest2.TestCase):
     """ Copy of the previous tests for a 'No gap' sequence. """
 
     def test_ir_sequence_create_no_gap(self):
         """ Try to create a sequence object. """
         cr = cursor()
+        d = dict(code='test_sequence_type_2', name='Test sequence type')
+        c = registry('ir.sequence.type').create(cr, ADMIN_USER_ID, d, {})
+        assert c
         d = dict(code='test_sequence_type_2', name='Test sequence',
             implementation='no_gap')
         c = registry('ir.sequence').create(cr, ADMIN_USER_ID, d, {})
@@ -116,14 +123,20 @@ class test_ir_sequence_no_gap(unittest.TestCase):
     def tearDownClass(cls):
         drop_sequence('test_sequence_type_2')
 
-class test_ir_sequence_change_implementation(unittest.TestCase):
+class test_ir_sequence_change_implementation(unittest2.TestCase):
     """ Create sequence objects and change their ``implementation`` field. """
 
     def test_ir_sequence_1_create(self):
         """ Try to create a sequence object. """
         cr = cursor()
+        d = dict(code='test_sequence_type_3', name='Test sequence type')
+        c = registry('ir.sequence.type').create(cr, ADMIN_USER_ID, d, {})
+        assert c
         d = dict(code='test_sequence_type_3', name='Test sequence')
         c = registry('ir.sequence').create(cr, ADMIN_USER_ID, d, {})
+        assert c
+        d = dict(code='test_sequence_type_4', name='Test sequence type')
+        c = registry('ir.sequence.type').create(cr, ADMIN_USER_ID, d, {})
         assert c
         d = dict(code='test_sequence_type_4', name='Test sequence',
             implementation='no_gap')
@@ -156,12 +169,15 @@ class test_ir_sequence_change_implementation(unittest.TestCase):
         drop_sequence('test_sequence_type_3')
         drop_sequence('test_sequence_type_4')
 
-class test_ir_sequence_generate(unittest.TestCase):
+class test_ir_sequence_generate(unittest2.TestCase):
     """ Create sequence objects and generate some values. """
 
     def test_ir_sequence_create(self):
         """ Try to create a sequence object. """
         cr = cursor()
+        d = dict(code='test_sequence_type_5', name='Test sequence type')
+        c = registry('ir.sequence.type').create(cr, ADMIN_USER_ID, d, {})
+        assert c
         d = dict(code='test_sequence_type_5', name='Test sequence')
         c = registry('ir.sequence').create(cr, ADMIN_USER_ID, d, {})
         assert c
@@ -177,7 +193,10 @@ class test_ir_sequence_generate(unittest.TestCase):
     def test_ir_sequence_create_no_gap(self):
         """ Try to create a sequence object. """
         cr = cursor()
-        d = dict(code='test_sequence_type_6', name='Test sequence', implementation='no_gap')
+        d = dict(code='test_sequence_type_6', name='Test sequence type')
+        c = registry('ir.sequence.type').create(cr, ADMIN_USER_ID, d, {})
+        assert c
+        d = dict(code='test_sequence_type_6', name='Test sequence')
         c = registry('ir.sequence').create(cr, ADMIN_USER_ID, d, {})
         assert c
         cr.commit()
@@ -224,4 +243,4 @@ class Test_ir_sequence_init(common.TransactionCase):
         assert read_sequence == "0001", 'The actual sequence value must be 1. reading : %s' % read_sequence
 
 if __name__ == "__main__":
-    unittest.main()
+    unittest2.main()

@@ -14,3 +14,4 @@ class stock_picking(osv.osv):
     _columns = {
         'claim_count_out': fields.function(_claim_count_out, string='Claims', type='integer'),    
     }
+

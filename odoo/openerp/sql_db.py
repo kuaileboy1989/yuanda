@@ -1,5 +1,24 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
+#    Copyright (C) 2010-2014 OpenERP s.a. (<http://openerp.com>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
 
 """
@@ -13,8 +32,6 @@ from functools import wraps
 import logging
 import urlparse
 import uuid
-
-import psycopg2
 import psycopg2.extras
 import psycopg2.extensions
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT, ISOLATION_LEVEL_READ_COMMITTED, ISOLATION_LEVEL_REPEATABLE_READ
@@ -175,9 +192,6 @@ class Cursor(object):
 
         self.cache = {}
 
-        # event handlers, see method after() below
-        self._event_handlers = {'commit': [], 'rollback': []}
-
     def __build_dict(self, row):
         return {d.name: row[i] for i, d in enumerate(self._obj.description)}
     def dictfetchone(self):
@@ -206,10 +220,10 @@ class Cursor(object):
     @check
     def execute(self, query, params=None, log_exceptions=None):
         if '%d' in query or '%f' in query:
-            _logger.info("SQL queries cannot contain %%d or %%f anymore. Use only %%s:\n%s" % query, 
-                exc_info=_logger.isEnabledFor(logging.DEBUG))
+            _logger.warning(query)
+            _logger.warning("SQL queries cannot contain %d or %f anymore. Use only %s")
         if params and not isinstance(params, (tuple, list, dict)):
-            _logger.info("SQL query parameters should be a tuple, list or dict; got %r", params)
+            _logger.error("SQL query parameters should be a tuple, list or dict; got %r", params)
             raise ValueError("SQL query parameters should be a tuple, list or dict; got %r" % (params,))
 
         if self.sql_log:
@@ -220,11 +234,11 @@ class Cursor(object):
             res = self._obj.execute(query, params)
         except psycopg2.ProgrammingError, pe:
             if self._default_log_exceptions if log_exceptions is None else log_exceptions:
-                _logger.info("Programming error: %s, in query %s", pe, query)
+                _logger.error("Programming error: %s, in query %s", pe, query)
             raise
         except Exception:
             if self._default_log_exceptions if log_exceptions is None else log_exceptions:
-                _logger.info("bad query: %s", self._obj.query or query)
+                _logger.exception("bad query: %s", self._obj.query or query)
             raise
 
         # simple query count is always computed
@@ -343,44 +357,16 @@ class Cursor(object):
         self._cnx.set_isolation_level(isolation_level)
 
     @check
-    def after(self, event, func):
-        """ Register an event handler.
-
-            :param event: the event, either `'commit'` or `'rollback'`
-            :param func: a callable object, called with no argument after the
-                event occurs
-
-            Be careful when coding an event handler, since any operation on the
-            cursor that was just committed/rolled back will take place in the
-            next transaction that has already begun, and may still be rolled
-            back or committed independently. You may consider the use of a
-            dedicated temporary cursor to do some database operation.
-        """
-        self._event_handlers[event].append(func)
-
-    def _pop_event_handlers(self):
-        # return the current handlers, and reset them on self
-        result = self._event_handlers
-        self._event_handlers = {'commit': [], 'rollback': []}
-        return result
-
-    @check
     def commit(self):
         """ Perform an SQL `COMMIT`
         """
-        result = self._cnx.commit()
-        for func in self._pop_event_handlers()['commit']:
-            func()
-        return result
+        return self._cnx.commit()
 
     @check
     def rollback(self):
         """ Perform an SQL `ROLLBACK`
         """
-        result = self._cnx.rollback()
-        for func in self._pop_event_handlers()['rollback']:
-            func()
-        return result
+        return self._cnx.rollback()
 
     def __enter__(self):
         """ Using the cursor as a contextmanager automatically commits and
@@ -407,11 +393,10 @@ class Cursor(object):
         self.execute('SAVEPOINT "%s"' % name)
         try:
             yield
-        except Exception:
+            self.execute('RELEASE SAVEPOINT "%s"' % name)
+        except:
             self.execute('ROLLBACK TO SAVEPOINT "%s"' % name)
             raise
-        else:
-            self.execute('RELEASE SAVEPOINT "%s"' % name)
 
     @check
     def __getattr__(self, name):
@@ -529,11 +514,7 @@ class ConnectionPool(object):
         _logger.debug(('%r ' + msg), self, *args)
 
     @locked
-    def borrow(self, connection_info):
-        """
-        :param dict connection_info: dict of psql connection keywords
-        :rtype: PsycoConnection
-        """
+    def borrow(self, dsn):
         # free dead and leaked connections
         for i, (cnx, _) in tools.reverse_enumerate(self._connections):
             if cnx.closed:
@@ -544,10 +525,10 @@ class ConnectionPool(object):
                 delattr(cnx, 'leaked')
                 self._connections.pop(i)
                 self._connections.append((cnx, False))
-                _logger.info('%r: Free leaked connection to %r', self, cnx.dsn)
+                _logger.warning('%r: Free leaked connection to %r', self, cnx.dsn)
 
         for i, (cnx, used) in enumerate(self._connections):
-            if not used and cnx._original_dsn == connection_info:
+            if not used and cnx._original_dsn == dsn:
                 try:
                     cnx.reset()
                 except psycopg2.OperationalError:
@@ -576,13 +557,11 @@ class ConnectionPool(object):
                 raise PoolError('The Connection Pool Is Full')
 
         try:
-            result = psycopg2.connect(
-                connection_factory=PsycoConnection,
-                **connection_info)
+            result = psycopg2.connect(dsn=dsn, connection_factory=PsycoConnection)
         except psycopg2.Error:
-            _logger.info('Connection to the database failed')
+            _logger.exception('Connection to the database failed')
             raise
-        result._original_dsn = connection_info
+        result._original_dsn = dsn
         self._connections.append((result, True))
         self._debug('Create new connection')
         return result
@@ -640,24 +619,15 @@ class Connection(object):
     def __nonzero__(self):
         """Check if connection is possible"""
         try:
-            _logger.info("__nonzero__() is deprecated. (It is too expensive to test a connection.)")
+            _logger.warning("__nonzero__() is deprecated. (It is too expensive to test a connection.)")
             cr = self.cursor()
             cr.close()
             return True
         except Exception:
             return False
 
-def connection_info_for(db_or_uri):
-    """ parse the given `db_or_uri` and return a 2-tuple (dbname, connection_params)
-
-    Connection params are either a dictionary with a single key ``dsn``
-    containing a connection URI, or a dictionary containing connection
-    parameter keywords which psycopg2 can build a key/value connection string
-    (dsn) from
-
-    :param str db_or_uri: database name or postgres dsn
-    :rtype: (str, dict)
-    """
+def dsn(db_or_uri):
+    """parse the given `db_or_uri` and return a 2-tuple (dbname, uri)"""
     if db_or_uri.startswith(('postgresql://', 'postgres://')):
         # extract db from uri
         us = urlparse.urlsplit(db_or_uri)
@@ -667,15 +637,15 @@ def connection_info_for(db_or_uri):
             db_name = us.username
         else:
             db_name = us.hostname
-        return db_name, {'dsn': db_or_uri}
+        return db_name, db_or_uri
 
-    connection_info = {'database': db_or_uri}
+    _dsn = ''
     for p in ('host', 'port', 'user', 'password'):
         cfg = tools.config['db_' + p]
         if cfg:
-            connection_info[p] = cfg
+            _dsn += '%s=%s ' % (p, cfg)
 
-    return db_or_uri, connection_info
+    return db_or_uri, '%sdbname=%s' % (_dsn, db_or_uri)
 
 _Pool = None
 
@@ -684,18 +654,20 @@ def db_connect(to, allow_uri=False):
     if _Pool is None:
         _Pool = ConnectionPool(int(tools.config['db_maxconn']))
 
-    db, info = connection_info_for(to)
+    db, uri = dsn(to)
     if not allow_uri and db != to:
         raise ValueError('URI connections not allowed')
-    return Connection(_Pool, db, info)
+    return Connection(_Pool, db, uri)
 
 def close_db(db_name):
     """ You might want to call openerp.modules.registry.RegistryManager.delete(db_name) along this function."""
     global _Pool
     if _Pool:
-        _Pool.close_all(connection_info_for(db_name)[1])
+        _Pool.close_all(dsn(db_name)[1])
 
 def close_all():
     global _Pool
     if _Pool:
         _Pool.close_all()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

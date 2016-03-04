@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 import logging
 import commands
-import json
+import simplejson
 import os
 import os.path
 import openerp
 import time
 import random
 import subprocess
-import json
+import simplejson
 import werkzeug
 import werkzeug.wrappers
 _logger = logging.getLogger(__name__)
@@ -208,3 +208,5 @@ class Proxy(http.Controller):
     @http.route('/hw_proxy/print_pdf_invoice', type='json', auth='none', cors='*')
     def print_pdf_invoice(self, pdfinvoice):
         print 'print_pdf_invoice' + str(pdfinvoice)
+
+

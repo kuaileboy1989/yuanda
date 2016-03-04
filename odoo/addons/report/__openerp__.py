@@ -6,6 +6,7 @@
     'description': """
 Report
         """,
+    'author': 'OpenERP SA',
     'depends': ['base', 'web'],
     'data': [
         'views/layouts.xml',

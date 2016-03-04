@@ -1,5 +1,21 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+##############################################################################
+#    Copyright (C) 2004-2014 OpenERP s.a. (<http://www.openerp.com>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
 """
 safe_eval module - methods intended to provide more restricted alternatives to
@@ -128,12 +144,10 @@ def assert_valid_codeobj(allowed_codes, code_obj, expr):
                        is found in ``code_obj``
     """
     assert_no_dunder_name(code_obj, expr)
-
-    # almost twice as fast as a manual iteration + condition when loading
-    # /web according to line_profiler
-    if set(_get_opcodes(code_obj)) - allowed_codes:
-        raise ValueError("forbidden opcode(s) in %r" % expr)
-
+    for opcode in _get_opcodes(code_obj):
+        if opcode not in allowed_codes:
+            raise ValueError(
+                "opcode %s not allowed (%r)" % (opname[opcode], expr))
     for const in code_obj.co_consts:
         if isinstance(const, CodeType):
             assert_valid_codeobj(allowed_codes, const, 'lambda')
@@ -213,44 +227,7 @@ def _import(name, globals=None, locals=None, fromlist=None, level=-1):
     if name in _ALLOWED_MODULES:
         return __import__(name, globals, locals, level)
     raise ImportError(name)
-_BUILTINS = {
-    '__import__': _import,
-    'True': True,
-    'False': False,
-    'None': None,
-    'str': str,
-    'unicode': unicode,
-    'bool': bool,
-    'int': int,
-    'float': float,
-    'long': long,
-    'enumerate': enumerate,
-    'dict': dict,
-    'list': list,
-    'tuple': tuple,
-    'map': map,
-    'abs': abs,
-    'min': min,
-    'max': max,
-    'sum': sum,
-    'reduce': reduce,
-    'filter': filter,
-    'round': round,
-    'len': len,
-    'repr': repr,
-    'set': set,
-    'all': all,
-    'any': any,
-    'ord': ord,
-    'chr': chr,
-    'cmp': cmp,
-    'divmod': divmod,
-    'isinstance': isinstance,
-    'range': range,
-    'xrange': xrange,
-    'zip': zip,
-    'Exception': Exception,
-}
+
 def safe_eval(expr, globals_dict=None, locals_dict=None, mode="eval", nocopy=False, locals_builtins=False):
     """safe_eval(expression[, globals[, locals[, mode[, nocopy]]]]) -> result
 
@@ -268,8 +245,11 @@ def safe_eval(expr, globals_dict=None, locals_dict=None, mode="eval", nocopy=Fal
     :throws NameError: If the expression provided accesses forbidden names
     :throws ValueError: If the expression provided uses forbidden bytecode
     """
-    if type(expr) is CodeType:
+    if isinstance(expr, CodeType):
         raise TypeError("safe_eval does not allow direct evaluation of code objects.")
+
+    if globals_dict is None:
+        globals_dict = {}
 
     # prevent altering the globals/locals from within the sandbox
     # by taking a copy.
@@ -280,23 +260,59 @@ def safe_eval(expr, globals_dict=None, locals_dict=None, mode="eval", nocopy=Fal
             _logger.warning(
                 "Looks like you are trying to pass a dynamic environment, "
                 "you should probably pass nocopy=True to safe_eval().")
-        if globals_dict is not None:
-            globals_dict = dict(globals_dict)
+
+        globals_dict = dict(globals_dict)
         if locals_dict is not None:
             locals_dict = dict(locals_dict)
 
-    if globals_dict is None:
-        globals_dict = {}
-
-    globals_dict['__builtins__'] = _BUILTINS
+    globals_dict.update(
+        __builtins__={
+            '__import__': _import,
+            'True': True,
+            'False': False,
+            'None': None,
+            'str': str,
+            'unicode': unicode,
+            'bool': bool,
+            'int': int,
+            'float': float,
+            'long': long,
+            'enumerate': enumerate,
+            'dict': dict,
+            'list': list,
+            'tuple': tuple,
+            'map': map,
+            'abs': abs,
+            'min': min,
+            'max': max,
+            'sum': sum,
+            'reduce': reduce,
+            'filter': filter,
+            'round': round,
+            'len': len,
+            'repr': repr,
+            'set': set,
+            'all': all,
+            'any': any,
+            'ord': ord,
+            'chr': chr,
+            'cmp': cmp,
+            'divmod': divmod,
+            'isinstance': isinstance,
+            'range': range,
+            'xrange': xrange,
+            'zip': zip,
+            'Exception': Exception,
+        }
+    )
     if locals_builtins:
         if locals_dict is None:
             locals_dict = {}
-        locals_dict.update(_BUILTINS)
+        locals_dict.update(globals_dict.get('__builtins__'))
     c = test_expr(expr, _SAFE_OPCODES, mode=mode)
     try:
         return eval(c, globals_dict, locals_dict)
-    except openerp.exceptions.except_orm:
+    except openerp.osv.orm.except_orm:
         raise
     except openerp.exceptions.Warning:
         raise
@@ -310,9 +326,9 @@ def safe_eval(expr, globals_dict=None, locals_dict=None, mode="eval", nocopy=Fal
         # Do not hide PostgreSQL low-level exceptions, to let the auto-replay
         # of serialized transactions work its magic
         raise
-    except openerp.exceptions.MissingError:
-        raise
     except Exception, e:
         import sys
         exc_info = sys.exc_info()
         raise ValueError, '"%s" while evaluating\n%r' % (ustr(e), expr), exc_info[2]
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

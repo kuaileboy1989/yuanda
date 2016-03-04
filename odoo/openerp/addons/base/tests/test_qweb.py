@@ -7,7 +7,7 @@ import re
 import collections
 
 from lxml import etree
-from openerp.addons.base.ir.ir_qweb import QWebContext, FileSystemLoader
+import openerp.addons.base.ir.ir_qweb
 import openerp.modules
 
 from openerp.tests import common
@@ -112,13 +112,12 @@ class TestQWeb(common.TransactionCase):
         return lambda: self.run_test_file(os.path.join(path, f))
 
     def run_test_file(self, path):
-        doc = etree.parse(path).getroot()
-        loader = FileSystemLoader(path)
-        context = QWebContext(self.cr, self.uid, {}, loader=loader)
+        context = openerp.addons.base.ir.ir_qweb.QWebContext(self.cr, self.uid, {})
         qweb = self.env['ir.qweb']
-        for template in loader:
-            if not template or template.startswith('_'):
-                continue
+        doc = etree.parse(path).getroot()
+        qweb.load_document(doc, None, context)
+        for template in context.templates:
+            if template.startswith('_'): continue
             param = doc.find('params[@id="{}"]'.format(template))
             # OrderedDict to ensure JSON mappings are iterated in source order
             # so output is predictable & repeatable

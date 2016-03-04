@@ -1,13 +1,33 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2013_Today OpenERP SA (<http://www.openerp.com>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
-import json
+try:
+    import simplejson as json
+except ImportError:
+    import json     # noqa
 import urllib
 
 from openerp.osv import osv, fields
 from openerp import tools
 from openerp.tools.translate import _
-from openerp.exceptions import UserError
 
 
 def geo_find(addr):
@@ -17,7 +37,8 @@ def geo_find(addr):
     try:
         result = json.load(urllib.urlopen(url))
     except Exception, e:
-        raise UserError(_('Cannot contact geolocation servers. Please make sure that your internet connection is up and running (%s).') % e)
+        raise osv.except_osv(_('Network error'),
+                             _('Cannot contact geolocation servers. Please make sure that your internet connection is up and running (%s).') % e)
     if result['status'] != 'OK':
         return None
 

@@ -7,4 +7,6 @@ import website
 import ir_qweb
 import ir_http
 import res_config
-import web_planner
+import update
+
+import test_models

@@ -3,15 +3,16 @@
 # * report_intrastat
 # 
 # Translators:
-# Jesus Alan Ramos Rodriguez <alan.ramos@jarsa.com.mx>, 2015
+# Alejandro Santana <alejandrosantana@anubia.es>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo 9.0\n"
+"Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-07 14:41+0000\n"
-"PO-Revision-Date: 2015-10-31 15:57+0000\n"
-"Last-Translator: Jesus Alan Ramos Rodriguez <alan.ramos@jarsa.com.mx>\n"
-"Language-Team: Spanish (http://www.transifex.com/odoo/odoo-9/language/es/)\n"
+"POT-Creation-Date: 2015-01-21 14:08+0000\n"
+"PO-Revision-Date: 2015-08-25 10:56+0000\n"
+"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
+"Language-Team: Spanish (http://www.transifex.com/odoo/odoo-8/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,47 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
-msgid "<strong>Comment:</strong>"
-msgstr "<strong>Comentario:</strong>"
-
-#. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
-msgid "<strong>Document:</strong>"
-msgstr "<strong>Documento:</strong>"
-
-#. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
-msgid "<strong>Fiscal Position:</strong>"
-msgstr "<strong>Posición Físcal:</strong>"
-
-#. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
-msgid "<strong>Invoice Date:</strong>"
-msgstr "<strong>Fecha factura:</strong>"
-
-#. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
-msgid "<strong>Partner Ref.:</strong>"
-msgstr "<strong>Referencia de empresa:</strong>"
-
-#. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
-msgid "<strong>Payment Term:</strong>"
-msgstr "<strong>Término de Pago:</strong>"
-
-#. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
-msgid "<strong>Total Without Taxes</strong>"
-msgstr "<strong>Total base</strong>"
-
-#. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
-msgid "<strong>Total</strong>"
-msgstr "<strong>Total</strong>"
-
-#. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
+#: view:website:report_intrastat.report_intrastatinvoice_document
 msgid "Amount"
 msgstr "Importe"
 
@@ -74,14 +35,19 @@ msgid "August"
 msgstr "Agosto"
 
 #. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
+#: view:website:report_intrastat.report_intrastatinvoice_document
+msgid "Base"
+msgstr "Base"
+
+#. module: report_intrastat
+#: view:website:report_intrastat.report_intrastatinvoice_document
 msgid "Cancelled Invoice"
 msgstr "Factura cancelada"
 
 #. module: report_intrastat
-#: model:ir.model.fields,field_description:report_intrastat.field_report_intrastat_company_id
-msgid "Company"
-msgstr "Compañía"
+#: view:website:report_intrastat.report_intrastatinvoice_document
+msgid "Comment:"
+msgstr "Comentario:"
 
 #. module: report_intrastat
 #: model:ir.model,name:report_intrastat.model_res_country
@@ -89,12 +55,22 @@ msgid "Country"
 msgstr "País"
 
 #. module: report_intrastat
-#: model:ir.model.fields,field_description:report_intrastat.field_report_intrastat_code
+#: field:report.intrastat,code:0
 msgid "Country code"
 msgstr "Código del país"
 
 #. module: report_intrastat
-#: model:ir.model.fields,field_description:report_intrastat.field_report_intrastat_currency_id
+#: field:report.intrastat.code,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: report_intrastat
+#: field:report.intrastat.code,create_date:0
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: report_intrastat
+#: field:report.intrastat,currency_id:0
 msgid "Currency"
 msgstr "Moneda"
 
@@ -104,29 +80,30 @@ msgid "December"
 msgstr "Diciembre"
 
 #. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
+#: field:report.intrastat.code,description:0
+#: view:website:report_intrastat.report_intrastatinvoice_document
 msgid "Description"
 msgstr "Descripción"
 
 #. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
+#: view:website:report_intrastat.report_intrastatinvoice_document
 msgid "Discount (%)"
 msgstr "Descuento (%)"
 
 #. module: report_intrastat
-#: model:ir.model.fields,field_description:report_intrastat.field_report_intrastat_display_name
-msgid "Display Name"
-msgstr "Nombre mostrado"
+#: view:website:report_intrastat.report_intrastatinvoice_document
+msgid "Document:"
+msgstr "Documento:"
 
 #. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
+#: view:website:report_intrastat.report_intrastatinvoice_document
 msgid "Draft Invoice"
 msgstr "Factura borrador"
 
 #. module: report_intrastat
 #: selection:report.intrastat,type:0
 msgid "Export"
-msgstr "Exportar"
+msgstr "Exportación"
 
 #. module: report_intrastat
 #: selection:report.intrastat,month:0
@@ -134,32 +111,38 @@ msgid "February"
 msgstr "Febrero"
 
 #. module: report_intrastat
-#: model:ir.model.fields,field_description:report_intrastat.field_report_intrastat_id
+#: view:website:report_intrastat.report_intrastatinvoice_document
+msgid "Fiscal Position:"
+msgstr "Posición fiscal:"
+
+#. module: report_intrastat
+#: field:report.intrastat,id:0 field:report.intrastat.code,id:0
 msgid "ID"
-msgstr "ID (identificación)"
+msgstr "ID"
 
 #. module: report_intrastat
 #: selection:report.intrastat,type:0
 msgid "Import"
-msgstr "Importar"
+msgstr "Importación"
 
 #. module: report_intrastat
 #: model:ir.actions.act_window,name:report_intrastat.action_report_intrastat_tree_all
 #: model:ir.ui.menu,name:report_intrastat.menu_report_intrastat_all
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
+#: view:website:report_intrastat.report_intrastatinvoice_document
 msgid "Intrastat"
 msgstr "Intrastat"
 
 #. module: report_intrastat
 #: model:ir.actions.act_window,name:report_intrastat.action_report_intrastat_code_tree
 #: model:ir.ui.menu,name:report_intrastat.menu_report_intrastat_code
-#: model:ir.ui.view,arch_db:report_intrastat.view_report_intrastat_code_form
+#: view:report.intrastat.code:report_intrastat.view_report_intrastat_code_form
+#: field:report.intrastat.code,name:0
 msgid "Intrastat Code"
 msgstr "Código Intrastat"
 
 #. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.view_report_intrastat_search
-#: model:ir.ui.view,arch_db:report_intrastat.view_report_intrastat_tree
+#: view:report.intrastat:report_intrastat.view_report_intrastat_search
+#: view:report.intrastat:report_intrastat.view_report_intrastat_tree
 msgid "Intrastat Data"
 msgstr "Datos Intrastat"
 
@@ -170,14 +153,13 @@ msgstr "Facturas Intrastat"
 
 #. module: report_intrastat
 #: model:ir.model,name:report_intrastat.model_report_intrastat_code
-#: model:ir.model.fields,field_description:report_intrastat.field_product_template_intrastat_id
-#: model:ir.model.fields,field_description:report_intrastat.field_report_intrastat_intrastat_id
-#: model:ir.ui.view,arch_db:report_intrastat.view_report_intrastat_code_tree
+#: field:product.template,intrastat_id:0 field:report.intrastat,intrastat_id:0
+#: view:report.intrastat.code:report_intrastat.view_report_intrastat_code_tree
 msgid "Intrastat code"
 msgstr "Código Intrastat"
 
 #. module: report_intrastat
-#: model:ir.model.fields,field_description:report_intrastat.field_res_country_intrastat
+#: field:res.country,intrastat:0
 msgid "Intrastat member"
 msgstr "Miembro Intrastat"
 
@@ -187,9 +169,14 @@ msgid "Intrastat report"
 msgstr "Informe Intrastat"
 
 #. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
+#: view:website:report_intrastat.report_intrastatinvoice_document
 msgid "Invoice"
 msgstr "Factura"
+
+#. module: report_intrastat
+#: view:website:report_intrastat.report_intrastatinvoice_document
+msgid "Invoice Date:"
+msgstr "Fecha de factura:"
 
 #. module: report_intrastat
 #: selection:report.intrastat,month:0
@@ -207,9 +194,14 @@ msgid "June"
 msgstr "Junio"
 
 #. module: report_intrastat
-#: model:ir.model.fields,field_description:report_intrastat.field_report_intrastat___last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
+#: field:report.intrastat.code,write_uid:0
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: report_intrastat
+#: field:report.intrastat.code,write_date:0
+msgid "Last Updated on"
+msgstr "Última actualización en"
 
 #. module: report_intrastat
 #: selection:report.intrastat,month:0
@@ -222,7 +214,7 @@ msgid "May"
 msgstr "Mayo"
 
 #. module: report_intrastat
-#: model:ir.model.fields,field_description:report_intrastat.field_report_intrastat_month
+#: field:report.intrastat,month:0
 msgid "Month"
 msgstr "Mes"
 
@@ -237,9 +229,19 @@ msgid "October"
 msgstr "Octubre"
 
 #. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
+#: view:website:report_intrastat.report_intrastatinvoice_document
 msgid "PRO-FORMA"
 msgstr "PRO-FORMA"
+
+#. module: report_intrastat
+#: view:website:report_intrastat.report_intrastatinvoice_document
+msgid "Partner Ref.:"
+msgstr "Ref. de empresa:"
+
+#. module: report_intrastat
+#: view:website:report_intrastat.report_intrastatinvoice_document
+msgid "Payment Term:"
+msgstr "Plazo de pago:"
 
 #. module: report_intrastat
 #: model:ir.model,name:report_intrastat.model_product_template
@@ -247,12 +249,12 @@ msgid "Product Template"
 msgstr "Plantilla producto"
 
 #. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
+#: view:website:report_intrastat.report_intrastatinvoice_document
 msgid "Quantity"
 msgstr "Cantidad"
 
 #. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
+#: view:website:report_intrastat.report_intrastatinvoice_document
 msgid "Refund"
 msgstr "Factura de abono"
 
@@ -262,62 +264,72 @@ msgid "September"
 msgstr "Septiembre"
 
 #. module: report_intrastat
-#: model:ir.model.fields,field_description:report_intrastat.field_report_intrastat_ref
+#: field:report.intrastat,ref:0
 msgid "Source document"
 msgstr "Documento origen"
 
 #. module: report_intrastat
-#: model:ir.model.fields,field_description:report_intrastat.field_report_intrastat_supply_units
+#: view:website:report_intrastat.report_intrastatinvoice_document
+msgid "Supplier Invoice"
+msgstr "Factura de proveedor"
+
+#. module: report_intrastat
+#: view:website:report_intrastat.report_intrastatinvoice_document
+msgid "Supplier Refund"
+msgstr "Factura de abono de proveedor"
+
+#. module: report_intrastat
+#: field:report.intrastat,supply_units:0
 msgid "Supply Units"
 msgstr "Unidades suministradas"
 
 #. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
+#: view:website:report_intrastat.report_intrastatinvoice_document
 msgid "Tax"
 msgstr "Impuesto"
 
 #. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
+#: view:website:report_intrastat.report_intrastatinvoice_document
 msgid "Taxes"
 msgstr "Impuestos"
 
 #. module: report_intrastat
-#: model:ir.model.fields,field_description:report_intrastat.field_report_intrastat_type
+#: view:website:report_intrastat.report_intrastatinvoice_document
+msgid "Total"
+msgstr "Total"
+
+#. module: report_intrastat
+#: view:website:report_intrastat.report_intrastatinvoice_document
+msgid "Total Without Taxes"
+msgstr "Base imponible"
+
+#. module: report_intrastat
+#: field:report.intrastat,type:0
 msgid "Type"
 msgstr "Tipo"
 
 #. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
+#: view:website:report_intrastat.report_intrastatinvoice_document
 msgid "Unit Price"
 msgstr "Precio unidad"
 
 #. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
+#: view:website:report_intrastat.report_intrastatinvoice_document
 msgid "Unit of measure"
 msgstr "Unidad de medida"
 
 #. module: report_intrastat
-#: model:ir.model.fields,field_description:report_intrastat.field_report_intrastat_value
+#: field:report.intrastat,value:0
 msgid "Value"
 msgstr "Valor"
 
 #. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
-msgid "Vendor Bill"
-msgstr "Factura de proveedor"
-
-#. module: report_intrastat
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
-msgid "Vendor Refund"
-msgstr "Devolución a proveedor"
-
-#. module: report_intrastat
-#: model:ir.model.fields,field_description:report_intrastat.field_report_intrastat_weight
-#: model:ir.ui.view,arch_db:report_intrastat.report_intrastatinvoice_document
+#: field:report.intrastat,weight:0
+#: view:website:report_intrastat.report_intrastatinvoice_document
 msgid "Weight"
 msgstr "Peso"
 
 #. module: report_intrastat
-#: model:ir.model.fields,field_description:report_intrastat.field_report_intrastat_name
+#: field:report.intrastat,name:0
 msgid "Year"
 msgstr "Año"

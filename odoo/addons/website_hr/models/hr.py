@@ -3,15 +3,12 @@
 from openerp.osv import osv, fields
 
 
-class hr_employee(osv.osv):
-    _name = 'hr.employee'
-    _inherit = ['hr.employee', 'website.published.mixin']
-
+class hr(osv.osv):
+    _inherit = 'hr.employee'
     _columns = {
-        'public_info': fields.char('Public Info'),
+        'website_published': fields.boolean('Available in the website', copy=False),
+        'public_info': fields.text('Public Info'),
     }
-
-    def _website_url(self, cr, uid, ids, field_name, arg, context=None):
-        res = super(hr_employee, self)._website_url(cr, uid, ids, field_name, arg, context=context)
-        res.update({(employee_id, '/page/website.aboutus#team') for employee_id in ids})
-        return res
+    _defaults = {
+        'website_published': False
+    }

@@ -1,12 +1,29 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
 from openerp.osv import fields
 from openerp.osv import osv
 import time
 from datetime import datetime
 from openerp.tools.translate import _
-from openerp.exceptions import UserError
 
 #----------------------------------------------------------
 # Work Centers
@@ -102,23 +119,15 @@ class mrp_production_workcenter_line(osv.osv):
             elif prod_obj.state =='in_production':
                 return
             else:
-                raise UserError(_('Manufacturing order cannot be started in state "%s"!') % (prod_obj.state,))
+                raise osv.except_osv(_('Error!'),_('Manufacturing order cannot be started in state "%s"!') % (prod_obj.state,))
         else:
             open_count = self.search_count(cr,uid,[('production_id','=',prod_obj.id), ('state', '!=', 'done')])
             flag = not bool(open_count)
             if flag:
-                button_produce_done = True
                 for production in prod_obj_pool.browse(cr, uid, [prod_obj.id], context= None):
                     if production.move_lines or production.move_created_ids:
-                        moves = production.move_lines + production.move_created_ids
-                        # If tracking is activated, we want to make sure the user will enter the
-                        # serial numbers.
-                        if moves.filtered(lambda r: r.product_id.tracking != 'none'):
-                            button_produce_done = False
-                        else:
-                            prod_obj_pool.action_produce(cr,uid, production.id, production.product_qty, 'consume_produce', context = None)
-                if button_produce_done:
-                    prod_obj_pool.signal_workflow(cr, uid, [oper_obj.production_id.id], 'button_produce_done')
+                        prod_obj_pool.action_produce(cr,uid, production.id, production.product_qty, 'consume_produce', context = None)
+                prod_obj_pool.signal_workflow(cr, uid, [oper_obj.production_id.id], 'button_produce_done')
         return
 
     def write(self, cr, uid, ids, vals, context=None, update=True):
@@ -423,37 +432,37 @@ class mrp_operations_operation(osv.osv):
 
         if not oper_objs:
             if code.start_stop!='start':
-                raise UserError(_('Operation is not started yet!'))
+                raise osv.except_osv(_('Sorry!'),_('Operation is not started yet!'))
                 return False
         else:
             for oper in oper_objs:
                  code_lst.append(oper.code_id.start_stop)
             if code.start_stop=='start':
                     if 'start' in code_lst:
-                        raise UserError(_('Operation has already started! You can either Pause/Finish/Cancel the operation.'))
+                        raise osv.except_osv(_('Sorry!'),_('Operation has already started! You can either Pause/Finish/Cancel the operation.'))
                         return False
             if code.start_stop=='pause':
                     if  code_lst[len(code_lst)-1]!='resume' and code_lst[len(code_lst)-1]!='start':
-                        raise UserError(_('In order to Pause the operation, it must be in the Start or Resume state!'))
+                        raise osv.except_osv(_('Error!'),_('In order to Pause the operation, it must be in the Start or Resume state!'))
                         return False
             if code.start_stop=='resume':
                 if code_lst[len(code_lst)-1]!='pause':
-                   raise UserError(_('In order to Resume the operation, it must be in the Pause state!'))
+                   raise osv.except_osv(_('Error!'),_('In order to Resume the operation, it must be in the Pause state!'))
                    return False
 
             if code.start_stop=='done':
                if code_lst[len(code_lst)-1]!='start' and code_lst[len(code_lst)-1]!='resume':
-                  raise UserError(_('In order to Finish the operation, it must be in the Start or Resume state!'))
+                  raise osv.except_osv(_('Sorry!'),_('In order to Finish the operation, it must be in the Start or Resume state!'))
                   return False
                if 'cancel' in code_lst:
-                  raise UserError(_('Operation is Already Cancelled!'))
+                  raise osv.except_osv(_('Sorry!'),_('Operation is Already Cancelled!'))
                   return False
             if code.start_stop=='cancel':
                if  not 'start' in code_lst :
-                   raise UserError(_('No operation to cancel.'))
+                   raise osv.except_osv(_('Error!'),_('No operation to cancel.'))
                    return False
                if 'done' in code_lst:
-                  raise UserError(_('Operation is already finished!'))
+                  raise osv.except_osv(_('Error!'),_('Operation is already finished!'))
                   return False
         return True
 
@@ -536,3 +545,5 @@ class mrp_operations_operation(osv.osv):
     _defaults={
         'date_start': lambda *a:datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     }
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -6,6 +6,7 @@
     'summary': 'Payment Acquirer: Buckaroo Implementation',
     'version': '1.0',
     'description': """Buckaroo Payment Acquirer""",
+    'author': 'OpenERP SA',
     'depends': ['payment'],
     'data': [
         'views/buckaroo.xml',

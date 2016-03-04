@@ -3,14 +3,17 @@
 # * hr
 # 
 # Translators:
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014
+# hoxhe aits <hoxhe0@gmail.com>, 2015
+# Mustafa Rawi <mustafa@cubexco.com>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo 9.0\n"
+"Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-15 10:41+0000\n"
-"PO-Revision-Date: 2016-02-20 10:36+0000\n"
-"Last-Translator: Martin Trigaux\n"
-"Language-Team: Arabic (http://www.transifex.com/odoo/odoo-9/language/ar/)\n"
+"POT-Creation-Date: 2015-01-21 14:07+0000\n"
+"PO-Revision-Date: 2015-09-08 11:09+0000\n"
+"Last-Translator: Mustafa Rawi <mustafa@cubexco.com>\n"
+"Language-Team: Arabic (http://www.transifex.com/odoo/odoo-8/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -18,272 +21,182 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #. module: hr
-#: code:addons/hr/hr.py:119
+#: code:addons/hr/hr.py:158
 #, python-format
 msgid "%s (copy)"
 msgstr "%s (نسخة)"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_consultant
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-#: model:hr.job,website_description:hr.job_trainee
-msgid "<i>Work in a fun atmosphere</i>"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_consultant
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-#: model:hr.job,website_description:hr.job_trainee
-msgid "<i>You are passionate</i>"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_trainee
-msgid "<i>You autonomously and quickly learn</i>"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_consultant
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-msgid "<i>You easily manage them</i>"
-msgstr ""
-
-#. module: hr
-#: model:ir.ui.view,arch_db:hr.hr_kanban_view_employees
+#: model:ir.actions.act_window,help:hr.open_view_employee_list_my
 msgid ""
-"<span class=\"o_unfollow\">Unfollow</span>\n"
-"                                    <span class=\"o_following\">Following</span>"
-msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a new employee.\n"
+"              </p><p>\n"
+"                With just a quick glance on the Odoo employee screen, you\n"
+"                can easily find all the information you need for each person;\n"
+"                contact data, job position, availability, etc.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\nانقر لإضافة موظف جديد.\n</p><p>\nبنظرة واحدة سريعة على واجهة الموظفين في أودو، سيمكنك\nمراجعة كافة البيانات التي تحتاجها عن كل منهم، مثل\nبيانات الاتصال، المنصب الوظيفي، الإجازة السارية، وغيرها.\n</p>"
 
 #. module: hr
-#: model:ir.ui.view,arch_db:hr.hr_department_view_kanban
-msgid "<span>Reports</span>"
-msgstr ""
-
-#. module: hr
-#: model:ir.ui.view,arch_db:hr.hr_department_view_kanban
-msgid "<span>To Approve</span>"
-msgstr ""
-
-#. module: hr
-#: model:ir.ui.view,arch_db:hr.hr_department_view_kanban
-msgid "<span>To Do</span>"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_consultant
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-#: model:hr.job,website_description:hr.job_trainee
+#: model:ir.actions.act_window,help:hr.open_module_tree_department
 msgid ""
-"A full time job, with an attractive salary package in a small team of smart "
-"people. You will start contract with a full technical and functional "
-"training. If you are passionate, motivate and flexible apply for this job, "
-"you will certainly join the best company ever."
-msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Click to create a department.\n"
+"              </p><p>\n"
+"                Odoo's department structure is used to manage all documents\n"
+"                related to employees by departments: expenses, timesheets,\n"
+"                leaves and holidays, recruitments, etc.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\nانقر لإنشاء إدارة جديدة.\n</p><p>\nهيكل الإدارات في أودو يستخدم لإدارة كافة المستندات\nالمقترنة بالموظفين، مثل: نفقاتهم، سجلات الأنشطة،\nالإجازات، التعيينات وغيرها.\n</p>"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_consultant
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-#: model:hr.job,website_description:hr.job_trainee
-msgid "A good job in a young and dynamic team"
-msgstr ""
+#: model:ir.actions.act_window,help:hr.view_department_form_installer
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Click to define a new department.\n"
+"              </p><p>\n"
+"                Your departments structure is used to manage all documents\n"
+"                related to employees by departments: expenses and timesheets,\n"
+"                leaves and holidays, recruitments, etc.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\nانقر لتعريف إدارة جديدة.\n</p><p>\nيستخدم هيكل الإدارات في إدارة كافة المستندات المقترنة بالموظفين،\nمثل: نفقات الموظفين، سجلات أنشطتهم، إجازاتهم وحضورهم،\nالتعيينات وغيرها من الأمور.\n</p>"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_message_needaction
-#: model:ir.model.fields,field_description:hr.field_hr_employee_message_needaction
-#: model:ir.model.fields,field_description:hr.field_hr_job_message_needaction
-msgid "Action Needed"
-msgstr "الاجراء المطلوب"
+#: model:ir.actions.act_window,help:hr.action_hr_job
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Click to define a new job position.\n"
+"              </p><p>\n"
+"                Job Positions are used to define jobs and their requirements.\n"
+"                You can keep track of the number of employees you have per job\n"
+"                position and follow the evolution according to what you planned\n"
+"                for the future.\n"
+"              </p><p>\n"
+"                You can attach a survey to a job position. It will be used in\n"
+"                the recruitment process to evaluate the applicants for this job\n"
+"                position.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n               انقر لتحديد موقف وظيفة جديدة.\n             </p><p\n               وتستخدم المناصب المهمة لتحديد الوظائف ومتطلباتها.\n               يمكنك تتبع من عدد العاملين لديك لكل وظيفة\n               وضع ومتابعة تطور وفق ما تعدون\n               للمستقبل.\n             </p><p>\n              يمكنك إرفاق دراسة استقصائية لموقف وظيفة. سيتم استخدامه في\n              عملية التوظيف لتقييم المتقدمين لهذه الوظيفة\n              موقف.\n            </ P>\n            "
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_active
+#: view:hr.employee:hr.view_employee_form
 msgid "Active"
-msgstr "نشط"
+msgstr "نشِط"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_consultant
-msgid "Analyse needs, write specification documents and quotation"
-msgstr ""
+#: view:hr.config.settings:hr.view_human_resources_configuration
+msgid "Additional Features"
+msgstr "خصائص اضافية"
 
 #. module: hr
-#: model:ir.ui.view,arch_db:hr.view_employee_filter
-msgid "Archived"
-msgstr "مؤرشف"
+#: field:hr.config.settings,module_account_analytic_analysis:0
+msgid ""
+"Allow invoicing based on timesheets (the sale application will be installed)"
+msgstr "السماح بالفواتير على أساس الجداول الزمنية (سيتم تثبيت تطبيق البيع)"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_bank_account_id
+#: field:hr.config.settings,module_hr_timesheet_sheet:0
+msgid "Allow timesheets validation by managers"
+msgstr "السماح لتأكيد كشف الحضور عن طريق المدير"
+
+#. module: hr
+#: view:hr.config.settings:hr.view_human_resources_configuration
+msgid "Apply"
+msgstr "تطبيق"
+
+#. module: hr
+#: model:ir.ui.menu,name:hr.menu_open_view_attendance_reason_new_config
+msgid "Attendance"
+msgstr "الحضور"
+
+#. module: hr
+#: field:hr.employee,bank_account_id:0
 msgid "Bank Account Number"
 msgstr "رقم الحساب المصرفي"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_cto
-msgid ""
-"Because of our constant growth, we're now looking for people to reinforce "
-"our team of enthusiastic chief technical officer. So if working on an open "
-"source project in a friendly and cooperative atmosphere sounds like fun to "
-"you, read on..."
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_consultant
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-msgid ""
-"Because of our constant growth, we're now looking for people to reinforce "
-"our team of enthusiastic developers. So if working on an open source project"
-" in a friendly and cooperative atmosphere sounds like fun to you, read on..."
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_trainee
-msgid ""
-"Because of our constant growth, we're now looking for people to reinforce "
-"our team of enthusiastic trainees. So if working on an open source project "
-"in a friendly and cooperative atmosphere sounds like fun to you, read on..."
-msgstr ""
-
-#. module: hr
-#: model:ir.ui.view,arch_db:hr.view_employee_form
+#: view:hr.employee:hr.view_employee_form
 msgid "Birth"
 msgstr "الميلاد"
 
 #. module: hr
-#: model:hr.job,name:hr.job_ceo
-msgid "Chief Executive Officer"
-msgstr ""
+#: help:hr.job,state:0
+msgid ""
+"By default 'Closed', set it to 'In Recruitment' if recruitment process is "
+"going on for this job position."
+msgstr "الحالة 'مقفل' بشكل افتراضي. اضبطها إلى قيد التوظيف إذا كانت لديك عمليات تعيينات جديدة لهذا المنصب الوظيفي."
 
 #. module: hr
-#: model:hr.job,name:hr.job_cto
-msgid "Chief Technical Officer"
-msgstr ""
+#: view:hr.config.settings:hr.view_human_resources_configuration
+msgid "Cancel"
+msgstr "إلغاء"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_child_ids
+#: field:hr.employee.category,child_ids:0
+msgid "Child Categories"
+msgstr "تصنيفات فرعية"
+
+#. module: hr
+#: field:hr.department,child_ids:0
 msgid "Child Departments"
 msgstr "الأقسام الفرعية"
 
 #. module: hr
-#: model:ir.ui.view,arch_db:hr.view_employee_form
-msgid "Citizenship & Other Information"
-msgstr ""
+#: view:hr.employee:hr.view_employee_form
+msgid "Citizenship & Other Info"
+msgstr "الجنسية و معلومات أخرى"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_city
+#: field:hr.employee,city:0
 msgid "City"
 msgstr "المدينة"
 
 #. module: hr
-#: model:web.tip,description:hr.hr_tip_2
-msgid "Click here to change the recruitment goal!"
-msgstr ""
-
-#. module: hr
-#: model:ir.actions.act_window,help:hr.act_employee_from_department
-#: model:ir.actions.act_window,help:hr.open_view_employee_list_my
-msgid "Click to add a new employee."
-msgstr ""
-
-#. module: hr
-#: model:ir.actions.act_window,help:hr.open_module_tree_department
-msgid "Click to create a department."
-msgstr ""
-
-#. module: hr
-#: model:ir.actions.act_window,help:hr.view_department_form_installer
-msgid "Click to define a new department."
-msgstr ""
-
-#. module: hr
-#: model:ir.actions.act_window,help:hr.action_hr_job
-msgid "Click to define a new job position."
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_consultant
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-#: model:hr.job,website_description:hr.job_trainee
-msgid "Close to the perfection ..."
-msgstr ""
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_coach_id
-#: model:ir.ui.view,arch_db:hr.view_employee_filter
+#: view:hr.employee:hr.view_employee_filter field:hr.employee,coach_id:0
 msgid "Coach"
 msgstr "مدرب"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_code
-msgid "Code"
-msgstr "الكود"
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_color
-#: model:ir.model.fields,field_description:hr.field_hr_employee_category_color
-#: model:ir.model.fields,field_description:hr.field_hr_employee_color
+#: field:hr.employee,color:0
 msgid "Color Index"
-msgstr "اللون"
+msgstr "لون الفهرس"
 
 #. module: hr
-#: model:ir.ui.view,arch_db:hr.view_department_tree
+#: view:hr.department:hr.view_department_tree
 msgid "Companies"
-msgstr "المؤسسات"
+msgstr "الشركات"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_company_id
-#: model:ir.model.fields,field_description:hr.field_hr_employee_company_id
-#: model:ir.model.fields,field_description:hr.field_hr_job_company_id
-#: model:ir.ui.view,arch_db:hr.view_employee_filter
-#: model:ir.ui.view,arch_db:hr.view_job_filter
+#: field:hr.department,company_id:0 view:hr.employee:hr.view_employee_filter
+#: view:hr.job:hr.view_job_filter field:hr.job,company_id:0
 msgid "Company"
-msgstr "المؤسسة"
+msgstr "الشركة"
 
 #. module: hr
-#: model:ir.ui.menu,name:hr.menu_human_resources_configuration
+#: model:ir.ui.menu,name:hr.menu_hr_configuration
 msgid "Configuration"
-msgstr "الإعدادات"
+msgstr "إعدادات"
 
 #. module: hr
-#: model:hr.job,name:hr.job_consultant
-msgid "Consultant"
-msgstr ""
+#: view:hr.config.settings:hr.view_human_resources_configuration
+#: model:ir.actions.act_window,name:hr.action_human_resources_configuration
+msgid "Configure Human Resources"
+msgstr "إعداد الموارد البشرية"
 
 #. module: hr
-#: model:ir.ui.view,arch_db:hr.view_employee_form
+#: view:hr.employee:hr.view_employee_form
 msgid "Contact Information"
 msgstr "معلومات التواصل"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_trainee
-msgid "Contributions to open source projects"
-msgstr ""
+#: view:hr.config.settings:hr.view_human_resources_configuration
+msgid "Contracts"
+msgstr "العقود"
 
 #. module: hr
 #: model:ir.actions.act_window,name:hr.view_department_form_installer
@@ -291,83 +204,57 @@ msgid "Create Your Departments"
 msgstr "قم بإنشاء الأقسام"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_create_uid
-#: model:ir.model.fields,field_description:hr.field_hr_employee_category_create_uid
-#: model:ir.model.fields,field_description:hr.field_hr_employee_create_uid
-#: model:ir.model.fields,field_description:hr.field_hr_job_create_uid
+#: field:hr.config.settings,create_uid:0 field:hr.department,create_uid:0
+#: field:hr.employee,create_uid:0 field:hr.employee.category,create_uid:0
+#: field:hr.job,create_uid:0
 msgid "Created by"
-msgstr "أنشئ بواسطة"
+msgstr "أُنشئ بواسطة"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_create_date
-#: model:ir.model.fields,field_description:hr.field_hr_employee_category_create_date
-#: model:ir.model.fields,field_description:hr.field_hr_employee_create_date
-#: model:ir.model.fields,field_description:hr.field_hr_job_create_date
+#: field:hr.config.settings,create_date:0 field:hr.department,create_date:0
+#: field:hr.employee,create_date:0 field:hr.employee.category,create_date:0
+#: field:hr.job,create_date:0
 msgid "Created on"
-msgstr "أنشئ في"
+msgstr "إنشاؤه في"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_job_no_of_employee
+#: field:hr.job,no_of_employee:0
 msgid "Current Number of Employees"
 msgstr "عدد الموظفين الحالي"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_birthday
+#: field:hr.employee,birthday:0
 msgid "Date of Birth"
 msgstr "تاريخ الميلاد"
 
 #. module: hr
-#: model:ir.model.fields,help:hr.field_hr_department_message_last_post
-#: model:ir.model.fields,help:hr.field_hr_employee_message_last_post
-#: model:ir.model.fields,help:hr.field_hr_job_message_last_post
+#: help:hr.employee,message_last_post:0 help:hr.job,message_last_post:0
 msgid "Date of the last message posted on the record."
-msgstr "تاريخ آخر رسالة في هذا السجل."
+msgstr "تاريخ آخر رسالة نُشرت لهذا البند"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-msgid "Define a clear communication strategy"
-msgstr ""
-
-#. module: hr
-#: model:ir.model.fields,help:hr.field_hr_employee_calendar_id
-msgid "Define the schedule of resource"
-msgstr "تحديد الجدول الزمني للموارد"
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_consultant
-msgid "Deliver generic Odoo functional training sessions"
-msgstr ""
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_department_id
-#: model:ir.model.fields,field_description:hr.field_hr_job_department_id
-#: model:ir.ui.view,arch_db:hr.view_department_filter
-#: model:ir.ui.view,arch_db:hr.view_employee_filter
-#: model:ir.ui.view,arch_db:hr.view_job_filter
+#: view:hr.department:hr.view_department_filter
+#: view:hr.employee:hr.view_employee_filter field:hr.employee,department_id:0
+#: view:hr.job:hr.view_job_filter field:hr.job,department_id:0
 msgid "Department"
 msgstr "القسم"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_name
+#: field:hr.department,name:0
 msgid "Department Name"
 msgstr "اسم القسم"
 
 #. module: hr
+#: view:hr.department:hr.view_department_filter
 #: model:ir.actions.act_window,name:hr.open_module_tree_department
 #: model:ir.ui.menu,name:hr.menu_hr_department_tree
-#: model:ir.ui.view,arch_db:hr.view_department_filter
 msgid "Departments"
 msgstr "الأقسام"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_display_name
-#: model:ir.model.fields,field_description:hr.field_hr_employee_category_display_name
-#: model:ir.model.fields,field_description:hr.field_hr_employee_display_name
-#: model:ir.model.fields,field_description:hr.field_hr_job_display_name
-msgid "Display Name"
-msgstr "اسم العرض"
+#: field:res.users,display_employees_suggestions:0
+msgid "Display Employees Suggestions"
+msgstr "عرض اقتراحات الموظفين"
 
 #. module: hr
 #: selection:hr.employee,marital:0
@@ -375,57 +262,55 @@ msgid "Divorced"
 msgstr "مطلّق"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_time_efficiency
-msgid "Efficiency Factor"
-msgstr "معامل الكفاءة"
+#: field:hr.config.settings,module_hr_gamification:0
+msgid "Drive engagement with challenges and badges"
+msgstr "زيادة التفاعل بالشارات والتحديات"
 
 #. module: hr
+#: view:hr.employee:hr.view_employee_form
 #: model:ir.model,name:hr.model_hr_employee
-#: model:ir.ui.view,arch_db:hr.view_employee_form
 msgid "Employee"
 msgstr "الموظف"
 
 #. module: hr
+#: view:hr.employee.category:hr.view_employee_category_form
 #: model:ir.model,name:hr.model_hr_employee_category
 msgid "Employee Category"
 msgstr "تصنيف الموظف"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_category_name
+#: field:hr.employee.category,name:0
 msgid "Employee Tag"
 msgstr "وسم الموظف"
 
 #. module: hr
 #: model:ir.actions.act_window,name:hr.open_view_categ_form
 #: model:ir.ui.menu,name:hr.menu_view_employee_category_form
-#: model:ir.ui.view,arch_db:hr.view_employee_category_form
 msgid "Employee Tags"
 msgstr "الكلمات الدليلية للموظف"
 
 #. module: hr
-#: model:ir.model.fields,help:hr.field_hr_employee_bank_account_id
+#: help:hr.employee,bank_account_id:0
 msgid "Employee bank salary account"
 msgstr "الحساب البنكي لراتب الموظف"
 
 #. module: hr
-#: model:ir.ui.view,arch_db:hr.view_employee_form
-msgid "Employee's Name"
-msgstr "اسم الموظف"
-
-#. module: hr
-#: model:ir.actions.act_window,name:hr.act_employee_from_department
+#: view:hr.employee:hr.view_employee_filter
+#: view:hr.employee:hr.view_employee_tree
+#: view:hr.employee:hr.view_partner_tree2
+#: field:hr.employee.category,employee_ids:0 field:hr.job,employee_ids:0
+#: model:ir.actions.act_window,name:hr.hr_employee_normal_action_tree
 #: model:ir.actions.act_window,name:hr.open_view_employee_list
 #: model:ir.actions.act_window,name:hr.open_view_employee_list_my
-#: model:ir.model.fields,field_description:hr.field_hr_employee_category_employee_ids
-#: model:ir.model.fields,field_description:hr.field_hr_job_employee_ids
-#: model:ir.ui.menu,name:hr.menu_hr_root
 #: model:ir.ui.menu,name:hr.menu_open_view_employee_list_my
-#: model:ir.ui.view,arch_db:hr.hr_department_view_kanban
-#: model:ir.ui.view,arch_db:hr.view_employee_filter
-#: model:ir.ui.view,arch_db:hr.view_employee_tree
-#: model:ir.ui.view,arch_db:hr.view_partner_tree2
 msgid "Employees"
 msgstr "الموظفون"
+
+#. module: hr
+#: view:hr.employee.category:hr.view_employee_category_list
+#: view:hr.employee.category:hr.view_employee_category_tree
+msgid "Employees Categories"
+msgstr "فئات الموظفين"
 
 #. module: hr
 #: model:ir.actions.act_window,name:hr.open_view_employee_tree
@@ -433,37 +318,30 @@ msgid "Employees Structure"
 msgstr "هيكل الموظفين"
 
 #. module: hr
-#: model:ir.ui.view,arch_db:hr.view_employee_category_list
-msgid "Employees Tags"
-msgstr ""
+#: constraint:hr.employee.category:0
+msgid "Error! You cannot create recursive Categories."
+msgstr "خطأّ! لا يمكنك انشاء فئات متداخلة."
 
 #. module: hr
-#: code:addons/hr/hr.py:299 constraint:hr.department:0
-#, python-format
+#: constraint:hr.department:0
 msgid "Error! You cannot create recursive departments."
 msgstr "خطأ! لا يمكنك انشاء أقسام متداخلة."
 
 #. module: hr
-#: code:addons/hr/hr.py:269 constraint:hr.employee:0
-#, python-format
+#: constraint:hr.employee:0
 msgid "Error! You cannot create recursive hierarchy of Employee(s)."
 msgstr "خطأ! لا يمكنك إنشاء التسلسل الهرمي العودي من الموظف ."
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_job_no_of_recruitment
+#: field:hr.job,no_of_recruitment:0
 msgid "Expected New Employees"
 msgstr "الموظفين الجدد المتوقعين"
 
 #. module: hr
-#: model:ir.model.fields,help:hr.field_hr_job_expected_employees
+#: help:hr.job,expected_employees:0
 msgid ""
 "Expected number of employees for this job position after new recruitment."
 msgstr "عدد الموظفين المتوقعين لهذا المنصب بعد التوظيف"
-
-#. module: hr
-#: model:hr.job,name:hr.job_developer
-msgid "Experienced Developer"
-msgstr ""
 
 #. module: hr
 #: selection:hr.employee,gender:0
@@ -471,329 +349,184 @@ msgid "Female"
 msgstr "أنثى"
 
 #. module: hr
-#: model:ir.ui.view,arch_db:hr.hr_kanban_view_employees
+#. openerp-web
+#: code:addons/hr/static/src/xml/suggestions.xml:29
+#: view:hr.employee:hr.hr_kanban_view_employees
+#, python-format
 msgid "Follow"
 msgstr "متابعة"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_consultant
-msgid "Follow and check the development part"
-msgstr ""
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_message_follower_ids
-#: model:ir.model.fields,field_description:hr.field_hr_employee_message_follower_ids
-#: model:ir.model.fields,field_description:hr.field_hr_job_message_follower_ids
-#: model:ir.ui.view,arch_db:hr.hr_kanban_view_employees
+#: field:hr.employee,message_follower_ids:0
+#: field:hr.job,message_follower_ids:0
 msgid "Followers"
 msgstr "المتابعون"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_message_channel_ids
-#: model:ir.model.fields,field_description:hr.field_hr_employee_message_channel_ids
-#: model:ir.model.fields,field_description:hr.field_hr_job_message_channel_ids
-msgid "Followers (Channels)"
-msgstr "المتابعون (القنوات)"
+#: view:hr.employee:hr.hr_kanban_view_employees
+msgid "Following"
+msgstr "تتابعه"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_message_partner_ids
-#: model:ir.model.fields,field_description:hr.field_hr_employee_message_partner_ids
-#: model:ir.model.fields,field_description:hr.field_hr_job_message_partner_ids
-msgid "Followers (Partners)"
-msgstr "المتابعون (الشرماء)"
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_gender
+#: field:hr.employee,gender:0
 msgid "Gender"
 msgstr "الجنس"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_developer
-msgid "Good knowledge of HTML and Javascript"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_trainee
-msgid "Good knowledge of object oriented programming"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_trainee
-msgid "Good knowledge of the latest web technologies"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_trainee
-msgid "Good knowledge of the programming language"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_trainee
-msgid "Good knowledge of web design"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_trainee
-msgid "Good language skills in another language"
-msgstr ""
-
-#. module: hr
-#: model:ir.ui.view,arch_db:hr.view_employee_filter
-#: model:ir.ui.view,arch_db:hr.view_job_filter
+#: view:hr.employee:hr.view_employee_filter view:hr.job:hr.view_job_filter
 msgid "Group By"
 msgstr "تجميع حسب"
 
 #. module: hr
-#: model:ir.model,name:hr.model_hr_department
-msgid "HR Department"
-msgstr ""
-
-#. module: hr
-#: model:ir.ui.view,arch_db:hr.view_employee_form
+#: view:hr.employee:hr.view_employee_form
 msgid "HR Settings"
 msgstr "إعدادات الموارد البشرية"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_consultant
-msgid "Help with the configuration of the software"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_hrm
-msgid "Hire a team of great Human Resources people"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-msgid "Hire a team of great executive people"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_marketing
-msgid "Hire a team of great marketing people"
-msgstr ""
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_job_no_of_hired_employee
+#: field:hr.job,no_of_hired_employee:0
 msgid "Hired Employees"
 msgstr "الموظفون المعينون"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_address_home_id
+#: help:hr.employee,message_summary:0 help:hr.job,message_summary:0
+msgid ""
+"Holds the Chatter summary (number of messages, ...). This summary is "
+"directly in html format in order to be inserted in kanban views."
+msgstr "يحمل ملخص المشارك (عدد الرسائل، ...). هذا ملخص مباشرة بتنسيق HTML من أجل إدراجها في عروض كانبان."
+
+#. module: hr
+#: field:hr.employee,address_home_id:0
 msgid "Home Address"
 msgstr "عنوان المنزل"
 
 #. module: hr
 #: model:ir.ui.menu,name:hr.menu_hr_main
+#: model:ir.ui.menu,name:hr.menu_hr_reporting
+#: model:ir.ui.menu,name:hr.menu_hr_root
+#: model:ir.ui.menu,name:hr.menu_human_resources_configuration
 msgid "Human Resources"
 msgstr "الموارد البشرية"
 
 #. module: hr
-#: model:hr.job,name:hr.job_hrm
-msgid "Human Resources Manager"
-msgstr ""
+#: view:hr.config.settings:hr.view_human_resources_configuration
+msgid "Human Resources Management"
+msgstr "ادارة الموارد البشرية"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_id
-#: model:ir.model.fields,field_description:hr.field_hr_employee_category_id
-#: model:ir.model.fields,field_description:hr.field_hr_employee_id
-#: model:ir.model.fields,field_description:hr.field_hr_job_id
+#: field:hr.config.settings,id:0 field:hr.department,id:0
+#: field:hr.employee,id:0 field:hr.employee.category,id:0 field:hr.job,id:0
 msgid "ID"
-msgstr "المعرف"
+msgstr "المعرّف"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_identification_id
+#: field:hr.employee,identification_id:0
 msgid "Identification No"
 msgstr "رقم الهوية"
 
 #. module: hr
-#: model:ir.model.fields,help:hr.field_hr_department_message_unread
-#: model:ir.model.fields,help:hr.field_hr_employee_message_unread
-#: model:ir.model.fields,help:hr.field_hr_job_message_unread
+#: help:hr.employee,message_unread:0 help:hr.job,message_unread:0
 msgid "If checked new messages require your attention."
-msgstr "إذا حددته، ستتطلب الرسائل الجديدة انتباهك"
+msgstr "إذا فحص الرسائل الجديدة تتطلب انتباهكم."
 
 #. module: hr
-#: model:ir.model.fields,help:hr.field_hr_department_message_needaction
-#: model:ir.model.fields,help:hr.field_hr_employee_message_needaction
-#: model:ir.model.fields,help:hr.field_hr_job_message_needaction
-msgid "If checked, new messages require your attention."
-msgstr "عند التفعيل، توجد رسالة جديدة"
-
-#. module: hr
-#: model:ir.model.fields,help:hr.field_hr_employee_active
-msgid ""
-"If the active field is set to False, it will allow you to hide the resource "
-"record without removing it."
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-msgid "Improve our communication to customers"
-msgstr ""
-
-#. module: hr
-#: model:ir.ui.view,arch_db:hr.view_job_filter
+#: view:hr.job:hr.view_job_filter
 msgid "In Position"
 msgstr "في المنصب"
 
 #. module: hr
-#: model:ir.ui.view,arch_db:hr.view_job_filter
+#: view:hr.job:hr.view_job_filter
 msgid "In Recruitment"
 msgstr "في التوظيف"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-msgid "Increase opportunities"
-msgstr ""
+#: field:hr.config.settings,module_hr_attendance:0
+msgid "Install attendances feature"
+msgstr "تثبيت ميزة الحضور"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-msgid "Increase the visibility of the product"
-msgstr ""
+#: view:hr.config.settings:hr.view_human_resources_configuration
+msgid "Install your country's payroll"
+msgstr "تثبيت مفردات أجور دولتك"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_message_is_follower
-#: model:ir.model.fields,field_description:hr.field_hr_employee_message_is_follower
-#: model:ir.model.fields,field_description:hr.field_hr_job_message_is_follower
-msgid "Is Follower"
+#: field:hr.employee,message_is_follower:0 field:hr.job,message_is_follower:0
+msgid "Is a Follower"
 msgstr "متابع"
 
 #. module: hr
-#: model:ir.ui.view,arch_db:hr.view_employee_filter
-#: model:ir.ui.view,arch_db:hr.view_hr_job_form
-#: model:ir.ui.view,arch_db:hr.view_hr_job_tree
-#: model:ir.ui.view,arch_db:hr.view_job_filter
+#: view:hr.employee:hr.view_employee_filter view:hr.job:hr.view_hr_job_form
+#: view:hr.job:hr.view_hr_job_tree view:hr.job:hr.view_job_filter
 msgid "Job"
 msgstr "العمل"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_job_description
+#: field:hr.job,description:0
 msgid "Job Description"
 msgstr "وصف العمل"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_job_name
+#: field:hr.job,name:0
 msgid "Job Name"
 msgstr "إسم الوظيفة"
 
 #. module: hr
 #: model:ir.model,name:hr.model_hr_job
 msgid "Job Position"
-msgstr "المناصب الوظيفية"
-
-#. module: hr
-#: model:ir.ui.view,arch_db:hr.view_hr_job_form
-msgid "Job Position Name"
-msgstr ""
+msgstr "منصب"
 
 #. module: hr
 #: model:ir.actions.act_window,name:hr.action_hr_job
 #: model:ir.ui.menu,name:hr.menu_hr_job_position
-#: model:ir.ui.menu,name:hr.menu_hr_job_position_config
 msgid "Job Positions"
 msgstr "منصب الوظيفة"
 
 #. module: hr
-#: model:ir.actions.act_window,help:hr.action_hr_job
-msgid ""
-"Job Positions are used to define jobs and their requirements.\n"
-"                You can keep track of the number of employees you have per job\n"
-"                position and follow the evolution according to what you planned\n"
-"                for the future."
-msgstr ""
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_job_id
+#: field:hr.employee,job_id:0
 msgid "Job Title"
 msgstr "المسمى الوظيفي"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_jobs_ids
-#: model:ir.ui.view,arch_db:hr.view_job_filter
+#: field:hr.department,jobs_ids:0 view:hr.job:hr.view_job_filter
 msgid "Jobs"
-msgstr "الوظائف"
+msgstr "الأعمال"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_message_last_post
-#: model:ir.model.fields,field_description:hr.field_hr_employee_message_last_post
-#: model:ir.model.fields,field_description:hr.field_hr_job_message_last_post
+#: field:hr.employee,message_last_post:0 field:hr.job,message_last_post:0
 msgid "Last Message Date"
 msgstr "تاريخ آخر رسالة"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department___last_update
-#: model:ir.model.fields,field_description:hr.field_hr_employee___last_update
-#: model:ir.model.fields,field_description:hr.field_hr_employee_category___last_update
-#: model:ir.model.fields,field_description:hr.field_hr_job___last_update
-msgid "Last Modified on"
-msgstr "آخر تعديل في"
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_res_users_last_website_so_id
-msgid "Last Online Sale Order"
-msgstr ""
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_write_uid
-#: model:ir.model.fields,field_description:hr.field_hr_employee_category_write_uid
-#: model:ir.model.fields,field_description:hr.field_hr_employee_write_uid
-#: model:ir.model.fields,field_description:hr.field_hr_job_write_uid
+#: field:hr.config.settings,write_uid:0 field:hr.department,write_uid:0
+#: field:hr.employee,write_uid:0 field:hr.employee.category,write_uid:0
+#: field:hr.job,write_uid:0
 msgid "Last Updated by"
 msgstr "آخر تحديث بواسطة"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_write_date
-#: model:ir.model.fields,field_description:hr.field_hr_employee_category_write_date
-#: model:ir.model.fields,field_description:hr.field_hr_employee_write_date
+#: field:hr.config.settings,write_date:0 field:hr.department,write_date:0
+#: field:hr.employee,write_date:0 field:hr.employee.category,write_date:0
 msgid "Last Updated on"
-msgstr "آخر تحديث في"
+msgstr "آخر تحديث فى"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_last_login
+#: field:hr.employee,last_login:0
 msgid "Latest Connection"
 msgstr "الاتصال الأخير"
 
 #. module: hr
-#: model:ir.ui.view,arch_db:hr.view_hr_job_form
+#: view:hr.job:hr.view_hr_job_form
 msgid "Launch Recruitment"
 msgstr "إطلاق التوظيف"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_marketing
-msgid "Launch new marketing campaigns and offers"
-msgstr ""
+#: model:ir.ui.menu,name:hr.menu_open_view_attendance_reason_config
+msgid "Leaves"
+msgstr "الغياب"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_hrm
-msgid "Launch new products, Human Resources campaigns and offers"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-msgid "Launch new products, marketing campaigns and offers"
-msgstr ""
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_login
+#: field:hr.employee,login:0
 msgid "Login"
-msgstr "تسجيل الدخول"
+msgstr "دخول"
 
 #. module: hr
 #: selection:hr.employee,gender:0
@@ -801,21 +534,40 @@ msgid "Male"
 msgstr "ذكر"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_manager_id
-#: model:ir.model.fields,field_description:hr.field_hr_employee_parent_id
-#: model:ir.ui.view,arch_db:hr.view_employee_filter
+#: field:hr.config.settings,module_hr_expense:0
+msgid "Manage employees expenses"
+msgstr "ادارة مصاريف الموظفين"
+
+#. module: hr
+#: field:hr.config.settings,module_hr_holidays:0
+msgid "Manage holidays, leaves and allocation requests"
+msgstr "إدارة العطلات, الأجازات وأرصدتها"
+
+#. module: hr
+#: field:hr.config.settings,module_hr_payroll:0
+msgid "Manage payroll"
+msgstr "ادارة الرواتب"
+
+#. module: hr
+#: field:hr.config.settings,module_hr_recruitment:0
+msgid "Manage the recruitment process"
+msgstr "ادارة عملية التوظيف"
+
+#. module: hr
+#: field:hr.config.settings,module_hr_timesheet:0
+msgid "Manage timesheets"
+msgstr "ادارة سجل الحضور"
+
+#. module: hr
+#: field:hr.department,manager_id:0 view:hr.employee:hr.view_employee_filter
+#: field:hr.employee,parent_id:0
 msgid "Manager"
 msgstr "المدير"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_marital
+#: field:hr.employee,marital:0
 msgid "Marital Status"
 msgstr "الحالة الاجتماعية"
-
-#. module: hr
-#: model:hr.job,name:hr.job_marketing
-msgid "Marketing and Community Manager"
-msgstr ""
 
 #. module: hr
 #: selection:hr.employee,marital:0
@@ -823,19 +575,12 @@ msgid "Married"
 msgstr "متزوّج"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_trainee
-msgid "Master or engineer in computer science"
-msgstr ""
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_image_medium
+#: field:hr.employee,image_medium:0
 msgid "Medium-sized photo"
 msgstr "صورة متوسطة الحجم"
 
 #. module: hr
-#: model:ir.model.fields,help:hr.field_hr_employee_image_medium
+#: help:hr.employee,image_medium:0
 msgid ""
 "Medium-sized photo of the employee. It is automatically resized as a "
 "128x128px image, with aspect ratio preserved. Use this field in form views "
@@ -843,111 +588,68 @@ msgid ""
 msgstr "صورة متوسطة الحجم للموظف. يتم تغيير حجم تلقائيا كصورة 128x128px، مع الحفاظ على نسبة الجانب. استخدام هذا الحقل في عروض النافذة أو بعض عروض كانبان."
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_member_ids
+#: field:hr.department,member_ids:0
 msgid "Members"
 msgstr "الأعضاء"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_message_ids
-#: model:ir.model.fields,field_description:hr.field_hr_employee_message_ids
-#: model:ir.model.fields,field_description:hr.field_hr_job_message_ids
-#: model:ir.ui.view,arch_db:hr.hr_kanban_view_employees
+#: field:hr.employee,message_ids:0 field:hr.job,message_ids:0
 msgid "Messages"
 msgstr "الرسائل"
 
 #. module: hr
-#: model:ir.ui.view,arch_db:hr.hr_department_view_kanban
-msgid "More <i class=\"fa fa-caret-down\"/>"
-msgstr ""
+#: help:hr.employee,message_ids:0 help:hr.job,message_ids:0
+msgid "Messages and communication history"
+msgstr "الرسائل و سجل التواصل"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_consultant
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-#: model:hr.job,website_description:hr.job_trainee
-msgid "Must have ..."
-msgstr ""
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_complete_name
-#: model:ir.model.fields,field_description:hr.field_hr_employee_name
-#: model:ir.model.fields,field_description:hr.field_hr_employee_name_related
+#: field:hr.department,complete_name:0 field:hr.employee,name_related:0
+#: field:hr.employee.category,complete_name:0
 msgid "Name"
 msgstr "الاسم"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_country_id
-msgid "Nationality (Country)"
-msgstr ""
+#: field:hr.employee,country_id:0
+msgid "Nationality"
+msgstr "الجنسية"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_consultant
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-#: model:hr.job,website_description:hr.job_trainee
-msgid "Nice to have"
-msgstr ""
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_note
+#: field:hr.department,note:0
 msgid "Note"
-msgstr "الملاحظة"
+msgstr "ملاحظة"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_notes
+#: field:hr.employee,notes:0
 msgid "Notes"
 msgstr "الملاحظات"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_message_needaction_counter
-#: model:ir.model.fields,field_description:hr.field_hr_employee_message_needaction_counter
-#: model:ir.model.fields,field_description:hr.field_hr_job_message_needaction_counter
-msgid "Number of Actions"
-msgstr "عدد الاجراءات"
-
-#. module: hr
-#: model:ir.model.fields,help:hr.field_hr_job_no_of_employee
+#: help:hr.job,no_of_employee:0
 msgid "Number of employees currently occupying this job position."
 msgstr "عدد الموظفين الذين يحملون هذا المنصب"
 
 #. module: hr
-#: model:ir.model.fields,help:hr.field_hr_job_no_of_hired_employee
+#: sql_constraint:hr.job:0
+msgid ""
+"Number of hired employee must be less than expected number of employee in "
+"recruitment."
+msgstr "عدد الموظفين الذين تم تعيينهم يجب أن يكون أقل من العدد المتوقع تعيينهم."
+
+#. module: hr
+#: help:hr.job,no_of_hired_employee:0
 msgid ""
 "Number of hired employees for this job position during recruitment phase."
 msgstr "عدد الموظفين الذين تم تعيينهم لمنصب هذه الوظيفة  خلال مرحلة التوظيف."
 
 #. module: hr
-#: model:ir.model.fields,help:hr.field_hr_department_message_needaction_counter
-#: model:ir.model.fields,help:hr.field_hr_employee_message_needaction_counter
-#: model:ir.model.fields,help:hr.field_hr_job_message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "عدد الرسائل الواجب اجراءها"
-
-#. module: hr
-#: model:ir.model.fields,help:hr.field_hr_job_no_of_recruitment
+#: help:hr.job,no_of_recruitment:0
 msgid "Number of new employees you expect to recruit."
 msgstr "عدد الموظفين المتوقع توظيفهم."
 
 #. module: hr
-#: model:ir.model.fields,help:hr.field_hr_department_message_unread_counter
-#: model:ir.model.fields,help:hr.field_hr_employee_message_unread_counter
-#: model:ir.model.fields,help:hr.field_hr_job_message_unread_counter
-msgid "Number of unread messages"
-msgstr "عدد الرسائل غير المقروءة"
-
-#. module: hr
-#: model:ir.actions.act_window,help:hr.open_module_tree_department
-msgid ""
-"Odoo's department structure is used to manage all documents\n"
-"                related to employees by departments: expenses, timesheets,\n"
-"                leaves and holidays, recruitments, etc."
-msgstr ""
+#: field:hr.employee,work_location:0
+msgid "Office Location"
+msgstr "مكان المكتب"
 
 #. module: hr
 #: model:ir.actions.client,name:hr.action_client_hr_menu
@@ -955,88 +657,64 @@ msgid "Open HR Menu"
 msgstr "افتح القائمة HR"
 
 #. module: hr
-#: selection:hr.employee,gender:0
-msgid "Other"
-msgstr "غير ذلك"
+#: field:hr.config.settings,module_hr_evaluation:0
+msgid "Organize employees periodic evaluation"
+msgstr "ترتيب تقييم الموظفين الدورية"
 
 #. module: hr
-#: model:ir.ui.view,arch_db:hr.view_employee_form
+#: field:hr.employee,otherid:0
+msgid "Other Id"
+msgstr "تعريفات اخرى"
+
+#. module: hr
+#: view:hr.employee:hr.view_employee_form
 msgid "Other Information ..."
 msgstr "معلومات أخرى ..."
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_consultant
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-#: model:hr.job,website_description:hr.job_trainee
-msgid "Our staff at work"
-msgstr ""
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_parent_id
+#: field:hr.department,parent_id:0
 msgid "Parent Department"
 msgstr "قسم رئيسي"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_developer
-msgid "Passion for the Internet and its culture"
-msgstr ""
+#: field:hr.employee.category,parent_id:0
+msgid "Parent Employee Tag"
+msgstr "أصل وسم الموظف"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_passport_id
+#: field:hr.employee,passport_id:0
 msgid "Passport No"
 msgstr "رقم جواز السفر"
 
 #. module: hr
-#: model:ir.ui.view,arch_db:hr.view_employee_form
+#: model:ir.actions.act_window,name:hr.open_payroll_modules
+msgid "Payroll"
+msgstr "الراتب"
+
+#. module: hr
+#: view:hr.employee:hr.view_employee_form
 msgid "Personal Information"
 msgstr "المعلومات الشخصية"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_image
+#: field:hr.employee,image:0
 msgid "Photo"
 msgstr "الصورة"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_consultant
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-#: model:hr.job,website_description:hr.job_trainee
-msgid "Pictures of smart and enthusiastic people"
-msgstr ""
-
-#. module: hr
-#: model:ir.ui.view,arch_db:hr.view_employee_form
+#: view:hr.employee:hr.view_employee_form
 msgid "Position"
 msgstr "منصب"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_trainee
-msgid "Preferably 1 year of experience"
-msgstr ""
-
-#. module: hr
-#: model:ir.ui.view,arch_db:hr.view_employee_form
+#: view:hr.employee:hr.view_employee_form
 msgid "Public Information"
 msgstr "معلومات عامة"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_consultant
-msgid "Quantify and negotiate the resources required"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_developer
-msgid "Quick and autonomous learner"
-msgstr ""
+#: field:hr.config.settings,module_hr_contract:0
+msgid "Record contracts per employee"
+msgstr "سجل العقود لكل موظف"
 
 #. module: hr
 #: selection:hr.job,state:0
@@ -1049,19 +727,14 @@ msgid "Recruitment in Progress"
 msgstr "قيد التوظيف"
 
 #. module: hr
-#: model:ir.ui.view,arch_db:hr.view_employee_form
+#: view:hr.employee:hr.view_employee_form
 msgid "Related User"
 msgstr "مستخدم مرتبط"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_res_users_employee_ids
+#: field:res.users,employee_ids:0
 msgid "Related employees"
 msgstr "الموظفين الذين لهم علاقة"
-
-#. module: hr
-#: model:ir.model.fields,help:hr.field_hr_employee_user_id
-msgid "Related user name for the resource to manage its access."
-msgstr ""
 
 #. module: hr
 #: model:ir.ui.menu,name:hr.menu_hr_reporting_timesheet
@@ -1069,58 +742,24 @@ msgid "Reports"
 msgstr "التقارير"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_job_requirements
+#: field:hr.job,requirements:0
 msgid "Requirements"
 msgstr "المتطلبات"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_resource_id
+#: field:hr.employee,resource_id:0
 msgid "Resource"
-msgstr "الكائن"
+msgstr "المورِد"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_resource_type
-msgid "Resource Type"
-msgstr "نوع المصدر"
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_consultant
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-#: model:hr.job,website_description:hr.job_trainee
-msgid "Responsibilities"
-msgstr "المسئوليات"
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_sinid
+#: field:hr.employee,sinid:0
 msgid "SIN No"
 msgstr "رقم التوقيع"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_ssnid
+#: field:hr.employee,ssnid:0
 msgid "SSN No"
 msgstr "رقم SSN"
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-msgid "Scale our events organization all around the world"
-msgstr ""
-
-#. module: hr
-#: model:ir.model.fields,help:hr.field_hr_job_state
-msgid ""
-"Set whether the recruitment process is open or closed for this job position."
-msgstr ""
-
-#. module: hr
-#: model:ir.ui.view,arch_db:hr.hr_department_view_kanban
-msgid "Settings"
-msgstr "الإعدادات"
 
 #. module: hr
 #: selection:hr.employee,marital:0
@@ -1128,23 +767,12 @@ msgid "Single"
 msgstr "أعزب"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_consultant
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-#: model:hr.job,website_description:hr.job_trainee
-msgid "Skills"
-msgstr ""
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_image_small
+#: field:hr.employee,image_small:0
 msgid "Small-sized photo"
 msgstr "صور صغيرة الحجم"
 
 #. module: hr
-#: model:ir.model.fields,help:hr.field_hr_employee_image_small
+#: help:hr.employee,image_small:0
 msgid ""
 "Small-sized photo of the employee. It is automatically resized as a 64x64px "
 "image, with aspect ratio preserved. Use this field anywhere a small image is"
@@ -1152,61 +780,57 @@ msgid ""
 msgstr "صورة صغيرة الحجم من الموظف. يتم تغيير حجم تلقائيا كصورة 64x64px، مع الحفاظ على نسبة الجانب. استخدام هذا الحقل في أي مكان مطلوب صورة صغيرة."
 
 #. module: hr
-#: model:ir.model.fields,help:hr.field_hr_employee_sinid
+#: help:hr.employee,sinid:0
 msgid "Social Insurance Number"
 msgstr "رقم التأمين الاجتماعي"
 
 #. module: hr
-#: model:ir.model.fields,help:hr.field_hr_employee_ssnid
+#: help:hr.employee,ssnid:0
 msgid "Social Security Number"
 msgstr "رقم الضمان الإجتماعي"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_job_state
-#: model:ir.ui.view,arch_db:hr.view_employee_form
-#: model:ir.ui.view,arch_db:hr.view_job_filter
+#: view:hr.employee:hr.view_employee_form view:hr.job:hr.view_job_filter
+#: field:hr.job,state:0
 msgid "Status"
 msgstr "الحالة"
 
 #. module: hr
-#: model:ir.ui.view,arch_db:hr.view_hr_job_form
+#: view:hr.job:hr.view_hr_job_form
 msgid "Stop Recruitment"
 msgstr "وقف التوظيف"
 
 #. module: hr
-#: model:ir.actions.act_window,name:hr.hr_employee_action_subordinate_hierachy
+#: model:ir.actions.act_window,name:hr.action2
 msgid "Subordinate Hierarchy"
-msgstr ""
+msgstr "هيكل المرؤوسين"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_child_ids
+#: field:hr.employee,child_ids:0
 msgid "Subordinates"
 msgstr "المرؤوسين"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_res_users_subscription_count
-msgid "Subscriptions"
-msgstr ""
+#. openerp-web
+#: code:addons/hr/static/src/xml/suggestions.xml:15
+#, python-format
+msgid "Suggested Employees"
+msgstr "الموظفون المقترحون"
 
 #. module: hr
-#: sql_constraint:hr.employee.category:0
-msgid "Tag name already exists !"
-msgstr ""
+#: field:hr.employee,message_summary:0 field:hr.job,message_summary:0
+msgid "Summary"
+msgstr "ملخّص"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_category_ids
+#: field:hr.employee,category_ids:0
 msgid "Tags"
 msgstr "الوسوم"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_consultant
-msgid "Take part in the consulting services"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_developer
-msgid "Team spirit and good communication"
-msgstr ""
+#: view:hr.config.settings:hr.view_human_resources_configuration
+msgid "Talent Management"
+msgstr "ادارة المهارات"
 
 #. module: hr
 #: sql_constraint:hr.job:0
@@ -1214,63 +838,93 @@ msgid "The name of the job position must be unique per department in company!"
 msgstr "يجب أن يكون اسم المنصب الوظيفي فريداً غير مكرراً لكل إدارة في المؤسسة."
 
 #. module: hr
-#: model:ir.model.fields,help:hr.field_hr_employee_time_efficiency
-msgid ""
-"This field depict the efficiency of the resource to complete tasks. e.g  "
-"resource put alone on a phase of 5 days with 5 tasks assigned to him, will "
-"show a load of 100% for this phase by default, but if we put a efficiency of"
-" 200%, then his load will only be 50%."
-msgstr ""
-
-#. module: hr
-#: model:ir.model.fields,help:hr.field_hr_employee_image
+#: help:hr.employee,image:0
 msgid ""
 "This field holds the image used as photo for the employee, limited to "
 "1024x1024px."
 msgstr "هذه الخانة تستخدم لصورة الموظف، أكبر حجم 1024x1024px"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_job_expected_employees
+#: help:hr.config.settings,module_account_analytic_analysis:0
+msgid ""
+"This installs the module account_analytic_analysis, which will install sales"
+" management too."
+msgstr "يتم تثبيت وحدة account_analytic_analysis، الذي سيقوم بتثبيت إدارة المبيعات أيضا."
+
+#. module: hr
+#: help:hr.config.settings,module_hr_attendance:0
+msgid "This installs the module hr_attendance."
+msgstr "يتم تثبيت وحدة hr_attendance."
+
+#. module: hr
+#: help:hr.config.settings,module_hr_contract:0
+msgid "This installs the module hr_contract."
+msgstr "يتم تثبيت وحدة hr_contract."
+
+#. module: hr
+#: help:hr.config.settings,module_hr_evaluation:0
+msgid "This installs the module hr_evaluation."
+msgstr "يتم تثبيت وحدة hr_evaluation."
+
+#. module: hr
+#: help:hr.config.settings,module_hr_expense:0
+msgid "This installs the module hr_expense."
+msgstr "سيثبت هذا الموديول hr_expense."
+
+#. module: hr
+#: help:hr.config.settings,module_hr_gamification:0
+msgid "This installs the module hr_gamification."
+msgstr "سيثبت هذا الموديول hr_gamification."
+
+#. module: hr
+#: help:hr.config.settings,module_hr_holidays:0
+msgid "This installs the module hr_holidays."
+msgstr "يتم تثبيت وحدة hr_holidays."
+
+#. module: hr
+#: help:hr.config.settings,module_hr_payroll:0
+msgid "This installs the module hr_payroll."
+msgstr "سيثبت هذا الموديول hr_payroll."
+
+#. module: hr
+#: help:hr.config.settings,module_hr_recruitment:0
+msgid "This installs the module hr_recruitment."
+msgstr "يتم تثبيت وحدة hr_recruitment."
+
+#. module: hr
+#: help:hr.config.settings,module_hr_timesheet:0
+msgid "This installs the module hr_timesheet."
+msgstr "سيثبت هذا الموديول hr_timesheet."
+
+#. module: hr
+#: help:hr.config.settings,module_hr_timesheet_sheet:0
+msgid "This installs the module hr_timesheet_sheet."
+msgstr "يتم تثبيت وحدة hr_timesheet_sheet."
+
+#. module: hr
+#: view:hr.config.settings:hr.view_human_resources_configuration
+msgid "Time Tracking"
+msgstr "تعقب الوقت"
+
+#. module: hr
+#: field:hr.job,expected_employees:0
 msgid "Total Forecasted Employees"
 msgstr "عدد الموظفين المتوقعين"
 
 #. module: hr
-#: model:hr.job,name:hr.job_trainee
-msgid "Trainee"
-msgstr ""
+#: view:hr.employee:hr.hr_kanban_view_employees
+msgid "Unfollow"
+msgstr "إلغاء المتابعة"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_marketing
-msgid "Transform our product into a suite of well positioned business Apps"
-msgstr ""
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_message_unread
-#: model:ir.model.fields,field_description:hr.field_hr_employee_message_unread
-#: model:ir.model.fields,field_description:hr.field_hr_job_message_unread
-#: model:ir.ui.view,arch_db:hr.hr_kanban_view_employees
-#: model:ir.ui.view,arch_db:hr.view_department_filter
-#: model:ir.ui.view,arch_db:hr.view_employee_filter
-#: model:ir.ui.view,arch_db:hr.view_job_filter
+#: field:hr.employee,message_unread:0 field:hr.job,message_unread:0
 msgid "Unread Messages"
 msgstr "رسائل غير مقروءة"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department_message_unread_counter
-#: model:ir.model.fields,field_description:hr.field_hr_employee_message_unread_counter
-#: model:ir.model.fields,field_description:hr.field_hr_job_message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "عداد الرسائل الغير مقروءة"
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_job_write_date
+#: field:hr.job,write_date:0
 msgid "Update Date"
 msgstr "تاريخ التحديث"
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_user_id
-msgid "User"
-msgstr "المستخدم"
 
 #. module: hr
 #: model:ir.model,name:hr.model_res_users
@@ -1278,62 +932,10 @@ msgid "Users"
 msgstr "المستخدمون"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_consultant
-msgid ""
-"We are looking for a motivated and results-driven Functional Consultant! You"
-" will take part in the consulting services we provide to our partners and "
-"customers, on the functional side. Your job start from the quotation to the "
-"customer to the delivery to the customer. You listen the customer and try to"
-" give him the best service. You report to the head of consulting service and"
-" will be coached by a senior consultant."
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_hrm
-msgid ""
-"We are looking for a passionated Human Resources Manager to help us make "
-"products people love to use. We need someone who is ambitious, passionated, "
-"and ..... not afraid to start new things, a lot of new things and scale "
-"them."
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-msgid ""
-"We are looking for a passionated executive manager to help us make products "
-"people love to use. We need someone who is ambitious, passionated, and ....."
-" not afraid to start new things, a lot of new things and scale them."
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_marketing
-msgid ""
-"We are looking for a passionated marketer manager to help us make products "
-"people love to use. We need someone who is ambitious, passionated, and ....."
-" not afraid to start new things, a lot of new things and scale them."
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_consultant
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-#: model:hr.job,website_description:hr.job_trainee
-msgid "What we offer"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_consultant
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-#: model:hr.job,website_description:hr.job_trainee
-msgid "What you will do ..."
-msgstr ""
+#: code:addons/hr/hr.py:273
+#, python-format
+msgid "Welcome to %s! Please help him/her take the first steps with Odoo!"
+msgstr "مرحباً بك %s! الرجاء مساعدته ليأخذ أولى خطواته في أودو!"
 
 #. module: hr
 #: selection:hr.employee,marital:0
@@ -1341,253 +943,41 @@ msgid "Widower"
 msgstr "أرمل"
 
 #. module: hr
-#: model:hr.job,website_description:hr.job_consultant
-msgid "Will report to the Head of Professional Services"
-msgstr ""
-
-#. module: hr
-#: model:ir.actions.act_window,help:hr.act_employee_from_department
-#: model:ir.actions.act_window,help:hr.open_view_employee_list_my
-msgid ""
-"With just a quick glance on the Odoo employee screen, you\n"
-"                can easily find all the information you need for each person;\n"
-"                contact data, job position, availability, etc."
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_consultant
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-#: model:hr.job,website_description:hr.job_trainee
-msgid ""
-"With our product, which is a suite of 3000 business apps. It is fully open "
-"source, full featured and it’s online offer is 3 times cheaper than "
-"traditional competitors. We have 2.000.000 users, and we're growing fast."
-msgstr ""
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_work_email
+#: field:hr.employee,work_email:0
 msgid "Work Email"
 msgstr "البريد الإلكتروني للعمل"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_work_location
-msgid "Work Location"
-msgstr ""
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_mobile_phone
+#: field:hr.employee,mobile_phone:0
 msgid "Work Mobile"
 msgstr "محمول العمل"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_work_phone
+#: field:hr.employee,work_phone:0
 msgid "Work Phone"
 msgstr "هاتف العمل"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_address_id
+#: field:hr.employee,address_id:0
 msgid "Working Address"
 msgstr "عنوان العمل"
 
 #. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee_calendar_id
-msgid "Working Time"
-msgstr "ساعات العمل"
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_marketing
-msgid "Write attractive content"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_hrm
-msgid "Write attractive content and build up Human Resources materials"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-msgid "Write attractive content and build up executive materials"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_consultant
-msgid "You are a quick and autonomous learner"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_consultant
-msgid "You are an excellent communicator and negotiator"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-msgid "You are approachable, honest and fun team player"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_consultant
-msgid "You are available immediately"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-msgid "You are creative"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_consultant
-msgid "You are ready to travel in US"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-msgid "You are ready to work in a dynamic company"
-msgstr ""
-
-#. module: hr
-#: model:ir.actions.act_window,help:hr.action_hr_job
-msgid ""
-"You can attach a survey to a job position. It will be used in\n"
-"                the recruitment process to evaluate the applicants for this job\n"
-"                position."
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_consultant
-msgid "You have 2 or 3 years of experience"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_consultant
-msgid "You have a Master degree in Business Management"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_consultant
-#: model:hr.job,website_description:hr.job_marketing
-msgid "You have an affinity with the IT world"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-msgid "You have an affinity with the product"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_consultant
-msgid "You have good knowledge in accounting"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_consultant
-msgid "You speak a third language"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_consultant
-msgid "You speak fluently French and English"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_trainee
-msgid ""
-"You will be responsible for developing and improving applications, such as "
-"the You will work autonomously as well as                     coordinate and"
-" supervise small distributed development teams for specific projects. You "
-"will become a technical                 expert of the product."
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_developer
-msgid ""
-"You will be responsible for developing and improving applications, such as "
-"the You will work autonomously as well as coordinate and supervise small "
-"distributed development teams for specific projects. You will become a "
-"technical expert of the product."
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_ceo
-#: model:hr.job,website_description:hr.job_hrm
-#: model:hr.job,website_description:hr.job_marketing
-msgid ""
-"You will be responsible for developing and improving product communication. "
-"You will work autonomously as well as coordinate and supervise small "
-"distributed development teams for specific projects. You will become a "
-"techinical expert of the product."
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_trainee
-msgid "You will become a technical expert of the product."
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_developer
-msgid "You will initially be coached by senior developers"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_cto
-msgid "You will initially be coached by senior technical officer"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_trainee
-msgid "You will initially be coached by senior trainees"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_cto
-#: model:hr.job,website_description:hr.job_developer
-#: model:hr.job,website_description:hr.job_trainee
-msgid "You will report to the head of R&amp;D"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_developer
-msgid "You will work closely with all developers"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_cto
-msgid "You will work closely with all technical officer"
-msgstr ""
-
-#. module: hr
-#: model:hr.job,website_description:hr.job_trainee
-msgid "You will work closely with all trainees"
-msgstr ""
-
-#. module: hr
-#: model:ir.actions.act_window,help:hr.view_department_form_installer
-msgid ""
-"Your departments structure is used to manage all documents\n"
-"                related to employees by departments: expenses and timesheets,\n"
-"                leaves and holidays, recruitments, etc."
-msgstr ""
-
-#. module: hr
-#: model:ir.ui.view,arch_db:hr.view_department_form
+#: view:hr.department:hr.view_department_form
 msgid "department"
 msgstr "قسم"
 
 #. module: hr
-#: model:ir.ui.view,arch_db:hr.view_employee_form
+#: view:hr.employee:hr.view_employee_form
 msgid "e.g. Part Time"
 msgstr "على سبيل المثال دوام جزئي"
+
+#. module: hr
+#: view:hr.job:hr.view_hr_job_form
+msgid "new employee(s) expected"
+msgstr "موظفـ(ـين) جدد متوقعين"
+
+#. module: hr
+#: view:hr.config.settings:hr.view_human_resources_configuration
+msgid "or"
+msgstr "أو"

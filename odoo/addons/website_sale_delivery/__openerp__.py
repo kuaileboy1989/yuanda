@@ -8,15 +8,14 @@
 Delivery Costs
 ==============
 """,
+    'author': 'OpenERP SA',
     'depends': ['website_sale', 'delivery'],
     'data': [
         'views/website_sale_delivery.xml',
         'views/website_sale_delivery_view.xml',
-        'demo/website_sale_delivery_data.xml'
+        'security/ir.model.access.csv',
     ],
-    'demo': [
-        'data/website_sale_delivery_demo.xml'
-    ],
+    'demo': [],
     'qweb': [],
     'installable': True,
 }

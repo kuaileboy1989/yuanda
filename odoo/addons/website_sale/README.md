@@ -124,7 +124,7 @@ And much more...
 ### Customer Service
 
 -   Customer Portal to track orders
--   Assisted shopping with website live chats
+-   Assisted shopping with live chats
 -   Returns management
 -   Advanced shipping rules
 -   Coupons or gift certificates

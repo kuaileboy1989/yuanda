@@ -1,9 +1,26 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
 from openerp.osv import osv
 from openerp.tools.translate import _
-from openerp.exceptions import UserError
 
 class pos_open_statement(osv.osv_memory):
     _name = 'pos.open.statement'
@@ -29,7 +46,7 @@ class pos_open_statement(osv.osv_memory):
         st_ids = []
         j_ids = journal_obj.search(cr, uid, [('journal_user','=',1)], context=context)
         if not j_ids:
-            raise UserError(_('You have to define which payment method must be available in the point of sale by reusing existing bank and cash through "Accounting / Configuration / Journals / Journals". Select a journal and check the field "PoS Payment Method" from the "Point of Sale" tab. You can also create new payment methods directly from menu "PoS Backend / Configuration / Payment Methods".'))
+            raise osv.except_osv(_('No Cash Register Defined!'), _('You have to define which payment method must be available in the point of sale by reusing existing bank and cash through "Accounting / Configuration / Journals / Journals". Select a journal and check the field "PoS Payment Method" from the "Point of Sale" tab. You can also create new payment methods directly from menu "PoS Backend / Configuration / Payment Methods".'))
 
         for journal in journal_obj.browse(cr, uid, j_ids, context=context):
             ids = statement_obj.search(cr, uid, [('state', '!=', 'confirm'), ('user_id', '=', uid), ('journal_id', '=', journal.id)], context=context)
@@ -37,21 +54,25 @@ class pos_open_statement(osv.osv_memory):
             if journal.sequence_id:
                 number = sequence_obj.next_by_id(cr, uid, journal.sequence_id.id, context=context)
             else:
-                raise UserError(_("No sequence defined on the journal"))
+                number = sequence_obj.next_by_code(cr, uid, 'account.cash.statement', context=context)
 
             data.update({
                 'journal_id': journal.id,
                 'user_id': uid,
+                'state': 'draft',
                 'name': number
             })
             statement_id = statement_obj.create(cr, uid, data, context=context)
             st_ids.append(int(statement_id))
 
-        tree_res = mod_obj.get_object_reference(cr, uid, 'account', 'view_bank_statement_tree')
+            if journal.cash_control:
+                statement_obj.button_open(cr, uid, [statement_id], context)
+
+        tree_res = mod_obj.get_object_reference(cr, uid, 'point_of_sale', 'view_cash_statement_pos_tree')
         tree_id = tree_res and tree_res[1] or False
-        form_res = mod_obj.get_object_reference(cr, uid, 'account', 'view_bank_statement_form')
+        form_res = mod_obj.get_object_reference(cr, uid, 'account', 'view_bank_statement_form2')
         form_id = form_res and form_res[1] or False
-        search_res = mod_obj.get_object_reference(cr, uid, 'account', 'view_bank_statement_search')
+        search_res = mod_obj.get_object_reference(cr, uid, 'account', 'view_account_bank_statement_filter')
         search_id = search_res and search_res[1] or False
 
         return {
@@ -64,3 +85,6 @@ class pos_open_statement(osv.osv_memory):
             'views': [(tree_id, 'tree'), (form_id, 'form')],
             'search_view_id': search_id,
         }
+
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

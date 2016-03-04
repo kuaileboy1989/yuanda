@@ -1,5 +1,23 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
 import logging
 import poplib
@@ -13,10 +31,13 @@ try:
 except ImportError:
     import StringIO
 
+import zipfile
+import base64
+from openerp import addons
+
 from openerp.osv import fields, osv
-from openerp import tools, api, SUPERUSER_ID
+from openerp import tools, api
 from openerp.tools.translate import _
-from openerp.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 MAX_POP_MESSAGES = 50
@@ -146,8 +167,8 @@ openerp_mailgate: "|/path/to/openerp-mailgate.py --host=localhost -u %(uid)d -p 
                 connection = server.connect()
                 server.write({'state':'done'})
             except Exception, e:
-                _logger.info("Failed to connect to %s server %s.", server.type, server.name, exc_info=True)
-                raise UserError(_("Connection test failed: %s") % tools.ustr(e))
+                _logger.exception("Failed to connect to %s server %s.", server.type, server.name)
+                raise osv.except_osv(_("Connection test failed!"), _("Here is what we got instead:\n %s.") % tools.ustr(e))
             finally:
                 try:
                     if connection:
@@ -193,7 +214,7 @@ openerp_mailgate: "|/path/to/openerp-mailgate.py --host=localhost -u %(uid)d -p 
                                                                  strip_attachments=(not server.attach),
                                                                  context=context)
                         except Exception:
-                            _logger.info('Failed to process mail from %s server %s.', server.type, server.name, exc_info=True)
+                            _logger.exception('Failed to process mail from %s server %s.', server.type, server.name)
                             failed += 1
                         if res_id and server.action_id:
                             action_pool.run(cr, uid, [server.action_id.id], {'active_id': res_id, 'active_ids': [res_id], 'active_model': context.get("thread_model", server.object_id.model)})
@@ -202,7 +223,7 @@ openerp_mailgate: "|/path/to/openerp-mailgate.py --host=localhost -u %(uid)d -p 
                         count += 1
                     _logger.info("Fetched %d email(s) on %s server %s; %d succeeded, %d failed.", count, server.type, server.name, (count - failed), failed)
                 except Exception:
-                    _logger.info("General failure when trying to fetch mail from %s server %s.", server.type, server.name, exc_info=True)
+                    _logger.exception("General failure when trying to fetch mail from %s server %s.", server.type, server.name)
                 finally:
                     if imap_server:
                         imap_server.close()
@@ -225,7 +246,7 @@ openerp_mailgate: "|/path/to/openerp-mailgate.py --host=localhost -u %(uid)d -p 
                                                                      context=context)
                                 pop_server.dele(num)
                             except Exception:
-                                _logger.info('Failed to process mail from %s server %s.', server.type, server.name, exc_info=True)
+                                _logger.exception('Failed to process mail from %s server %s.', server.type, server.name)
                                 failed += 1
                             if res_id and server.action_id:
                                 action_pool.run(cr, uid, [server.action_id.id], {'active_id': res_id, 'active_ids': [res_id], 'active_model': context.get("thread_model", server.object_id.model)})
@@ -235,7 +256,7 @@ openerp_mailgate: "|/path/to/openerp-mailgate.py --host=localhost -u %(uid)d -p 
                         pop_server.quit()
                         _logger.info("Fetched %d email(s) on %s server %s; %d succeeded, %d failed.", numMsgs, server.type, server.name, (numMsgs - failed), failed)
                 except Exception:
-                    _logger.info("General failure when trying to fetch mail from %s server %s.", server.type, server.name, exc_info=True)
+                    _logger.exception("General failure when trying to fetch mail from %s server %s.", server.type, server.name)
                 finally:
                     if pop_server:
                         pop_server.quit()
@@ -248,7 +269,7 @@ openerp_mailgate: "|/path/to/openerp-mailgate.py --host=localhost -u %(uid)d -p 
 
         try:
             cron = self.pool['ir.model.data'].get_object(
-                cr, SUPERUSER_ID, 'fetchmail', 'ir_cron_mail_gateway_action', context=context)
+                cr, uid, 'fetchmail', 'ir_cron_mail_gateway_action', context=context)
         except ValueError:
             # Nevermind if default cron cannot be found
             return
@@ -297,3 +318,6 @@ class mail_mail(osv.osv):
             values['fetchmail_server_id'] = fetchmail_server_id
         res = super(mail_mail, self).write(cr, uid, ids, values, context=context)
         return res
+
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

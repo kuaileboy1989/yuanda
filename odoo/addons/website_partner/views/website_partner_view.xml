@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 <data>
+
 <template id="partner_page" name="Partner Page">
-    <t t-call="website.layout">
-        <div id="wrap">
-            <div class="oe_structure"/>
-            <div class="container">
-                <div class="row">
-                    <t t-call="website_partner.partner_detail"></t>
-                </div>
-            </div>
-            <div class="oe_structure"/>
+  <t t-call="website.layout">
+    <div id="wrap">
+      <div class="oe_structure"/>
+      <div class="container">
+        <div class="row">
+          <t t-call="website_partner.partner_detail"></t>
         </div>
-    </t>
+      </div>
+      <div class="oe_structure"/>
+    </div>
+  </t>
 </template> 
 
 <template id="partner_detail" name="Partner Details">

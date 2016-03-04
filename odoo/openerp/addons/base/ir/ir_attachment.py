@@ -1,19 +1,37 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
 import hashlib
 import itertools
 import logging
-import mimetypes
 import os
 import re
 
-from openerp import SUPERUSER_ID, tools
+from openerp import tools
+from openerp.tools.translate import _
 from openerp.exceptions import AccessError
 from openerp.osv import fields,osv
+from openerp import SUPERUSER_ID
+from openerp.osv.orm import except_orm
 from openerp.tools.translate import _
-from openerp.tools.misc import ustr
-from openerp.tools.mimetypes import guess_mimetype
 
 _logger = logging.getLogger(__name__)
 
@@ -22,12 +40,12 @@ class ir_attachment(osv.osv):
 
     External attachment storage
     ---------------------------
-
+    
     The 'data' function field (_data_get,data_set) is implemented using
     _file_read, _file_write and _file_delete which can be overridden to
-    implement other storage engines, such methods should check for other
+    implement other storage engines, shuch methods should check for other
     location pseudo uri (example: hdfs://hadoppserver)
-
+    
     The default implementation is the file:dirname location that stores files
     on the local filesystem using name based on their sha1 hash
     """
@@ -44,7 +62,7 @@ class ir_attachment(osv.osv):
                 if res_name:
                     field = self._columns.get('res_name',False)
                     if field and len(res_name) > field.size:
-                        res_name = res_name[:30] + '...'
+                        res_name = res_name[:30] + '...' 
                 data[attachment.id] = res_name or False
             else:
                 data[attachment.id] = False
@@ -58,7 +76,7 @@ class ir_attachment(osv.osv):
 
     def force_storage(self, cr, uid, context=None):
         """Force all attachments to be stored in the currently configured storage"""
-        if not self.pool['res.users']._is_admin(cr, uid, [uid]):
+        if not self.pool['res.users'].has_group(cr, uid, 'base.group_erp_manager'):
             raise AccessError(_('Only administrators can execute this action.'))
 
         location = self._storage(cr, uid, context)
@@ -79,7 +97,9 @@ class ir_attachment(osv.osv):
         path = path.strip('/\\')
         return os.path.join(self._filestore(cr, uid), path)
 
-    def _get_path(self, cr, uid, bin_data, sha):
+    def _get_path(self, cr, uid, bin_data):
+        sha = hashlib.sha1(bin_data).hexdigest()
+
         # retro compatibility
         fname = sha[:3] + '/' + sha
         full_path = self._full_path(cr, uid, fname)
@@ -103,19 +123,19 @@ class ir_attachment(osv.osv):
                 r = os.path.getsize(full_path)
             else:
                 r = open(full_path,'rb').read().encode('base64')
-        except (IOError, OSError):
-            _logger.info("_read_file reading %s", full_path, exc_info=True)
+        except IOError:
+            _logger.exception("_read_file reading %s", full_path)
         return r
 
-    def _file_write(self, cr, uid, value, checksum):
+    def _file_write(self, cr, uid, value):
         bin_value = value.decode('base64')
-        fname, full_path = self._get_path(cr, uid, bin_value, checksum)
+        fname, full_path = self._get_path(cr, uid, bin_value)
         if not os.path.exists(full_path):
             try:
                 with open(full_path, 'wb') as fp:
                     fp.write(bin_value)
             except IOError:
-                _logger.info("_file_write writing %s", full_path, exc_info=True)
+                _logger.exception("_file_write writing %s", full_path)
         return fname
 
     def _file_delete(self, cr, uid, fname):
@@ -127,10 +147,10 @@ class ir_attachment(osv.osv):
             try:
                 os.unlink(full_path)
             except OSError:
-                _logger.info("_file_delete could not unlink %s", full_path, exc_info=True)
+                _logger.exception("_file_delete could not unlink %s", full_path)
             except IOError:
                 # Harmless and needed for race conditions
-                _logger.info("_file_delete could not unlink %s", full_path, exc_info=True)
+                _logger.exception("_file_delete could not unlink %s", full_path)
 
     def _data_get(self, cr, uid, ids, name, arg, context=None):
         if context is None:
@@ -145,83 +165,27 @@ class ir_attachment(osv.osv):
         return result
 
     def _data_set(self, cr, uid, id, name, value, arg, context=None):
-        # compute the field depending of datas, supporting the case of a empty/None datas
-        bin_data = value and value.decode('base64') or '' # empty string to compute its hash
-        checksum = self._compute_checksum(bin_data)
-        vals = {
-            'file_size': len(bin_data),
-            'checksum' : checksum,
-        }
         # We dont handle setting data to null
-        # datas is false, but file_size and checksum are not (computed as datas is an empty string)
         if not value:
-            # reset computed fields
-            super(ir_attachment, self).write(cr, SUPERUSER_ID, [id], vals, context=context)
             return True
         if context is None:
             context = {}
-        # browse the attachment and get the file to delete
+        location = self._storage(cr, uid, context)
+        file_size = len(value.decode('base64'))
         attach = self.browse(cr, uid, id, context=context)
         fname_to_delete = attach.store_fname
-        location = self._storage(cr, uid, context)
-        # compute the index_content field
-        vals['index_content'] = self._index(cr, SUPERUSER_ID, bin_data, attach.datas_fname, attach.mimetype)
         if location != 'db':
-            # create the file
-            fname = self._file_write(cr, uid, value, checksum)
-            vals.update({
-                'store_fname': fname,
-                'db_datas': False
-            })
+            fname = self._file_write(cr, uid, value)
+            # SUPERUSER_ID as probably don't have write access, trigger during create
+            super(ir_attachment, self).write(cr, SUPERUSER_ID, [id], {'store_fname': fname, 'file_size': file_size, 'db_datas': False}, context=context)
         else:
-            vals.update({
-                'store_fname': False,
-                'db_datas': value
-            })
-        # SUPERUSER_ID as probably don't have write access, trigger during create
-        super(ir_attachment, self).write(cr, SUPERUSER_ID, [id], vals, context=context)
+            super(ir_attachment, self).write(cr, SUPERUSER_ID, [id], {'db_datas': value, 'file_size': file_size, 'store_fname': False}, context=context)
 
         # After de-referencing the file in the database, check whether we need
         # to garbage-collect it on the filesystem
         if fname_to_delete:
             self._file_delete(cr, uid, fname_to_delete)
         return True
-
-    def _compute_checksum(self, bin_data):
-        """ compute the checksum for the given datas
-            :param bin_data : datas in its binary form
-        """
-        # an empty file has a checksum too (for caching)
-        return hashlib.sha1(bin_data or '').hexdigest()
-
-    def _compute_mimetype(self, values):
-        """ compute the mimetype of the given values
-            :param values : dict of values to create or write an ir_attachment
-            :return mime : string indicating the mimetype, or application/octet-stream by default
-        """
-        mimetype = 'application/octet-stream'
-        if values.get('datas_fname'):
-            mimetype = mimetypes.guess_type(values['datas_fname'])[0]
-        if values.get('url'):
-            mimetype = mimetypes.guess_type(values['url'])[0]
-        if values.get('datas') and (not mimetype or mimetype == 'application/octet-stream'):
-            mimetype = guess_mimetype(values['datas'].decode('base64'))
-        return mimetype
-
-    def _index(self, cr, uid, bin_data, datas_fname, file_type):
-        """ compute the index content of the given filename, or binary data.
-            This is a python implementation of the unix command 'strings'.
-            :param bin_data : datas in binary form
-            :return index_content : string containing all the printable character of the binary data
-        """
-        index_content = False
-        if file_type:
-            index_content = file_type.split('/')[0]
-            if index_content == 'text': # compute index_content only for text type
-                words = re.findall("[^\x00-\x1F\x7F-\xFF]{4,}", bin_data)
-                index_content = ustr("\n".join(words))
-        return index_content
-
 
     _name = 'ir.attachment'
     _columns = {
@@ -230,30 +194,23 @@ class ir_attachment(osv.osv):
         'description': fields.text('Description'),
         'res_name': fields.function(_name_get_resname, type='char', string='Resource Name', store=True),
         'res_model': fields.char('Resource Model', readonly=True, help="The database object this attachment will be attached to"),
-        'res_field': fields.char('Resource Field', readonly=True),
         'res_id': fields.integer('Resource ID', readonly=True, help="The record id this is attached to"),
         'create_date': fields.datetime('Date Created', readonly=True),
         'create_uid':  fields.many2one('res.users', 'Owner', readonly=True),
         'company_id': fields.many2one('res.company', 'Company', change_default=True),
-        'type': fields.selection( [ ('url','URL'), ('binary','File'), ],
-                'Type', help="You can either upload a file from your computer or copy/paste an internet link to your file", required=True, change_default=True),
+        'type': fields.selection( [ ('url','URL'), ('binary','Binary'), ],
+                'Type', help="Binary File or URL", required=True, change_default=True),
         'url': fields.char('Url', size=1024),
         # al: We keep shitty field names for backward compatibility with document
         'datas': fields.function(_data_get, fnct_inv=_data_set, string='File Content', type="binary", nodrop=True),
         'store_fname': fields.char('Stored Filename'),
         'db_datas': fields.binary('Database Data'),
-        # computed fields depending on datas
-        'file_size': fields.integer('File Size', readonly=True),
-        'checksum': fields.char("Checksum/SHA1", size=40, select=True, readonly=True),
-        'mimetype': fields.char('Mime Type', readonly=True),
-        'index_content': fields.text('Indexed Content', readonly=True, _prefetch=False),
-        'public': fields.boolean('Is public document'),
+        'file_size': fields.integer('File Size'),
     }
 
     _defaults = {
         'type': 'binary',
         'file_size': 0,
-        'mimetype' : False,
         'company_id': lambda s,cr,uid,c: s.pool.get('res.company')._company_default_get(cr, uid, 'ir.attachment', context=c),
     }
 
@@ -274,10 +231,8 @@ class ir_attachment(osv.osv):
         if ids:
             if isinstance(ids, (int, long)):
                 ids = [ids]
-            cr.execute('SELECT res_model, res_id, create_uid, public FROM ir_attachment WHERE id = ANY (%s)', (ids,))
-            for rmod, rid, create_uid, public in cr.fetchall():
-                if public and mode == 'read':
-                    continue
+            cr.execute('SELECT DISTINCT res_model, res_id, create_uid FROM ir_attachment WHERE id = ANY (%s)', (ids,))
+            for rmod, rid, create_uid in cr.fetchall():
                 if not (rmod and rid):
                     if create_uid != uid:
                         require_employee = True
@@ -297,34 +252,21 @@ class ir_attachment(osv.osv):
             existing_ids = self.pool[model].exists(cr, uid, mids)
             if len(existing_ids) != len(mids):
                 require_employee = True
-            # For related models, check if we can write to the model, as unlinking
-            # and creating attachments can be seen as an update to the model
-            if (mode in ['unlink','create']):
-                ima.check(cr, uid, model, 'write')
-            else:
-                ima.check(cr, uid, model, mode)
+            ima.check(cr, uid, model, mode)
             self.pool[model].check_access_rule(cr, uid, existing_ids, mode, context=context)
         if require_employee:
             if not uid == SUPERUSER_ID and not self.pool['res.users'].has_group(cr, uid, 'base.group_user'):
-                raise AccessError(_("Sorry, you are not allowed to access this document."))
+                raise except_orm(_('Access Denied'), _("Sorry, you are not allowed to access this document."))
 
     def _search(self, cr, uid, args, offset=0, limit=None, order=None, context=None, count=False, access_rights_uid=None):
-        # add res_field=False in domain if not present; the arg[0] trick below
-        # works for domain items and '&'/'|'/'!' operators too
-        if not any(arg[0] in ('id', 'res_field') for arg in args):
-            args.insert(0, ('res_field', '=', False))
-
         ids = super(ir_attachment, self)._search(cr, uid, args, offset=offset,
                                                  limit=limit, order=order,
                                                  context=context, count=False,
                                                  access_rights_uid=access_rights_uid)
-
-        if uid == SUPERUSER_ID:
-            # rules do not apply for the superuser
-            return len(ids) if count else ids
-
         if not ids:
-            return 0 if count else []
+            if count:
+                return 0
+            return []
 
         # Work with a set, as list.remove() is prohibitive for large lists of documents
         # (takes 20+ seconds on a db with 100k docs during search_count()!)
@@ -336,11 +278,11 @@ class ir_attachment(osv.osv):
         # the linked document.
         # Use pure SQL rather than read() as it is about 50% faster for large dbs (100k+ docs),
         # and the permissions are checked in super() and below anyway.
-        cr.execute("""SELECT id, res_model, res_id, public FROM ir_attachment WHERE id = ANY(%s)""", (list(ids),))
+        cr.execute("""SELECT id, res_model, res_id FROM ir_attachment WHERE id = ANY(%s)""", (list(ids),))
         targets = cr.dictfetchall()
         model_attachments = {}
         for target_dict in targets:
-            if not target_dict['res_model'] or target_dict['public']:
+            if not target_dict['res_model']:
                 continue
             # model_attachments = { 'model': { 'res_id': [id1,id2] } }
             model_attachments.setdefault(target_dict['res_model'],{}).setdefault(target_dict['res_id'] or 0, set()).add(target_dict['id'])
@@ -379,9 +321,8 @@ class ir_attachment(osv.osv):
         if isinstance(ids, (int, long)):
             ids = [ids]
         self.check(cr, uid, ids, 'write', context=context, values=vals)
-        # remove computed field depending of datas
-        for field in ['file_size', 'checksum']:
-            vals.pop(field, False)
+        if 'file_size' in vals:
+            del vals['file_size']
         return super(ir_attachment, self).write(cr, uid, ids, vals, context)
 
     def copy(self, cr, uid, id, default=None, context=None):
@@ -397,8 +338,9 @@ class ir_attachment(osv.osv):
         # database allowed it. Helps avoid errors when concurrent transactions
         # are deleting the same file, and some of the transactions are
         # rolled back by PostgreSQL (due to concurrent updates detection).
-        to_delete = set([a.store_fname for a in self.browse(cr, uid, ids, context=context)
-                         if a.store_fname])
+        to_delete = [a.store_fname
+                        for a in self.browse(cr, uid, ids, context=context)
+                            if a.store_fname]
         res = super(ir_attachment, self).unlink(cr, uid, ids, context)
         for file_path in to_delete:
             self._file_delete(cr, uid, file_path)
@@ -406,15 +348,13 @@ class ir_attachment(osv.osv):
         return res
 
     def create(self, cr, uid, values, context=None):
-        # remove computed field depending of datas
-        for field in ['file_size', 'checksum']:
-            values.pop(field, False)
-        # if mimetype not given, compute it !
-        if 'mimetype' not in values:
-            values['mimetype'] = self._compute_mimetype(values)
         self.check(cr, uid, [], mode='write', context=context, values=values)
+        if 'file_size' in values:
+            del values['file_size']
         return super(ir_attachment, self).create(cr, uid, values, context)
 
     def action_get(self, cr, uid, context=None):
         return self.pool.get('ir.actions.act_window').for_xml_id(
             cr, uid, 'base', 'action_attachment', context=context)
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

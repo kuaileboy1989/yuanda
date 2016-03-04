@@ -4,7 +4,7 @@ class calendar_config_settings(osv.TransientModel):
     _inherit = 'base.config.settings'
     
     _columns = {
-        'google_cal_sync': fields.boolean("Show Tutorial"),
+        'google_cal_sync': fields.boolean("Show tutorial to know how to get my 'Client ID' and my 'Client Secret'"),
         'cal_client_id': fields.char("Client_id"),
         'cal_client_secret': fields.char("Client_key"),
         'server_uri': fields.char('URI for tuto')
@@ -28,3 +28,4 @@ class calendar_config_settings(osv.TransientModel):
         
         
     
+

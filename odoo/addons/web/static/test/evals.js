@@ -1,64 +1,64 @@
-odoo.define_section('eval.basics', ['web.pyeval'], function(test, mock) {
-    test('not prefix', function (assert) {
-        assert.ok(py.eval('not False'));
-        assert.ok(py.eval('not foo', {foo: false}));
-        assert.ok(py.eval('not a in b', {a: 3, b: [1, 2, 4, 8]}));
+openerp.testing.section('eval.basics', {
+    dependencies: ['web.core'],
+    setup: function (instance) {
+        instance.session.uid = 42;
+    }
+}, function (test) {
+    test('not prefix', function (instance) {
+        ok(py.eval('not False'));
+        ok(py.eval('not foo', {foo: false}));
+        ok(py.eval('not a in b', {a: 3, b: [1, 2, 4, 8]}));
     });
 });
-odoo.define_section('eval.types', ['web.pyeval'], function (test, mock) {
 
-    function makeTimeCheck (assert, pyeval) {
-        var context = pyeval.context();
+openerp.testing.section('eval.types', {
+    dependencies: ['web.core'],
+    setup: function (instance) {
+        instance.session.uid = 42;
+    }
+}, function (test) {
+    var makeTimeCheck = function (instance) {
+        var context = instance.web.pyeval.context();
         return function (expr, func, message) {
             // evaluate expr between two calls to new Date(), and check that
             // the result is between the transformed dates
             var d0 = new Date();
             var result = py.eval(expr, context);
             var d1 = new Date();
-            assert.ok(func(d0) <= result && result <= func(d1), message);
-        };
-    }
-
-    // Port from pypy/lib_pypy/test_datetime.py
-    var makeEq = function (assert, pyeval, c2) {
-        var ctx = pyeval.context();
-        var c = _.extend({ td: ctx.datetime.timedelta }, c2 || {});
-        return function (a, b, message) {
-            assert.ok(py.eval(a + ' == ' + b, c), message);
+            ok(func(d0) <= result && result <= func(d1), message);
         };
     };
-
-    test('strftime', function (assert, pyeval) {
-        assert.expect(3);
-
-        var check = makeTimeCheck(assert, pyeval);
-
+    test('strftime', function (instance) {
+        var check = makeTimeCheck(instance);
         check("time.strftime('%Y')", function(d) {
             return String(d.getFullYear());
         });
-
         check("time.strftime('%Y')+'-01-30'", function(d) {
             return String(d.getFullYear()) + '-01-30';
         });
-
         check("time.strftime('%Y-%m-%d %H:%M:%S')", function(d) {
             return _.str.sprintf('%04d-%02d-%02d %02d:%02d:%02d',
                 d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate(),
                 d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds());
         });
     });
-
-    test('context_today', function (assert, pyeval) {
-        var check = makeTimeCheck(assert, pyeval);
-
+    test('context_today', function (instance) {
+        var check = makeTimeCheck(instance);
         check("context_today().strftime('%Y-%m-%d')", function(d) {
             return String(_.str.sprintf('%04d-%02d-%02d',
                 d.getFullYear(), d.getMonth() + 1, d.getDate()));
         });
     });
-
-    test('timedelta.test_constructor', function (assert, pyeval) {
-        var eq = makeEq(assert, pyeval);
+    // Port from pypy/lib_pypy/test_datetime.py
+    var makeEq = function (instance, c2) {
+        var ctx = instance.web.pyeval.context();
+        var c = _.extend({ td: ctx.datetime.timedelta }, c2 || {});
+        return function (a, b, message) {
+            ok(py.eval(a + ' == ' + b, c), message);
+        };
+    };
+    test('timedelta.test_constructor', function (instance) {
+        var eq = makeEq(instance);
 
         // keyword args to constructor
         eq('td()', 'td(weeks=0, days=0, hours=0, minutes=0, seconds=0, ' +
@@ -81,11 +81,10 @@ odoo.define_section('eval.types', ['web.pyeval'], function (test, mock) {
         eq('td(seconds=0.001)', 'td(milliseconds=1)');
         eq('td(milliseconds=0.001)', 'td(microseconds=1)');
     });
-
-    test('timedelta.test_computations', function (assert, pyeval) {
-        var c = pyeval.context();
+    test('timedelta.test_computations', function (instance) {
+        var c = instance.web.pyeval.context();
         var zero = py.float.fromJSON(0);
-        var eq = makeEq(assert, pyeval, {
+        var eq = makeEq(instance, {
             // one week
             a: py.PY_call(c.datetime.timedelta, [
                 py.float.fromJSON(7)]),
@@ -103,8 +102,8 @@ odoo.define_section('eval.types', ['web.pyeval'], function (test, mock) {
         eq('+a', 'td(7)');
         eq('-b', 'td(-1, 24*3600 - 60)');
         eq('-c', 'td(-1, 24*3600 - 1, 999000)');
-       // eq('abs(a)', 'a');
-        // eq('abs(-a)', 'a');
+//        eq('abs(a)', 'a');
+//        eq('abs(-a)', 'a');
         eq('td(6, 24*3600)', 'a');
         eq('td(0, 0, 60*1000000)', 'b');
         eq('a*10', 'td(70)');
@@ -134,65 +133,60 @@ odoo.define_section('eval.types', ['web.pyeval'], function (test, mock) {
         eq('td(999999999, 1, 1) - td(999999999, 1, 0)',
            'td(0, 0, 1)');
     });
-
-    test('timedelta.test_basic_attributes', function (assert, pyeval) {
-        var ctx = pyeval.context();
-        assert.strictEqual(py.eval('datetime.timedelta(1, 7, 31).days', ctx), 1);
-        assert.strictEqual(py.eval('datetime.timedelta(1, 7, 31).seconds', ctx), 7);
-        assert.strictEqual(py.eval('datetime.timedelta(1, 7, 31).microseconds', ctx), 31);
+    test('timedelta.test_basic_attributes', function (instance) {
+        var ctx = instance.web.pyeval.context();
+        strictEqual(py.eval('datetime.timedelta(1, 7, 31).days', ctx), 1);
+        strictEqual(py.eval('datetime.timedelta(1, 7, 31).seconds', ctx), 7);
+        strictEqual(py.eval('datetime.timedelta(1, 7, 31).microseconds', ctx), 31);
     });
-
-    test('timedelta.test_total_seconds', function (assert, pyeval) {
-        var c = { timedelta: pyeval.context().datetime.timedelta };
-        assert.strictEqual(py.eval('timedelta(365).total_seconds()', c), 31536000);
-        assert.strictEqual(
+    test('timedelta.test_total_seconds', function (instance) {
+        var c = { timedelta: instance.web.pyeval.context().datetime.timedelta };
+        strictEqual(py.eval('timedelta(365).total_seconds()', c), 31536000);
+        strictEqual(
             py.eval('timedelta(seconds=123456.789012).total_seconds()', c),
             123456.789012);
-        assert.strictEqual(
+        strictEqual(
             py.eval('timedelta(seconds=-123456.789012).total_seconds()', c),
             -123456.789012);
-        assert.strictEqual(
+        strictEqual(
             py.eval('timedelta(seconds=0.123456).total_seconds()', c), 0.123456);
-        assert.strictEqual(py.eval('timedelta().total_seconds()', c), 0);
-        assert.strictEqual(
+        strictEqual(py.eval('timedelta().total_seconds()', c), 0);
+        strictEqual(
             py.eval('timedelta(seconds=1000000).total_seconds()', c), 1e6);
     });
+    test('timedelta.test_str', function (instance) {
+        var c = { td: instance.web.pyeval.context().datetime.timedelta };
 
-    test('timedelta.test_str', function (assert, pyeval) {
-        var c = { td: pyeval.context().datetime.timedelta };
+        strictEqual(py.eval('str(td(1))', c), "1 day, 0:00:00");
+        strictEqual(py.eval('str(td(-1))', c), "-1 day, 0:00:00");
+        strictEqual(py.eval('str(td(2))', c), "2 days, 0:00:00");
+        strictEqual(py.eval('str(td(-2))', c), "-2 days, 0:00:00");
 
-        assert.strictEqual(py.eval('str(td(1))', c), "1 day, 0:00:00");
-        assert.strictEqual(py.eval('str(td(-1))', c), "-1 day, 0:00:00");
-        assert.strictEqual(py.eval('str(td(2))', c), "2 days, 0:00:00");
-        assert.strictEqual(py.eval('str(td(-2))', c), "-2 days, 0:00:00");
-
-        assert.strictEqual(py.eval('str(td(hours=12, minutes=58, seconds=59))', c),
+        strictEqual(py.eval('str(td(hours=12, minutes=58, seconds=59))', c),
                     "12:58:59");
-        assert.strictEqual(py.eval('str(td(hours=2, minutes=3, seconds=4))', c),
+        strictEqual(py.eval('str(td(hours=2, minutes=3, seconds=4))', c),
                      "2:03:04");
-        assert.strictEqual(
+        strictEqual(
             py.eval('str(td(weeks=-30, hours=23, minutes=12, seconds=34))', c),
             "-210 days, 23:12:34");
 
-        assert.strictEqual(py.eval('str(td(milliseconds=1))', c), "0:00:00.001000");
-        assert.strictEqual(py.eval('str(td(microseconds=3))', c), "0:00:00.000003");
+        strictEqual(py.eval('str(td(milliseconds=1))', c), "0:00:00.001000");
+        strictEqual(py.eval('str(td(microseconds=3))', c), "0:00:00.000003");
 
-        assert.strictEqual(
+        strictEqual(
             py.eval('str(td(days=999999999, hours=23, minutes=59, seconds=59, microseconds=999999))', c),
            "999999999 days, 23:59:59.999999");
     });
-
-    test('timedelta.test_massive_normalization', function (assert, pyeval) {
+    test('timedelta.test_massive_normalization', function (instance) {
         var td = py.PY_call(
-            pyeval.context().datetime.timedelta,
+            instance.web.pyeval.context().datetime.timedelta,
             {microseconds: py.float.fromJSON(-1)});
-        assert.strictEqual(td.days, -1);
-        assert.strictEqual(td.seconds, 24 * 3600 - 1);
-        assert.strictEqual(td.microseconds, 999999);
+        strictEqual(td.days, -1);
+        strictEqual(td.seconds, 24 * 3600 - 1);
+        strictEqual(td.microseconds, 999999);
     });
-
-    test('timedelta.test_bool', function (assert, pyeval) {
-        var c = { td: pyeval.context().datetime.timedelta };
+    test('timedelta.test_bool', function (instance) {
+        var c = { td: instance.web.pyeval.context().datetime.timedelta };
         ok(py.eval('bool(td(1))', c));
         ok(py.eval('bool(td(0, 1))', c));
         ok(py.eval('bool(td(0, 0, 1))', c));
@@ -200,16 +194,16 @@ odoo.define_section('eval.types', ['web.pyeval'], function (test, mock) {
         ok(py.eval('bool(not td(0))', c));
     });
 
-    test('date.test_computations', function (assert, pyeval) {
-        var d = pyeval.context().datetime;
+    test('date.test_computations', function (instance) {
+        var d = instance.web.pyeval.context().datetime;
 
         var a = d.date.fromJSON(2002, 1, 31);
         var b = d.date.fromJSON(1956, 1, 31);
-        assert.strictEqual(
+        strictEqual(
             py.eval('(a - b).days', {a: a, b: b}),
             46 * 365 + 12);
-        assert.strictEqual(py.eval('(a - b).seconds', {a: a, b: b}), 0);
-        assert.strictEqual(py.eval('(a - b).microseconds', {a: a, b: b}), 0);
+        strictEqual(py.eval('(a - b).seconds', {a: a, b: b}), 0);
+        strictEqual(py.eval('(a - b).microseconds', {a: a, b: b}), 0);
 
         var day = py.PY_call(d.timedelta, [py.float.fromJSON(1)]);
         var week = py.PY_call(d.timedelta, [py.float.fromJSON(7)]);
@@ -220,141 +214,135 @@ odoo.define_section('eval.types', ['web.pyeval'], function (test, mock) {
             week: week,
             date: d.date
         };
-        assert.ok(py.eval('a + day == date(2002, 3, 3)', ctx));
-        assert.ok(py.eval('day + a == date(2002, 3, 3)', ctx)); // 5
-        assert.ok(py.eval('a - day == date(2002, 3, 1)', ctx));
-        assert.ok(py.eval('-day + a == date(2002, 3, 1)', ctx));
-        assert.ok(py.eval('a + week == date(2002, 3, 9)', ctx));
-        assert.ok(py.eval('a - week == date(2002, 2, 23)', ctx));
-        assert.ok(py.eval('a + 52*week == date(2003, 3, 1)', ctx)); // 10
-        assert.ok(py.eval('a - 52*week == date(2001, 3, 3)', ctx));
-        assert.ok(py.eval('(a + week) - a == week', ctx));
-        assert.ok(py.eval('(a + day) - a == day', ctx));
-        assert.ok(py.eval('(a - week) - a == -week', ctx));
-        assert.ok(py.eval('(a - day) - a == -day', ctx)); // 15
-        assert.ok(py.eval('a - (a + week) == -week', ctx));
-        assert.ok(py.eval('a - (a + day) == -day', ctx));
-        assert.ok(py.eval('a - (a - week) == week', ctx));
-        assert.ok(py.eval('a - (a - day) == day', ctx));
+        ok(py.eval('a + day == date(2002, 3, 3)', ctx));
+        ok(py.eval('day + a == date(2002, 3, 3)', ctx)); // 5
+        ok(py.eval('a - day == date(2002, 3, 1)', ctx));
+        ok(py.eval('-day + a == date(2002, 3, 1)', ctx));
+        ok(py.eval('a + week == date(2002, 3, 9)', ctx));
+        ok(py.eval('a - week == date(2002, 2, 23)', ctx));
+        ok(py.eval('a + 52*week == date(2003, 3, 1)', ctx)); // 10
+        ok(py.eval('a - 52*week == date(2001, 3, 3)', ctx));
+        ok(py.eval('(a + week) - a == week', ctx));
+        ok(py.eval('(a + day) - a == day', ctx));
+        ok(py.eval('(a - week) - a == -week', ctx));
+        ok(py.eval('(a - day) - a == -day', ctx)); // 15
+        ok(py.eval('a - (a + week) == -week', ctx));
+        ok(py.eval('a - (a + day) == -day', ctx));
+        ok(py.eval('a - (a - week) == week', ctx));
+        ok(py.eval('a - (a - day) == day', ctx));
 
-        assert.throws(function () {
+        raises(function () {
             py.eval('a + 1', ctx);
-        }, /^Error: TypeError:/); //20
-        assert.throws(function () {
+        }, /^Error: TypeError:/); // 20
+        raises(function () {
             py.eval('a - 1', ctx);
-        }, /^Error: TypeError:/); 
-        assert.throws(function () {
+        }, /^Error: TypeError:/);
+        raises(function () {
             py.eval('1 + a', ctx);
-        }, /^Error: TypeError:/); 
-        assert.throws(function () {
+        }, /^Error: TypeError:/);
+        raises(function () {
             py.eval('1 - a', ctx);
-        }, /^Error: TypeError:/); 
+        }, /^Error: TypeError:/);
 
         // delta - date is senseless.
-        assert.throws(function () {
+        raises(function () {
             py.eval('day - a', ctx);
         }, /^Error: TypeError:/);
         // mixing date and (delta or date) via * or // is senseless
-        assert.throws(function () {
+        raises(function () {
             py.eval('day * a', ctx);
         }, /^Error: TypeError:/); // 25
-        assert.throws(function () {
+        raises(function () {
             py.eval('a * day', ctx);
         }, /^Error: TypeError:/);
-        assert.throws(function () {
+        raises(function () {
             py.eval('day // a', ctx);
         }, /^Error: TypeError:/);
-        assert.throws(function () {
+        raises(function () {
             py.eval('a // day', ctx);
         }, /^Error: TypeError:/);
-        assert.throws(function () {
+        raises(function () {
             py.eval('a * a', ctx);
         }, /^Error: TypeError:/);
-        assert.throws(function () {
+        raises(function () {
             py.eval('a // a', ctx);
         }, /^Error: TypeError:/); // 30
         // date + date is senseless
-        assert.throws(function () {
+        raises(function () {
             py.eval('a + a', ctx);
         }, /^Error: TypeError:/);
-
     });
-    test('relativedelta', function (assert, pyeval) {
-        assert.strictEqual(
-            py.eval("(datetime.date(2012, 2, 15) + relativedelta(days=-1)).strftime('%Y-%m-%d 23:59:59')",
-                    pyeval.context()),
-            "2012-02-14 23:59:59");
+    test('relastivedelta', function (instance) {
         strictEqual(
             py.eval("(datetime.date(2012, 2, 15) + relativedelta(days=1)).strftime('%Y-%m-%d')",
-                    pyeval.context()),
+                    instance.web.pyeval.context()),
             "2012-02-16");
         strictEqual(
             py.eval("(datetime.date(2012, 2, 15) + relativedelta(days=-1)).strftime('%Y-%m-%d')",
-                    pyeval.context()),
+                    instance.web.pyeval.context()),
             "2012-02-14");
         strictEqual(
             py.eval("(datetime.date(2012, 2, 1) + relativedelta(days=-1)).strftime('%Y-%m-%d')",
-                    pyeval.context()),
+                    instance.web.pyeval.context()),
             '2012-01-31');
         strictEqual(
             py.eval("(datetime.date(2015,2,5)+relativedelta(days=-6,weekday=0)).strftime('%Y-%m-%d')",
-                    pyeval.context()),
+                    instance.web.pyeval.context()),
             '2015-02-02');
     });
-
-    test('datetime.tojson', function (assert, pyeval) {
+    test('datetime.tojson', function (instance) {
         var result = py.eval(
             'datetime.datetime(2012, 2, 15, 1, 7, 31)',
-            pyeval.context());
-
-        assert.ok(result instanceof Date);
-        assert.equal(result.getFullYear(), 2012);
-        assert.equal(result.getMonth(), 1);
-        assert.equal(result.getDate(), 15);
-        assert.equal(result.getHours(), 1);
-        assert.equal(result.getMinutes(), 7);
-        assert.equal(result.getSeconds(), 31);
+            instance.web.pyeval.context());
+        ok(result instanceof Date);
+        equal(result.getFullYear(), 2012);
+        equal(result.getMonth(), 1);
+        equal(result.getDate(), 15);
+        equal(result.getHours(), 1);
+        equal(result.getMinutes(), 7);
+        equal(result.getSeconds(), 31);
     });
-
-    test('datetime.combine', function (assert, pyeval) {
+    test('datetime.combine', function (instance) {
         var result = py.eval(
             'datetime.datetime.combine(datetime.date(2012, 2, 15),' +
             '                          datetime.time(1, 7, 13))' +
             '   .strftime("%Y-%m-%d %H:%M:%S")',
-            pyeval.context());
-        assert.equal(result, "2012-02-15 01:07:13");
+            instance.web.pyeval.context());
+        equal(result, "2012-02-15 01:07:13");
 
         result = py.eval(
             'datetime.datetime.combine(datetime.date(2012, 2, 15),' +
             '                          datetime.time())' +
             '   .strftime("%Y-%m-%d %H:%M:%S")',
-            pyeval.context());
-        assert.equal(result, '2012-02-15 00:00:00');
+            instance.web.pyeval.context());
+        equal(result, '2012-02-15 00:00:00');
     });
-
-    test('datetime.replace', function (assert, pyeval) {
+    test('datetime.replace', function (instance) {
         var result = py.eval(
             'datetime.datetime(2012, 2, 15, 1, 7, 13)' +
             '   .replace(hour=0, minute=0, second=0)' +
             '   .strftime("%Y-%m-%d %H:%M:%S")',
-            pyeval.context());
-        assert.equal(result, "2012-02-15 00:00:00");
+            instance.web.pyeval.context());
+        equal(result, "2012-02-15 00:00:00");
     });
 });
-
-odoo.define_section('eval.edc', ['web.pyeval', 'web.session'], function (test, mock) {
-
-    function setup (session) {
+openerp.testing.section('eval.edc', {
+    dependencies: ['web.data'],
+    rpc: 'mock',
+    setup: function (instance, $fix, mock) {
         var user = { login: 'admin', id: 1, lang: 'en_US', tz: false };
-
-        mock.add('res.lang:load_lang', function () { return true; });
-
-        mock.add('res.users:write', function (args) {
+        instance.edc = function (domains, contexts) {
+            return instance.web.pyeval.eval_domains_and_contexts({
+                contexts: contexts || [],
+                domains: domains || []
+            });
+        };
+        mock('res.lang:load_lang', function () { return true; });
+        mock('res.users:write', function (args) {
             _.extend(user, args[1]);
             return true;
         });
-
-        mock.add('/web/session/get_session_info', function () {
+        mock('/web/session/get_session_info', function () {
             return {
                 session_id: 'foobar',
                 db: '3',
@@ -367,67 +355,46 @@ odoo.define_section('eval.edc', ['web.pyeval', 'web.session'], function (test, m
                 }
             };
         });
-        return session.session_reload();
+        return instance.session.session_reload();
     }
-
-    test('empty, basic', function (assert, pyeval, session) {
-        assert.expect(3);
-
-        return setup(session)
-            .then(function () {
-                return pyeval.eval_domains_and_contexts({
-                    contexts: [],
-                    domains: [],
-                });
-            })
-            .then(function (result) {
-                // default values for new db
-                assert.deepEqual(result.context, {
-                    lang: 'en_US',
-                    tz: false,
-                    uid: 1
-                });
-                assert.deepEqual(result.domain, []);
-                assert.deepEqual(result.group_by, []);
+}, function (test) {
+    test('empty, basic', {asserts: 3}, function (instance) {
+        return instance.edc().then(function (result) {
+            // default values for new db
+            deepEqual(result.context, {
+                lang: 'en_US',
+                tz: false,
+                uid: 1
             });
+            deepEqual(result.domain, []);
+            deepEqual(result.group_by, []);
+        });
     });
-
-    test('empty, context altered', ['web.DataModel'], function (assert, pyeval, session, Model) {
-        assert.expect(3);
-        var lang = new Model('res.lang');
-        var users = new Model('res.users');
-
-        return setup(session)
-            .then(function () {
-                return lang.call('load_lang', ['ru_RU']);
-            })
-            .then(function () {
-                return users.call('write', [session.uid, {
+    test('empty, context altered', {
+        asserts: 3,
+        setup: function (instance) {
+            var lang = new instance.web.Model('res.lang');
+            var users = new instance.web.Model('res.users');
+            return lang.call('load_lang', ['ru_RU']).then(function () {
+                return users.call('write', [instance.session.uid, {
                     lang: 'ru_RU',
                     tz: 'America/Santarem'
                 }]);
-            })
-            .then(function () {
-                return session.session_reload();
-            })
-            .then(function () {
-                return pyeval.eval_domains_and_contexts({
-                    contexts: [],
-                    domains: [],
-                });
-            })
-            .then(function (result) {
-                assert.deepEqual(result.context, {
-                    lang: 'ru_RU',
-                    tz: 'America/Santarem',
-                    uid: 1
-                });
-                assert.deepEqual(result.domain, []);
-                assert.deepEqual(result.group_by, []);
+            }).then(instance.session.session_reload.bind(instance.session));
+        }
+    }, function (instance) {
+        return instance.edc().then(function (result) {
+            // default values for new db
+            deepEqual(result.context, {
+                lang: 'ru_RU',
+                tz: 'America/Santarem',
+                uid: 1
             });
+            deepEqual(result.domain, []);
+            deepEqual(result.group_by, []);
+        });
     });
-
-    test('context_merge_00', function (assert, pyeval) {
+    test('context_merge_00', {asserts: 1}, function (instance) {
         var ctx = [
             {
                 "__contexts": [
@@ -456,32 +423,27 @@ odoo.define_section('eval.edc', ['web.pyeval', 'web.session'], function (test, m
             },
             { "active_id": 9, "active_ids": [ 9 ], "active_model": "mail.compose.message" }
         ];
-        var result = pyeval.sync_eval_domains_and_contexts({
-            contexts: ctx, 
-            domins: [],
+        return instance.edc([], ctx).then(function (result) {
+            deepEqual(result.context, {
+                active_id: 9,
+                active_ids: [9],
+                active_model: 'mail.compose.message',
+                bin_raw: true,
+                default_composition_mode: 'comment',
+                default_model: 'sale.order',
+                default_res_id: 8,
+                default_template_id: 18,
+                default_use_template: true,
+                edi_web_url_view: "faaaake",
+                lang: 'en_US',
+                mark_so_as_sent: null,
+                show_address: null,
+                tz: false,
+                uid: null
+            });
         });
-
-        assert.deepEqual(result.context, {
-            active_id: 9,
-            active_ids: [9],
-            active_model: 'mail.compose.message',
-            bin_raw: true,
-            default_composition_mode: 'comment',
-            default_model: 'sale.order',
-            default_res_id: 8,
-            default_template_id: 18,
-            default_use_template: true,
-            edi_web_url_view: "faaaake",
-            lang: 'en_US',
-            mark_so_as_sent: null,
-            show_address: null,
-            tz: false,
-            uid: null
-        });
-
     });
-
-    test('context_merge_01', function (assert, pyeval) {
+    test('context_merge_01', {asserts: 1}, function (instance) {
         var ctx = [{
             "__contexts": [
                 {
@@ -502,143 +464,128 @@ odoo.define_section('eval.edc', ['web.pyeval', 'web.session'], function (test, m
             "__eval_context": null,
             "__ref": "compound_context"
         }];
-        var result = pyeval.sync_eval_domains_and_contexts({
-            contexts: ctx,
-            domains: [],
-        });
-
-        assert.deepEqual(result.context, {
-            "default_attachment_ids": [],
-            "default_body": "",
-            "default_content_subtype": "html",
-            "default_model": "res.users",
-            "default_parent_id": false,
-            "default_res_id": 1,
-            "lang": "en_US",
-            "tz": false,
-            "uid": 1
+        return instance.edc([], ctx).then(function (result) {
+            deepEqual(result.context, {
+                "default_attachment_ids": [],
+                "default_body": "",
+                "default_content_subtype": "html",
+                "default_model": "res.users",
+                "default_parent_id": false,
+                "default_res_id": 1,
+                "lang": "en_US",
+                "tz": false,
+                "uid": 1
+            });
         });
     });
 });
-
-odoo.define_section('eval.edc.nonliterals', ['web.pyeval', 'web.session'], function (test, mock) {
-    function setup(session) {
-        session.user_context = {
+openerp.testing.section('eval.edc.nonliterals', {
+    dependencies: ['web.data'],
+    setup: function (instance) {
+        instance.session.user_context = {
             lang: 'en_US',
             tz: false,
             uid: 1
         };
-    }
-
-    test('domain with time', function (assert, pyeval, session) {
-        setup(session);
-
-        var result = pyeval.sync_eval_domains_and_contexts({
-            domains: [
-                [['type', '=', 'contract']],
-                { "__domains": [["|"], [["state", "in", ["open", "draft"]]], [["state", "=", "pending"]]],
-                  "__eval_context": null,
-                  "__ref": "compound_domain"
-                },
-                "['|', '&', ('date', '!=', False), ('date', '<=', time.strftime('%Y-%m-%d')), ('is_overdue_quantity', '=', True)]",
-                [['user_id', '=', 1]]
-            ],
-            contexts: []
+        _.extend(instance, {
+            edc: function (domains, contexts) {
+                return instance.web.pyeval.eval_domains_and_contexts({
+                    contexts: contexts || [],
+                    domains: domains || []
+                });
+            }
         });
-
-        var d = new Date();
-        var today = _.str.sprintf("%04d-%02d-%02d",
+    }
+}, function (test) {
+    test('domain with time', {asserts: 1}, function (instance) {
+        return instance.edc([
+            [['type', '=', 'contract']],
+            { "__domains": [["|"], [["state", "in", ["open", "draft"]]], [["state", "=", "pending"]]],
+              "__eval_context": null,
+              "__ref": "compound_domain"
+            },
+            "['|', '&', ('date', '!=', False), ('date', '<=', time.strftime('%Y-%m-%d')), ('is_overdue_quantity', '=', True)]",
+            [['user_id', '=', 1]]
+        ]).then(function (result) {
+            var d = new Date();
+            var today = _.str.sprintf("%04d-%02d-%02d",
                 d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate());
-        assert.deepEqual(result.domain, [
-            ["type", "=", "contract"],
-            "|", ["state", "in", ["open", "draft"]],
-                 ["state", "=", "pending"],
-            "|",
-                "&", ["date", "!=", false],
-                     ["date", "<=", today],
-                ["is_overdue_quantity", "=", true],
-            ["user_id", "=", 1]
-        ]);
+            deepEqual(result.domain, [
+                ["type", "=", "contract"],
+                "|", ["state", "in", ["open", "draft"]],
+                     ["state", "=", "pending"],
+                "|",
+                    "&", ["date", "!=", false],
+                         ["date", "<=", today],
+                    ["is_overdue_quantity", "=", true],
+                ["user_id", "=", 1]
+            ]);
+        });
     });
-
-    test('conditional context', ['web.data'], function (assert, pyeval, session, data) {
+    test('conditional context', {asserts: 2}, function (instance) {
         var d = {
             __ref: 'domain',
             __debug: "[('company_id', '=', context.get('company_id',False))]"
         };
-
-        var result1 = pyeval.sync_eval_domains_and_contexts({
-            domains: [d],
-            contexts: [],
+        var e1 = instance.edc([d]).then(function (result) {
+            deepEqual(result.domain, [
+                ['company_id', '=', false]
+            ]);
         });
-        assert.deepEqual(result1.domain, [['company_id', '=', false]]);
-
-        var compound_domain = new data.CompoundDomain(d);
-        compound_domain.set_eval_context({company_id: 42});
-        
-        var result2 = pyeval.sync_eval_domains_and_contexts({
-            domains: [compound_domain],
-            contexts: [],
+        var cd = new instance.web.CompoundDomain(d);
+        cd.set_eval_context({company_id: 42});
+        var e2 = instance.edc([cd]).then(function (result) {
+            deepEqual(result.domain, [
+                ['company_id', '=', 42]
+            ]);
         });
 
-        assert.deepEqual(result2.domain, [['company_id', '=', 42]]);
+        return $.when(e1, e2);
     });
-
-    test('substitution in context', ['web.data'], function (assert, pyeval, session, data) {
-        setup(session);
+    test('substitution in context', {asserts: 1}, function (instance) {
         var c = "{'default_opportunity_id': active_id, 'default_duration': 1.0, 'lng': lang}";
-        var cc = new data.CompoundContext(c);
+        var cc = new instance.web.CompoundContext(c);
         cc.set_eval_context({active_id: 42});
-        var result = pyeval.sync_eval_domains_and_contexts({
-            domains:[], contexts: [cc]
-        });
-
-        assert.deepEqual(result.context, {
-            lang: "en_US",
-            tz: false,
-            uid: 1,
-            default_opportunity_id: 42,
-            default_duration: 1.0,
-            lng: "en_US"
+        return instance.edc([], [cc]).then(function (result) {
+            deepEqual(result.context, {
+                lang: "en_US",
+                tz: false,
+                uid: 1,
+                default_opportunity_id: 42,
+                default_duration: 1.0,
+                lng: "en_US"
+            });
         });
     });
-
-    test('date', function (assert, pyeval, session) {
+    test('date', {asserts: 1}, function (instance) {
         var d = "[('state','!=','cancel'),('opening_date','>',context_today().strftime('%Y-%m-%d'))]";
-        var result = pyeval.sync_eval_domains_and_contexts({
-            domains: [d],
-            contexts: [],
+        return instance.edc([d]).then(function (result) {
+            var d = new Date();
+            var today = _.str.sprintf("%04d-%02d-%02d",
+                d.getFullYear(), d.getMonth() + 1, d.getDate());
+            deepEqual(result.domain, [
+                ['state', '!=', 'cancel'],
+                ['opening_date', '>', today]
+            ]);
         });
-
-        var date = new Date();
-        var today = _.str.sprintf("%04d-%02d-%02d",
-            date.getFullYear(), date.getMonth() + 1, date.getDate());
-        assert.deepEqual(result.domain, [
-            ['state', '!=', 'cancel'],
-            ['opening_date', '>', today]
-        ]);
     });
-
-    test('delta', function (assert, pyeval) {
+    test('delta', {asserts: 1}, function (instance) {
         var d = "[('type','=','in'),('day','<=', time.strftime('%Y-%m-%d')),('day','>',(context_today()-datetime.timedelta(days=15)).strftime('%Y-%m-%d'))]";
-        var result = pyeval.sync_eval_domains_and_contexts({
-            domains: [d],
-            contexts: [],
+        return instance.edc([d]).then(function (result) {
+            var d = new Date();
+            var today = _.str.sprintf("%04d-%02d-%02d",
+                d.getFullYear(), d.getMonth() + 1, d.getDate());
+            d.setDate(d.getDate() - 15);
+            var ago_15_d = _.str.sprintf("%04d-%02d-%02d",
+                d.getFullYear(), d.getMonth() + 1, d.getDate());
+            deepEqual(result.domain, [
+                ['type', '=', 'in'],
+                ['day', '<=', today],
+                ['day', '>', ago_15_d]
+            ]);
         });
-        var date = new Date();
-        var today = _.str.sprintf("%04d-%02d-%02d",
-            date.getFullYear(), date.getMonth() + 1, date.getDate());
-        date.setDate(date.getDate() - 15);
-        var ago_15_d = _.str.sprintf("%04d-%02d-%02d",
-            date.getFullYear(), date.getMonth() + 1, date.getDate());
-        deepEqual(result.domain, [
-            ['type', '=', 'in'],
-            ['day', '<=', today],
-            ['day', '>', ago_15_d]
-        ]);
     });
-
-    test('horror from the deep', function (assert, pyeval) {
+    test('horror from the deep', {asserts: 1}, function (instance) {
         var cs = [
             {"__ref": "compound_context",
                 "__contexts": [
@@ -657,50 +604,46 @@ odoo.define_section('eval.edc.nonliterals', ['web.pyeval', 'web.session'], funct
                     {"__ref": "context", "__debug": "{'default_ref': 'stock.picking.out,'+str(context.get('active_id', False))}", "__id": "54d6ad1d6c45"}
                 ], "__eval_context": null}
         ];
-        var result = pyeval.sync_eval_domains_and_contexts({
-            domains: [],
-            contexts: cs,
-        });
-
-        assert.deepEqual(result.context, {
-            k: 'foo,False',
-            lang: 'en_US',
-            tz: false,
-            uid: 1,
-            active_model: 'stock.picking.out',
-            active_id: 8,
-            active_ids: [8],
-            default_type: 'out',
-            show_address: 1,
-            contact_display: 'partner_address',
-            default_ref: 'stock.picking.out,8'
+        return instance.edc([], cs).then(function (result) {
+            deepEqual(result.context, {
+                k: 'foo,False',
+                lang: 'en_US',
+                tz: false,
+                uid: 1,
+                active_model: 'stock.picking.out',
+                active_id: 8,
+                active_ids: [8],
+                default_type: 'out',
+                show_address: 1,
+                contact_display: 'partner_address',
+                default_ref: 'stock.picking.out,8'
+            });
         });
     });
 });
-
-odoo.define_section('eval.contexts', ['web.pyeval'], function (test) {
-
-    test('context_recursive', function (assert, pyeval) {
+openerp.testing.section('eval.contexts', {
+    dependencies: ['web.core']
+}, function (test) {
+    test('context_recursive', function (instance) {
         var context_to_eval = [{
             __ref: 'context',
             __debug: '{"foo": context.get("bar", "qux")}'
         }];
-        assert.deepEqual(
-            pyeval.eval('contexts', context_to_eval, {bar: "ok"}),
+        deepEqual(
+            instance.web.pyeval.eval('contexts', context_to_eval, {bar: "ok"}),
             {foo: 'ok'});
-        assert.deepEqual(
-            pyeval.eval('contexts', context_to_eval, {bar: false}),
+        deepEqual(
+            instance.web.pyeval.eval('contexts', context_to_eval, {bar: false}),
             {foo: false});
-        assert.deepEqual(
-            pyeval.eval('contexts', context_to_eval),
+        deepEqual(
+            instance.web.pyeval.eval('contexts', context_to_eval),
             {foo: 'qux'});
     });
-
-    test('context_sequences', function (assert, pyeval) {
+    test('context_sequences', function (instance) {
         // Context n should have base evaluation context + all of contexts
         // 0..n-1 in its own evaluation context
         var active_id = 4;
-        var result = pyeval.eval('contexts', [
+        var result = instance.web.pyeval.eval('contexts', [
             {
                 "__contexts": [
                     {
@@ -729,7 +672,7 @@ odoo.define_section('eval.contexts', ['web.pyeval'], function (test) {
             }
         ]);
 
-        assert.deepEqual(result, {
+        deepEqual(result, {
             department_id: false,
             lang: 'en_US',
             project_id: false,
@@ -743,9 +686,8 @@ odoo.define_section('eval.contexts', ['web.pyeval'], function (test) {
             record_id: active_id
         });
     });
-
-    test('non-literal_eval_contexts', function (assert, pyeval) {
-        var result = pyeval.eval('contexts', [{
+    test('non-literal_eval_contexts', function (instance) {
+        var result = instance.web.pyeval.eval('contexts', [{
             "__ref": "compound_context",
             "__contexts": [
                 {"__ref": "context", "__debug": "{'type':parent.type}",
@@ -769,12 +711,12 @@ odoo.define_section('eval.contexts', ['web.pyeval'], function (test) {
                                 {"id": false, "journal_id": 10,
                                  "number": false, "type": "out_invoice",
                                  "currency_id": 1, "partner_id": 4,
-                                 "fiscal_position_id": false,
-                                 "date_invoice": false, "date": false,
-                                 "payment_term_id": false, "reference_type": "none",
+                                 "fiscal_position": false,
+                                 "date_invoice": false, "period_id": false,
+                                 "payment_term": false, "reference_type": "none",
                                  "reference": false, "account_id": 440,
-                                 "name": false, "invoice_line_ids": [],
-                                 "tax_line_ids": [], "amount_untaxed": 0,
+                                 "name": false, "invoice_line": [],
+                                 "tax_line": [], "amount_untaxed": 0,
                                  "amount_tax": 0, "reconciled": false,
                                  "amount_total": 0, "state": "draft",
                                  "residual": 0, "company_id": 1,
@@ -791,25 +733,25 @@ odoo.define_section('eval.contexts', ['web.pyeval'], function (test) {
                     "product_id": 4,
                     "name": "[PC1] Basic PC",
                     "quantity": 1,
-                    "uom_id": 1,
+                    "uos_id": 1,
                     "price_unit": 100,
                     "account_id": 853,
                     "discount": 0,
                     "account_analytic_id": false,
                     "company_id": false,
                     "note": false,
-                    "invoice_line_tax_ids": [[6, false, [1]]],
+                    "invoice_line_tax_id": [[6, false, [1]]],
                     "active_id": false,
                     "active_ids": [],
                     "active_model": "account.invoice.line",
                     "parent": {
                         "id": false, "journal_id": 10, "number": false,
                         "type": "out_invoice", "currency_id": 1,
-                        "partner_id": 4, "fiscal_position_id": false,
-                        "date_invoice": false, "date": false,
-                        "payment_term_id": false, "reference_type": "none",
+                        "partner_id": 4, "fiscal_position": false,
+                        "date_invoice": false, "period_id": false,
+                        "payment_term": false, "reference_type": "none",
                         "reference": false, "account_id": 440, "name": false,
-                        "tax_line_ids": [], "amount_untaxed": 0, "amount_tax": 0,
+                        "tax_line": [], "amount_untaxed": 0, "amount_tax": 0,
                         "reconciled": false, "amount_total": 0,
                         "state": "draft", "residual": 0, "company_id": 1,
                         "date_due": false, "user_id": 1,
@@ -820,13 +762,10 @@ odoo.define_section('eval.contexts', ['web.pyeval'], function (test) {
                 "__eval_context": null
             }
         }]);
-
-        assert.deepEqual(result, {type: 'out_invoice'});
+        deepEqual(result, {type: 'out_invoice'});
     });
-
-    test('return-input-value', function (assert, pyeval) {
-        var date = new Date()
-        var result = pyeval.eval('contexts', [{
+    test('return-input-value', function (instance) {
+        var result = instance.web.pyeval.eval('contexts', [{
             __ref: 'compound_context',
             __contexts: ["{'line_id': line_id , 'journal_id': journal_id }"],
             __eval_context: {
@@ -845,7 +784,7 @@ odoo.define_section('eval.contexts', ['web.pyeval'], function (test) {
                     active_model: 'account.move',
                     amount: 0,
                     company_id: 1,
-                    date: date,
+                    date: '2013-06-21',
                     id: false,
                     journal_id: 14,
                     line_id: [
@@ -859,14 +798,15 @@ odoo.define_section('eval.contexts', ['web.pyeval'], function (test) {
                             debit: 0,
                             name: "dscsd",
                             partner_id: false,
-                            tax_line_id: false,
+                            tax_amount: 0,
+                            tax_code_id: false,
                         }]
                     ],
                     name: '/',
                     narration: false,
                     parent: {},
                     partner_id: false,
-                    date: '2011-01-1',
+                    period_id: 6,
                     ref: false,
                     state: 'draft',
                     to_check: false,
@@ -874,7 +814,7 @@ odoo.define_section('eval.contexts', ['web.pyeval'], function (test) {
                 __eval_context: null,
             },
         }]);
-        assert.deepEqual(result, {
+        deepEqual(result, {
             journal_id: 14,
             line_id: [[0, false, {
                 account_id: 55,
@@ -886,66 +826,63 @@ odoo.define_section('eval.contexts', ['web.pyeval'], function (test) {
                 debit: 0,
                 name: "dscsd",
                 partner_id: false,
-                tax_line_id: false,
+                tax_amount: 0,
+                tax_code_id: false,
             }]],
         });
     });
 });
-
-odoo.define_section('eval.domains', ['web.pyeval'], function (test) {
-
-    test('current_date', ['web.time'], function (assert, pyeval, time) {
-        var current_date = time.date_to_str(new Date());
-        var result = pyeval.eval('domains',
+openerp.testing.section('eval.domains', {
+    dependencies: ['web.core', 'web.dates']
+}, function (test) {
+    test('current_date', function (instance) {
+        var current_date = instance.web.date_to_str(new Date());
+        var result = instance.web.pyeval.eval('domains',
             [[],{"__ref":"domain","__debug":"[('name','>=',current_date),('name','<=',current_date)]","__id":"5dedcfc96648"}],
-            pyeval.context());
-        assert.deepEqual(result, [
+            instance.web.pyeval.context());
+        deepEqual(result, [
             ['name', '>=', current_date],
             ['name', '<=', current_date]
         ]);
     });
-
-    test('context_freevar', function (assert, pyeval) {
+    test('context_freevar', function (instance) {
         var domains_to_eval = [{
             __ref: 'domain',
             __debug: '[("foo", "=", context.get("bar", "qux"))]'
         }, [['bar', '>=', 42]]];
-        assert.deepEqual(
-            pyeval.eval('domains', domains_to_eval, {bar: "ok"}),
+        deepEqual(
+            instance.web.pyeval.eval('domains', domains_to_eval, {bar: "ok"}),
             [['foo', '=', 'ok'], ['bar', '>=', 42]]);
-        assert.deepEqual(
-            pyeval.eval('domains', domains_to_eval, {bar: false}),
+        deepEqual(
+            instance.web.pyeval.eval('domains', domains_to_eval, {bar: false}),
             [['foo', '=', false], ['bar', '>=', 42]]);
-        assert.deepEqual(
-            pyeval.eval('domains', domains_to_eval),
+        deepEqual(
+            instance.web.pyeval.eval('domains', domains_to_eval),
             [['foo', '=', 'qux'], ['bar', '>=', 42]]);
     });
-
 });
-
-odoo.define_section('eval.groupbys', ['web.pyeval'], function (test) {
-
-    test('groupbys_00', function (assert, pyeval) {
-        var result = pyeval.eval('groupbys', [
+openerp.testing.section('eval.groupbys', {
+    dependencies: ['web.core']
+}, function (test) {
+    test('groupbys_00', function (instance) {
+        var result = instance.web.pyeval.eval('groupbys', [
             {group_by: 'foo'},
             {group_by: ['bar', 'qux']},
             {group_by: null},
             {group_by: 'grault'}
         ]);
-        assert.deepEqual(result, ['foo', 'bar', 'qux', 'grault']);
+        deepEqual(result, ['foo', 'bar', 'qux', 'grault']);
     });
-
-    test('groupbys_01', function (assert, pyeval) {
-        var result = pyeval.eval('groupbys', [
+    test('groupbys_01', function (instance) {
+        var result = instance.web.pyeval.eval('groupbys', [
             {group_by: 'foo'},
             { __ref: 'context', __debug: '{"group_by": "bar"}' },
             {group_by: 'grault'}
         ]);
-        assert.deepEqual(result, ['foo', 'bar', 'grault']);
+        deepEqual(result, ['foo', 'bar', 'grault']);
     });
-
-    test('groupbys_02', function (assert, pyeval) {
-        var result = pyeval.eval('groupbys', [
+    test('groupbys_02', function (instance) {
+        var result = instance.web.pyeval.eval('groupbys', [
             {group_by: 'foo'},
             {
                 __ref: 'compound_context',
@@ -954,11 +891,10 @@ odoo.define_section('eval.groupbys', ['web.pyeval'], function (test) {
             },
             {group_by: 'grault'}
         ]);
-        assert.deepEqual(result, ['foo', 'bar', 'grault']);
+        deepEqual(result, ['foo', 'bar', 'grault']);
     });
-
-    test('groupbys_03', function (assert, pyeval) {
-        var result = pyeval.eval('groupbys', [
+    test('groupbys_03', function (instance) {
+        var result = instance.web.pyeval.eval('groupbys', [
             {group_by: 'foo'},
             {
                 __ref: 'compound_context',
@@ -969,11 +905,10 @@ odoo.define_section('eval.groupbys', ['web.pyeval'], function (test) {
             },
             {group_by: 'grault'}
         ]);
-        assert.deepEqual(result, ['foo', 'bar', 'grault']);
+        deepEqual(result, ['foo', 'bar', 'grault']);
     });
-
-    test('groupbys_04', function (assert, pyeval) {
-        var result = pyeval.eval('groupbys', [
+    test('groupbys_04', function (instance) {
+        var result = instance.web.pyeval.eval('groupbys', [
             {group_by: 'foo'},
             {
                 __ref: 'compound_context',
@@ -984,17 +919,14 @@ odoo.define_section('eval.groupbys', ['web.pyeval'], function (test) {
             },
             {group_by: 'grault'}
         ], { value: 'bar' });
-        assert.deepEqual(result, ['foo', 'bar', 'grault']);
+        deepEqual(result, ['foo', 'bar', 'grault']);
     });
-
-    test('groupbys_05', function (assert, pyeval) {
-        var result = pyeval.eval('groupbys', [
+    test('groupbys_05', function (instance) {
+        var result = instance.web.pyeval.eval('groupbys', [
             {group_by: 'foo'},
             { __ref: 'context', __debug: '{"group_by": value}' },
             {group_by: 'grault'}
         ], { value: 'bar' });
-        assert.deepEqual(result, ['foo', 'bar', 'grault']);
+        deepEqual(result, ['foo', 'bar', 'grault']);
     });
-
 });
-

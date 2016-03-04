@@ -12,6 +12,8 @@
     product_id: move_product
     product_uom_qty: 5
     product_uom: product.product_uom_unit
+    product_uos_qty: 5
+    product_uos: product.product_uom_unit
     location_id: stock.stock_location_stock
     location_dest_id: stock.stock_location_customers
 -
@@ -51,6 +53,8 @@
     product_id: move_product
     product_uom_qty: 15
     product_uom: product.product_uom_unit
+    product_uos_qty: 15
+    product_uos: product.product_uom_unit
     location_id: stock.stock_location_suppliers
     location_dest_id: stock.stock_location_stock
 -
@@ -75,6 +79,8 @@
     product_id: move_product
     product_uom_qty: 2
     product_uom: product.product_uom_unit
+    product_uos_qty: 2
+    product_uos: product.product_uom_unit
     location_id: stock.stock_location_stock
     location_dest_id: stock.stock_location_customers
 -

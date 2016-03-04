@@ -6,12 +6,12 @@
 # Goutoudis Kostas <goutoudis@gmail.com>, 2015-2016
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo 9.0\n"
+"Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-18 13:40+0000\n"
+"POT-Creation-Date: 2015-01-21 14:07+0000\n"
 "PO-Revision-Date: 2016-01-02 21:05+0000\n"
 "Last-Translator: Goutoudis Kostas <goutoudis@gmail.com>\n"
-"Language-Team: Greek (http://www.transifex.com/odoo/odoo-9/language/el/)\n"
+"Language-Team: Greek (http://www.transifex.com/odoo/odoo-8/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -20,14 +20,30 @@ msgstr ""
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:466
+#: code:addons/base_import/static/src/js/import.js:437
 #, python-format
 msgid "(%d more)"
 msgstr "(%d περισσότερα)"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:281
+#: code:addons/base_import/static/src/xml/import.xml:369
+#, python-format
+msgid ""
+". The issue is\n"
+"            usually an incorrect file encoding."
+msgstr ". Το θέμα συνήθως\n            είναι λάθος κωδικοποίηση αρχείου."
+
+#. module: base_import
+#. openerp-web
+#: code:addons/base_import/static/src/xml/import.xml:26
+#, python-format
+msgid ".CSV"
+msgstr ".CSV"
+
+#. module: base_import
+#. openerp-web
+#: code:addons/base_import/static/src/js/import.js:254
 #, python-format
 msgid ""
 "A single column was found in the file, this often means the file separator "
@@ -36,7 +52,7 @@ msgstr "Βρέθηκε μία μοναδική στήλη στο αρχείο. �
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:161
+#: code:addons/base_import/static/src/xml/import.xml:160
 #, python-format
 msgid ""
 "According to your need, you should use \n"
@@ -47,7 +63,7 @@ msgstr "Σύμφωνα με τις ανάγκες σας, θα πρέπει να
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:234
+#: code:addons/base_import/static/src/xml/import.xml:233
 #, python-format
 msgid ""
 "As an example, here is \n"
@@ -58,7 +74,7 @@ msgstr "Για παράδειγμα, εδώ είναι το αρχείο        
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:299
+#: code:addons/base_import/static/src/xml/import.xml:298
 #, python-format
 msgid ""
 "As an example, suppose you have a SQL database \n"
@@ -71,7 +87,7 @@ msgstr "Για παράδειγμα, ας υποθέσουμε ότι έχετε
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:331
+#: code:addons/base_import/static/src/xml/import.xml:330
 #, python-format
 msgid ""
 "As you can see in this file, Fabien and Laurence \n"
@@ -87,19 +103,7 @@ msgstr "Όπως μπορείτε να δείτε σε αυτό το αρχεί�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:87
-#, python-format
-msgid ""
-"Because CSV files are used internally and in\n"
-"                        multiple external processes, interoperability is a\n"
-"                        significant issue. To limit incorrect\n"
-"                        interpretation of data, they are strictly limited\n"
-"                        to dates following"
-msgstr ""
-
-#. module: base_import
-#. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:106
+#: code:addons/base_import/static/src/xml/import.xml:105
 #, python-format
 msgid ""
 "By default the Import preview is set on commas as \n"
@@ -112,82 +116,82 @@ msgstr "Από προεπιλογή η προεπισκόπηση εισαγωγ
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:21
+#: code:addons/base_import/static/src/xml/import.xml:30
 #, python-format
-msgid "CSV Format Options…"
-msgstr "Επιλογές Μορφής CSV ..."
+msgid "CSV File:"
+msgstr "Αρχείο CSV :"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:217
+#: code:addons/base_import/static/src/xml/import.xml:216
 #, python-format
 msgid "CSV file for Manufacturer, Retailer"
 msgstr "Αρχείο CSV για Κατασκευαστές, Λιανοπωλητές"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:181
+#: code:addons/base_import/static/src/xml/import.xml:180
 #, python-format
 msgid "CSV file for Products"
 msgstr "Αρχείο CSV για Προϊόντα"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:180
+#: code:addons/base_import/static/src/xml/import.xml:179
 #, python-format
 msgid "CSV file for categories"
 msgstr "Αρχείο CSV για κατηγορίες"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:250
+#: code:addons/base_import/static/src/xml/import.xml:249
 #, python-format
 msgid "Can I import several times the same record?"
 msgstr "Μπορώ να εισάγω αρκετές φορές την ίδια εγγραφή;"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:358
+#: code:addons/base_import/static/src/xml/import.xml:20
 #, python-format
 msgid "Cancel"
-msgstr "Ακύρωση"
+msgstr "Ακύρωση"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:205
-#: code:addons/base_import/static/src/js/import.js:216
+#: code:addons/base_import/static/src/js/import.js:179
+#: code:addons/base_import/static/src/js/import.js:190
 #, python-format
 msgid "Comma"
 msgstr "Κόμμα"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:159
+#: code:addons/base_import/static/src/xml/import.xml:158
 #, python-format
 msgid ""
 "Country/Database \n"
 "                        ID: 21"
-msgstr "Χώρα/Βάση Δεδομένών \n                        ID: 21"
+msgstr "Χώρα/Βάση Δεδομένων\nΑναγνωριστικό: 21"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:153
+#: code:addons/base_import/static/src/xml/import.xml:152
 #, python-format
 msgid ""
 "Country/Database ID: the unique Odoo ID for a \n"
 "                        record, defined by the ID postgresql column"
-msgstr "Χώρα/Βάση Δεδομένων ID: το μοναδικό ID του Odoo για κάθε \n                        εγγραφή καθορίζεται από τη στήλη ID postgresql"
+msgstr "Χώρα/Βάση Δεδομένων Αναγνωριστικό: το μοναδικό Αναγνωριστικό του Odoo για κάθε εγγραφή καθορίζεται από τη στήλη ID postgresql"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:160
+#: code:addons/base_import/static/src/xml/import.xml:159
 #, python-format
 msgid "Country/External ID: base.be"
 msgstr "Χώρα/Εξωτερικό Αναγνωριστικό: base.be"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:155
+#: code:addons/base_import/static/src/xml/import.xml:154
 #, python-format
 msgid ""
 "Country/External ID: the ID of this record \n"
@@ -197,124 +201,100 @@ msgstr "Χώρα/Εξωτερικό Αναγνωριστικό: το αναγν�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:159
+#: code:addons/base_import/static/src/xml/import.xml:158
 #, python-format
 msgid "Country: Belgium"
 msgstr "Χώρα: Βέλγιο"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:152
+#: code:addons/base_import/static/src/xml/import.xml:151
 #, python-format
 msgid "Country: the name or code of the country"
 msgstr "Χώρα: το όνομα ή ο κωδικός της χώρας"
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_import_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_noreadonly_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_readonly_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_required_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_states_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_stillreadonly_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_related_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_related_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_child_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_create_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_preview_create_uid
+#: field:base_import.import,create_uid:0
+#: field:base_import.tests.models.char,create_uid:0
+#: field:base_import.tests.models.char.noreadonly,create_uid:0
+#: field:base_import.tests.models.char.readonly,create_uid:0
+#: field:base_import.tests.models.char.required,create_uid:0
+#: field:base_import.tests.models.char.states,create_uid:0
+#: field:base_import.tests.models.char.stillreadonly,create_uid:0
+#: field:base_import.tests.models.m2o,create_uid:0
+#: field:base_import.tests.models.m2o.related,create_uid:0
+#: field:base_import.tests.models.m2o.required,create_uid:0
+#: field:base_import.tests.models.m2o.required.related,create_uid:0
+#: field:base_import.tests.models.o2m,create_uid:0
+#: field:base_import.tests.models.o2m.child,create_uid:0
+#: field:base_import.tests.models.preview,create_uid:0
 msgid "Created by"
 msgstr "Δημιουργήθηκε από"
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_import_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_noreadonly_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_readonly_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_required_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_states_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_stillreadonly_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_related_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_related_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_child_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_create_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_preview_create_date
+#: field:base_import.import,create_date:0
+#: field:base_import.tests.models.char,create_date:0
+#: field:base_import.tests.models.char.noreadonly,create_date:0
+#: field:base_import.tests.models.char.readonly,create_date:0
+#: field:base_import.tests.models.char.required,create_date:0
+#: field:base_import.tests.models.char.states,create_date:0
+#: field:base_import.tests.models.char.stillreadonly,create_date:0
+#: field:base_import.tests.models.m2o,create_date:0
+#: field:base_import.tests.models.m2o.related,create_date:0
+#: field:base_import.tests.models.m2o.required,create_date:0
+#: field:base_import.tests.models.m2o.required.related,create_date:0
+#: field:base_import.tests.models.o2m,create_date:0
+#: field:base_import.tests.models.o2m.child,create_date:0
+#: field:base_import.tests.models.preview,create_date:0
 msgid "Created on"
 msgstr "Δημιουργήθηκε στις"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:244
+#: code:addons/base_import/static/src/xml/import.xml:243
 #, python-format
 msgid "Customers and their respective contacts"
 msgstr "Πελάτες και οι σχετικές επαφές τους"
 
 #. module: base_import
-#: code:addons/base_import/models.py:147 code:addons/base_import/models.py:153
+#: code:addons/base_import/models.py:116 code:addons/base_import/models.py:122
 #, python-format
 msgid "Database ID"
-msgstr "ID Βάσης Δεδομένων"
-
-#. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_import_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_noreadonly_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_readonly_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_required_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_states_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_stillreadonly_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_related_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_related_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_child_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_display_name
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_preview_display_name
-msgid "Display Name"
-msgstr "Εμφάνιση Ονόματος"
+msgstr "Αναγνωριστικό Βάσης Δεδομένων"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:315
+#: code:addons/base_import/static/src/js/import.js:288
 #, python-format
 msgid "Don't import"
 msgstr "Να μην εισαχθεί τίποτα"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:91
+#: code:addons/base_import/static/src/js/import.js:77
 #, python-format
 msgid "Encoding:"
 msgstr "Κωδικοποίηση:"
 
 #. module: base_import
-#: code:addons/base_import/models.py:204
-#, python-format
-msgid "Error cell found while reading XLS/XLSX file: %s"
-msgstr ""
-
-#. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:443
+#: code:addons/base_import/static/src/js/import.js:414
 #, python-format
 msgid "Everything seems valid."
 msgstr "Όλα φαίνονται έγκυρα"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/models.py:112 code:addons/base_import/models.py:146
-#: code:addons/base_import/static/src/xml/import.xml:69
-#: code:addons/base_import/static/src/xml/import.xml:74
+#: code:addons/base_import/models.py:81 code:addons/base_import/models.py:115
+#: code:addons/base_import/static/src/xml/import.xml:87
+#: code:addons/base_import/static/src/xml/import.xml:92
 #, python-format
 msgid "External ID"
-msgstr "Εξωτερικό ID"
+msgstr "Εξωτερικό Αναγνωριστικό"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:325
+#: code:addons/base_import/static/src/xml/import.xml:324
 #, python-format
 msgid ""
 "External ID,Name,Is a \n"
@@ -323,55 +303,48 @@ msgstr "Εξωτερικό Αναγνωριστικό,Όνομα,Είναι ετ
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:313
+#: code:addons/base_import/static/src/xml/import.xml:312
 #, python-format
 msgid "External ID,Name,Is a Company"
 msgstr "Εξωτερικό Αναγνωριστικό,Όνομα,Είναι εταιρεία"
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_import_file
+#: field:base_import.import,file:0
 msgid "File"
 msgstr "Αρχείο"
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_import_file_name
+#. openerp-web
+#: code:addons/base_import/static/src/xml/import.xml:39
+#, python-format
+msgid "File Format Options…"
+msgstr "Επιλογές Μορφής Αρχείου..."
+
+#. module: base_import
+#: field:base_import.import,file_name:0
 msgid "File Name"
 msgstr "Όνομα Αρχείου"
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_import_file_type
+#: field:base_import.import,file_type:0
 msgid "File Type"
 msgstr "Τύπος Αρχείου"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:238
+#: code:addons/base_import/static/src/xml/import.xml:237
 #, python-format
 msgid "File for some Quotations"
 msgstr "Αρχείο για μερικές Προσφορές"
 
 #. module: base_import
-#: model:ir.model.fields,help:base_import.field_base_import_import_file
+#: help:base_import.import,file:0
 msgid "File to check and/or import, raw binary (not base64)"
 msgstr "Αρχείο προς έλεγχο ή/και εισαγωγή, μη επεξεργασμένο δυαδικό (όχι base64)"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:12
-#, python-format
-msgid "File:"
-msgstr "Αρχείο:"
-
-#. module: base_import
-#. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:384
-#, python-format
-msgid "For CSV files, the issue could be an incorrect encoding."
-msgstr ""
-
-#. module: base_import
-#. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:149
+#: code:addons/base_import/static/src/xml/import.xml:148
 #, python-format
 msgid ""
 "For example, to \n"
@@ -381,19 +354,7 @@ msgstr "Για παράδειγμα, για την\nαναφορά της χώρ
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:93
-#, python-format
-msgid ""
-"For more familiar or\n"
-"                        flexible formatting, use Excel files, date cells\n"
-"                        are stored as genuine dates and the familiar and\n"
-"                        locale-aware display of dates is independent from\n"
-"                        the way it is stored."
-msgstr ""
-
-#. module: base_import
-#. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:157
+#: code:addons/base_import/static/src/xml/import.xml:156
 #, python-format
 msgid ""
 "For the country \n"
@@ -402,35 +363,35 @@ msgstr "Για τη χώρα Βέλγιο, μπορείτε να χρησιμο�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:60
+#: code:addons/base_import/static/src/xml/import.xml:78
 #, python-format
 msgid "Frequently Asked Questions"
 msgstr "Συχνές Ερωτήσεις"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:490
+#: code:addons/base_import/static/src/js/import.js:461
 #, python-format
 msgid "Get all possible values"
 msgstr "Λήψη όλων των πιθανών τιμών"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:477
+#: code:addons/base_import/static/src/js/import.js:448
 #, python-format
 msgid "Here are the possible values:"
 msgstr "Παρατίθενται οι πιθανές τιμές:"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:385
+#: code:addons/base_import/static/src/xml/import.xml:371
 #, python-format
 msgid "Here is the start of the file we could not import:"
 msgstr "Εδώ είναι η αρχή του αρχείου που δεν μπορούμε να εισάγουμε:"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:120
+#: code:addons/base_import/static/src/xml/import.xml:119
 #, python-format
 msgid ""
 "How can I change the CSV file format options when \n"
@@ -439,7 +400,7 @@ msgstr "Πως μπορώ να αλλάξω τις επιλογές μορφής
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:208
+#: code:addons/base_import/static/src/xml/import.xml:207
 #, python-format
 msgid ""
 "How can I import a many2many relationship field \n"
@@ -448,7 +409,7 @@ msgstr "Πως μπορώ να εισάγω ένα πεδίο σχέσης πο�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:223
+#: code:addons/base_import/static/src/xml/import.xml:222
 #, python-format
 msgid ""
 "How can I import a one2many relationship (e.g. several \n"
@@ -457,7 +418,7 @@ msgstr "Πως μπορώ να εισάγω μια σχέση ένα προς π
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:282
+#: code:addons/base_import/static/src/xml/import.xml:281
 #, python-format
 msgid ""
 "How to export/import different tables from an SQL \n"
@@ -466,7 +427,7 @@ msgstr "Πώς θα εισάγω/εξάγω διαφορετικούς πίνα�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:199
+#: code:addons/base_import/static/src/xml/import.xml:198
 #, python-format
 msgid ""
 "However if you do not wish to change your \n"
@@ -477,29 +438,28 @@ msgstr "Ωστόσο, αν δεν θέλετε να αλλάξετε τις ρυ
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:69
-#: code:addons/base_import/static/src/xml/import.xml:74
-#: model:ir.model.fields,field_description:base_import.field_base_import_import_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_noreadonly_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_readonly_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_required_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_states_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_stillreadonly_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_related_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_related_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_child_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_preview_id
+#: code:addons/base_import/static/src/xml/import.xml:87
+#: code:addons/base_import/static/src/xml/import.xml:92
+#: field:base_import.import,id:0 field:base_import.tests.models.char,id:0
+#: field:base_import.tests.models.char.noreadonly,id:0
+#: field:base_import.tests.models.char.readonly,id:0
+#: field:base_import.tests.models.char.required,id:0
+#: field:base_import.tests.models.char.states,id:0
+#: field:base_import.tests.models.char.stillreadonly,id:0
+#: field:base_import.tests.models.m2o,id:0
+#: field:base_import.tests.models.m2o.related,id:0
+#: field:base_import.tests.models.m2o.required,id:0
+#: field:base_import.tests.models.m2o.required.related,id:0
+#: field:base_import.tests.models.o2m,id:0
+#: field:base_import.tests.models.o2m.child,id:0
+#: field:base_import.tests.models.preview,id:0
 #, python-format
 msgid "ID"
-msgstr "ID"
+msgstr "Κωδικός"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:190
+#: code:addons/base_import/static/src/xml/import.xml:189
 #, python-format
 msgid ""
 "If for example you have two product categories \n"
@@ -516,7 +476,7 @@ msgstr "Αν για παράδειγμα έχετε δύο κατηγορίες 
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:51
+#: code:addons/base_import/static/src/xml/import.xml:69
 #, python-format
 msgid ""
 "If the file contains\n"
@@ -527,7 +487,7 @@ msgstr "Αν το αρχείο περιέχει τα ονόματα των στ�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:40
+#: code:addons/base_import/static/src/xml/import.xml:58
 #, python-format
 msgid ""
 "If the model uses openchatter, history tracking                             "
@@ -537,7 +497,7 @@ msgstr "Αν το μοντέλο χρησιμοποιεί openchatter, το ισ
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:272
+#: code:addons/base_import/static/src/xml/import.xml:271
 #, python-format
 msgid ""
 "If you do not set all fields in your CSV file, \n"
@@ -550,7 +510,7 @@ msgstr "Αν δεν ορίσετε όλα τα πεδία στο αρχείο CS
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:124
+#: code:addons/base_import/static/src/xml/import.xml:123
 #, python-format
 msgid ""
 "If you edit and save CSV files in speadsheet \n"
@@ -564,7 +524,7 @@ msgstr "Αν επεξεργάζεστε και αποθηκεύετε τα αρ�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:253
+#: code:addons/base_import/static/src/xml/import.xml:252
 #, python-format
 msgid ""
 "If you import a file that contains one of the \n"
@@ -579,7 +539,7 @@ msgstr "Εάν εισάγετε ένα αρχείο που περιέχει μί
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:286
+#: code:addons/base_import/static/src/xml/import.xml:285
 #, python-format
 msgid ""
 "If you need to import data from different tables, \n"
@@ -592,7 +552,7 @@ msgstr "Αν χρειαστεί να εισαγάγετε δεδομένα απ�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:227
+#: code:addons/base_import/static/src/xml/import.xml:226
 #, python-format
 msgid ""
 "If you want to import sales order having several \n"
@@ -606,29 +566,29 @@ msgstr "Αν θέλετε να εισαγάγετε τις παραγγελίε�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:357
-#: code:addons/base_import/static/src/xml/import.xml:417
+#: code:addons/base_import/static/src/xml/import.xml:18
+#: code:addons/base_import/static/src/xml/import.xml:405
 #, python-format
 msgid "Import"
 msgstr "Εισαγωγή"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:147
+#: code:addons/base_import/static/src/xml/import.xml:7
 #, python-format
-msgid "Import a File"
-msgstr "Εισαγωγή ενός αρχείου"
+msgid "Import a CSV File"
+msgstr "Εισαγωγή ενός αρχείου CSV"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:383
+#: code:addons/base_import/static/src/xml/import.xml:369
 #, python-format
 msgid "Import preview failed due to:"
 msgstr "Η προεπισκόπηση εισαγωγής απέτυχε εξαιτίας:"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:66
+#: code:addons/base_import/static/src/xml/import.xml:84
 #, python-format
 msgid ""
 "In order to re-create relationships between\n"
@@ -639,75 +599,57 @@ msgstr "Για να επαναδημιουργήσετε σχέσεις μετα
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:324
+#: code:addons/base_import/static/src/xml/import.xml:323
 #, python-format
 msgid "It will produce the following CSV file:"
 msgstr "Θα παραχθεί το ακόλουθο αρχείο CSV:"
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_import___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_noreadonly___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_readonly___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_required___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_states___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_stillreadonly___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_related___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_related___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_child___last_update
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_preview___last_update
-msgid "Last Modified on"
-msgstr "Τελευταία αλλαγή στις"
-
-#. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_import_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_noreadonly_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_readonly_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_required_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_states_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_stillreadonly_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_related_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_related_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_child_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_write_uid
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_preview_write_uid
+#: field:base_import.import,write_uid:0
+#: field:base_import.tests.models.char,write_uid:0
+#: field:base_import.tests.models.char.noreadonly,write_uid:0
+#: field:base_import.tests.models.char.readonly,write_uid:0
+#: field:base_import.tests.models.char.required,write_uid:0
+#: field:base_import.tests.models.char.states,write_uid:0
+#: field:base_import.tests.models.char.stillreadonly,write_uid:0
+#: field:base_import.tests.models.m2o,write_uid:0
+#: field:base_import.tests.models.m2o.related,write_uid:0
+#: field:base_import.tests.models.m2o.required,write_uid:0
+#: field:base_import.tests.models.m2o.required.related,write_uid:0
+#: field:base_import.tests.models.o2m,write_uid:0
+#: field:base_import.tests.models.o2m.child,write_uid:0
+#: field:base_import.tests.models.preview,write_uid:0
 msgid "Last Updated by"
 msgstr "Τελευταία Ενημέρωση από"
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_import_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_noreadonly_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_readonly_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_required_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_states_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_stillreadonly_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_related_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_related_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_child_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_write_date
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_preview_write_date
+#: field:base_import.import,write_date:0
+#: field:base_import.tests.models.char,write_date:0
+#: field:base_import.tests.models.char.noreadonly,write_date:0
+#: field:base_import.tests.models.char.readonly,write_date:0
+#: field:base_import.tests.models.char.required,write_date:0
+#: field:base_import.tests.models.char.states,write_date:0
+#: field:base_import.tests.models.char.stillreadonly,write_date:0
+#: field:base_import.tests.models.m2o,write_date:0
+#: field:base_import.tests.models.m2o.related,write_date:0
+#: field:base_import.tests.models.m2o.required,write_date:0
+#: field:base_import.tests.models.m2o.required.related,write_date:0
+#: field:base_import.tests.models.o2m,write_date:0
+#: field:base_import.tests.models.o2m.child,write_date:0
+#: field:base_import.tests.models.preview,write_date:0
 msgid "Last Updated on"
 msgstr "Τελευταία Ενημέρωση στις"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:37
+#: code:addons/base_import/static/src/xml/import.xml:55
 #, python-format
 msgid "Map your data to Odoo"
 msgstr "Χαρτογραφήστε τα δεδομένα σας στο Odoo"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:130
+#: code:addons/base_import/static/src/xml/import.xml:129
 #, python-format
 msgid ""
 "Microsoft Excel will allow \n"
@@ -717,32 +659,32 @@ msgid ""
 msgstr "Το Microsoft Excel σας επιτρέπει \n                        να τροποποιείτε μόνο την κωδικοποίηση κατά την αποθήκευση \n                        (στο παράθυρο διαλόγου 'Αποθήκευση Ως' > κάντε κλικ στην αναδυόμενη \n                        λίστα 'Εργαλεία' > καρτέλα Κωδικοποίηση)."
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_import_res_model
+#: field:base_import.import,res_model:0
 msgid "Model"
 msgstr "Μοντέλο"
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_preview_name
+#: field:base_import.tests.models.preview,name:0
 msgid "Name"
 msgstr "Όνομα"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:63
+#: code:addons/base_import/static/src/xml/import.xml:81
 #, python-format
 msgid "Need to import data from an other application?"
 msgstr "Πρέπει να εισαχθούν δεδομένα από άλλη εφαρμογή;"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:363
+#: code:addons/base_import/static/src/js/import.js:336
 #, python-format
 msgid "Normal Fields"
 msgstr "Τυπικά Πεδία"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:111
+#: code:addons/base_import/static/src/xml/import.xml:110
 #, python-format
 msgid ""
 "Note that if your CSV file \n"
@@ -753,69 +695,67 @@ msgid ""
 msgstr "Σημειώστε ότι αν το αρχείο CSV έχει ως διαχωριστικό τον χαρακτήρα TAB, το Odoo δεν θα εντοπίσει τους διαχωρισμούς. Θα χρειαστεί να αλλάξετε τις επιλογές μορφοποίησης του αρχείου στην εφαρμογή λογιστικών φύλλων. Δείτε την παρακάτω ερώτηση."
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_preview_othervalue
+#: field:base_import.tests.models.preview,othervalue:0
 msgid "Other Variable"
 msgstr "Άλλη Μεταβλητή"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:241
+#: code:addons/base_import/static/src/xml/import.xml:240
 #, python-format
 msgid "Purchase orders with their respective purchase order lines"
 msgstr "Παραγγελίες αγορών με τις σχετικές γραμμές παραγγελιών αγορών"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:93
+#: code:addons/base_import/static/src/js/import.js:79
 #, python-format
 msgid "Quoting:"
-msgstr "Παράθεση:"
+msgstr "Οριοθέτης κειμένου:"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:364
+#: code:addons/base_import/static/src/js/import.js:337
 #, python-format
 msgid "Relation Fields"
 msgstr "Σχετιζόμενα Πεδία"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:17
+#: code:addons/base_import/static/src/xml/import.xml:35
 #, python-format
 msgid "Reload data to check changes."
 msgstr "Ανανέωση δεδομένων για έλεγχο των αλλαγών."
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:9
+#: code:addons/base_import/static/src/xml/import.xml:24
 #, python-format
-msgid ""
-"Select the file to import. If you need a sample importable file, you\n"
-"            can use the export tool to generate one."
-msgstr ""
+msgid "Select the"
+msgstr "Επιλέξτε"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:206
+#: code:addons/base_import/static/src/js/import.js:180
 #, python-format
 msgid "Semicolon"
 msgstr "Άνω Τελεία"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:92
+#: code:addons/base_import/static/src/js/import.js:78
 #, python-format
 msgid "Separator:"
 msgstr "Διαχωριστικό:"
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_preview_somevalue
+#: field:base_import.tests.models.preview,somevalue:0
 msgid "Some Value"
 msgstr "Μερική Αξία"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:142
+#: code:addons/base_import/static/src/xml/import.xml:141
 #, python-format
 msgid ""
 "Some fields define a relationship with another \n"
@@ -830,28 +770,28 @@ msgstr "Ορισμένα πεδία ορίζουν μια σχέση με ένα
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:208
+#: code:addons/base_import/static/src/js/import.js:182
 #, python-format
 msgid "Space"
 msgstr "Κενό"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:207
+#: code:addons/base_import/static/src/js/import.js:181
 #, python-format
 msgid "Tab"
 msgstr "Tab"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:74
+#: code:addons/base_import/static/src/xml/import.xml:92
 #, python-format
 msgid "The"
 msgstr "Το"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:49
+#: code:addons/base_import/static/src/xml/import.xml:67
 #, python-format
 msgid ""
 "The first row of the\n"
@@ -860,7 +800,7 @@ msgstr "Η πρώτη γραμμή του αρχείου περιέχει την
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:242
+#: code:addons/base_import/static/src/xml/import.xml:241
 #, python-format
 msgid ""
 "The following CSV file shows how to import \n"
@@ -869,7 +809,7 @@ msgstr "Το ακόλουθο αρχείο CSV δείχνει πώς μπορε�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:239
+#: code:addons/base_import/static/src/xml/import.xml:238
 #, python-format
 msgid ""
 "The following CSV file shows how to import purchase \n"
@@ -878,19 +818,19 @@ msgstr "Το ακόλουθο αρχείο CSV δείχνει πώς να εισ
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:212
+#: code:addons/base_import/static/src/xml/import.xml:211
 #, python-format
 msgid ""
 "The tags should be separated by a comma without any \n"
-"                        spacing. For example, if you want your customer to be \n"
-"                        linked to both tags 'Manufacturer' and 'Retailer' \n"
-"                        then you will encode \"Manufacturer,\n"
+"                        spacing. For example, if you want you customer to be \n"
+"                        lined to both tags 'Manufacturer' and 'Retailer' \n"
+"                        then you will encode it as follow \"Manufacturer,\n"
 "                        Retailer\" in the same column of your CSV file."
-msgstr ""
+msgstr "Οι ετικέτες θα πρέπει να χωρίζονται από ένα κόμμα χωρίς κενά. Για παράδειγμα, αν θέλετε έναν πελάτη να του ορίσετε δύο λέξεις-κλειδιά 'Κατασκευαστής' και 'Λιανοπωλητής', τότε θα κωδικοποιήσετε ως εξής 'Κατασκευαστής,Λιανοπωλητής' στην ίδια στήλη του αρχείου CSV."
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:340
+#: code:addons/base_import/static/src/xml/import.xml:339
 #, python-format
 msgid ""
 "The two files produced are ready to be imported in \n"
@@ -903,14 +843,14 @@ msgstr "Τα δύο αρχεία που παράγονται είναι έτοι
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:312
+#: code:addons/base_import/static/src/xml/import.xml:311
 #, python-format
 msgid "This SQL command will create the following CSV file:"
 msgstr "Αυτή η εντολή SQL θα δημιουργήσει το ακόλουθο αρχείο CSV:"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:260
+#: code:addons/base_import/static/src/xml/import.xml:259
 #, python-format
 msgid ""
 "This feature \n"
@@ -921,7 +861,7 @@ msgstr "Αυτό το χαρακτηριστικό σας επιτρέπει ν�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:317
+#: code:addons/base_import/static/src/xml/import.xml:316
 #, python-format
 msgid ""
 "To create the CSV file for persons, linked to \n"
@@ -931,7 +871,7 @@ msgstr "Για να δημιουργήσουμε το αρχείο CSV για τ
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:291
+#: code:addons/base_import/static/src/xml/import.xml:290
 #, python-format
 msgid ""
 "To manage relations between tables, \n"
@@ -946,27 +886,14 @@ msgstr "Για τη διαχείριση των σχέσεων μεταξύ πι
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:43
+#: code:addons/base_import/static/src/xml/import.xml:61
 #, python-format
 msgid "Track history during import"
 msgstr "Παρακολούθηση ιστορικού κατά την εισαγωγή"
 
 #. module: base_import
-#: code:addons/base_import/models.py:173
-#, python-format
-msgid "Unable to load \"{extension}\" file: requires Python module \"{modname}\""
-msgstr ""
-
-#. module: base_import
-#: code:addons/base_import/models.py:174
-#, python-format
-msgid ""
-"Unsupported file format \"{}\", import only supports CSV, ODS, XLS and XLSX"
-msgstr ""
-
-#. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:166
+#: code:addons/base_import/static/src/xml/import.xml:165
 #, python-format
 msgid ""
 "Use \n"
@@ -979,7 +906,7 @@ msgstr "Χρήση Χώρας/Αναγνωριστικό Βάσης Δεδομέ
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:171
+#: code:addons/base_import/static/src/xml/import.xml:170
 #, python-format
 msgid ""
 "Use \n"
@@ -989,7 +916,7 @@ msgstr "Χρήση Χώρας/Εξωτερικό Αναγνωριστικό: Χ�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:164
+#: code:addons/base_import/static/src/xml/import.xml:163
 #, python-format
 msgid ""
 "Use Country: This is \n"
@@ -999,14 +926,14 @@ msgstr "Χρήση Χώρας: Αυτός είναι ο πιο εύκολος τ
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:355
+#: code:addons/base_import/static/src/xml/import.xml:15
 #, python-format
 msgid "Validate"
 msgstr "Επικύρωση"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:306
+#: code:addons/base_import/static/src/xml/import.xml:305
 #, python-format
 msgid ""
 "We will first export all companies and their \n"
@@ -1015,23 +942,23 @@ msgstr "Πρώτα θα εξάγουμε όλες τις εταιρείες κα
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:186
+#: code:addons/base_import/static/src/xml/import.xml:185
 #, python-format
 msgid "What can I do if I have multiple matches for a field?"
 msgstr "Τι μπορώ να κάνω αν έχω πολλές αντιστοιχίες για ένα πεδίο;"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:102
+#: code:addons/base_import/static/src/xml/import.xml:101
 #, python-format
 msgid ""
-"What can I do when the Import preview table isn't\n"
+"What can I do when the Import preview table isn't \n"
 "                        displayed correctly?"
 msgstr "Τι μπορώ να κάνω όταν ο πίνακας προεπισκόπησης εισαγωγής δεν εμφανίζεται σωστά;"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:268
+#: code:addons/base_import/static/src/xml/import.xml:267
 #, python-format
 msgid ""
 "What happens if I do not provide a value for a \n"
@@ -1040,7 +967,7 @@ msgstr "Τι θα συμβεί αν δεν δώσω μια τιμή για έν�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:138
+#: code:addons/base_import/static/src/xml/import.xml:137
 #, python-format
 msgid ""
 "What's the difference between Database ID and \n"
@@ -1049,7 +976,7 @@ msgstr "Ποια είναι η διαφορά ανάμεσα στο Αναγνω
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:174
+#: code:addons/base_import/static/src/xml/import.xml:173
 #, python-format
 msgid ""
 "When you use External IDs, you can import CSV files \n"
@@ -1062,118 +989,41 @@ msgstr "Όταν χρησιμοποιείτε εξωτερικά αναγνωρ�
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:83
-#, python-format
-msgid "Why don't CSV file use my date format?"
-msgstr ""
-
-#. module: base_import
-#. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:72
+#: code:addons/base_import/static/src/xml/import.xml:90
 #, python-format
 msgid "XXX/External ID"
 msgstr "XXX/Εξωτερικό Αναγνωριστικό"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:72
+#: code:addons/base_import/static/src/xml/import.xml:90
 #, python-format
 msgid "XXX/ID"
-msgstr "XXX/ID"
+msgstr "XXX/Αναγνωριστικό"
 
 #. module: base_import
-#: code:addons/base_import/models.py:376
+#: code:addons/base_import/models.py:271
 #, python-format
 msgid "You must configure at least one field to import"
 msgstr "Πρέπει να ρυθμίσετε τουλάχιστον ένα πεδίο προς εισαγωγή"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:460
+#: code:addons/base_import/static/src/js/import.js:431
 #, python-format
 msgid "at row %d"
 msgstr "στη γραμμή %d"
 
 #. module: base_import
-#: model:ir.model,name:base_import.model_base_import_import
-msgid "base_import.import"
-msgstr "base_import.import"
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_char
-msgid "base_import.tests.models.char"
-msgstr "base_import.tests.models.char"
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_char_noreadonly
-msgid "base_import.tests.models.char.noreadonly"
-msgstr "base_import.tests.models.char.noreadonly"
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_char_readonly
-msgid "base_import.tests.models.char.readonly"
-msgstr "base_import.tests.models.char.readonly"
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_char_required
-msgid "base_import.tests.models.char.required"
-msgstr "base_import.tests.models.char.required"
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_char_states
-msgid "base_import.tests.models.char.states"
-msgstr "base_import.tests.models.char.states"
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_char_stillreadonly
-msgid "base_import.tests.models.char.stillreadonly"
-msgstr "base_import.tests.models.char.stillreadonly"
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_m2o
-msgid "base_import.tests.models.m2o"
-msgstr "base_import.tests.models.m2o"
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_m2o_related
-msgid "base_import.tests.models.m2o.related"
-msgstr "base_import.tests.models.m2o.related"
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_m2o_required
-msgid "base_import.tests.models.m2o.required"
-msgstr "base_import.tests.models.m2o.required"
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_m2o_required_related
-msgid "base_import.tests.models.m2o.required.related"
-msgstr "base_import.tests.models.m2o.required.related"
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_o2m
-msgid "base_import.tests.models.o2m"
-msgstr "base_import.tests.models.o2m"
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_o2m_child
-msgid "base_import.tests.models.o2m.child"
-msgstr "base_import.tests.models.o2m.child"
-
-#. module: base_import
-#: model:ir.model,name:base_import.model_base_import_tests_models_preview
-msgid "base_import.tests.models.preview"
-msgstr "base_import.tests.models.preview"
-
-#. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/js/import.js:462
+#: code:addons/base_import/static/src/js/import.js:433
 #, python-format
 msgid "between rows %d and %d"
 msgstr "μεταξύ σειρών %d και %d"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:69
+#: code:addons/base_import/static/src/xml/import.xml:87
 #, python-format
 msgid ""
 "column in Odoo. When you\n"
@@ -1183,28 +1033,28 @@ msgstr "στήλη στο Odoo. Όταν εισάγετε\n                     
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:314
+#: code:addons/base_import/static/src/xml/import.xml:313
 #, python-format
 msgid "company_1,Bigees,True"
 msgstr "company_1,Bigees,True"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:315
+#: code:addons/base_import/static/src/xml/import.xml:314
 #, python-format
 msgid "company_2,Organi,True"
 msgstr "company_2,Organi,True"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:316
+#: code:addons/base_import/static/src/xml/import.xml:315
 #, python-format
 msgid "company_3,Boum,True"
 msgstr "company_3,Boum,True"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:308
+#: code:addons/base_import/static/src/xml/import.xml:307
 #, python-format
 msgid ""
 "copy \n"
@@ -1215,7 +1065,7 @@ msgstr "copy \n(select 'company_'||id as \"External ID\",company_name \nas \"Nam
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:319
+#: code:addons/base_import/static/src/xml/import.xml:318
 #, python-format
 msgid ""
 "copy (select \n"
@@ -1223,79 +1073,86 @@ msgid ""
 "                        \"Name\",'False' as \"Is a Company\",'company_'||company_id\n"
 "                         as \"Related Company/External ID\" from persons) TO \n"
 "                        '/tmp/person.csv' with CSV"
-msgstr "copy (select 'person_'||id as \"External ID\",person_name as \n\"Name\",'False' as \"Is a Company\",'company_'||company_id\nas \"Related Company/External ID\" from persons) TO \n'/tmp/person.csv' with CSV"
+msgstr "copy (select \n'person_'||id as \"External ID\",person_name as \n\"Name\",'False' as \"Is a Company\",'company_'||company_id\nas \"Related Company/External ID\" from persons) TO \n'/tmp/person.csv' with CSV"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:304
+#: code:addons/base_import/static/src/xml/import.xml:303
 #, python-format
 msgid "dump of such a PostgreSQL database"
-msgstr "Εξαγωγή μιας τέτοιας βάσης δεδομένων PostgreSQL"
+msgstr "εξαγωγή μιας τέτοιας βάσης δεδομένων PostgreSQL"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:327
+#: code:addons/base_import/static/src/xml/import.xml:26
+#, python-format
+msgid ""
+"file to import. If you need a sample importable file, you\n"
+"            can use the export tool to generate one."
+msgstr "αρχείο προς εισαγωγή. Εάν χρειάζεστε ένα δείγμα , you\n            can use the export tool to generate one."
+
+#. module: base_import
+#. openerp-web
+#: code:addons/base_import/static/src/xml/import.xml:19
+#, python-format
+msgid "or"
+msgstr "ή"
+
+#. module: base_import
+#. openerp-web
+#: code:addons/base_import/static/src/xml/import.xml:326
 #, python-format
 msgid "person_1,Fabien,False,company_1"
 msgstr "person_1,Fabien,False,company_1"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:328
+#: code:addons/base_import/static/src/xml/import.xml:327
 #, python-format
 msgid "person_2,Laurence,False,company_1"
 msgstr "person_2,Laurence,False,company_1"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:329
+#: code:addons/base_import/static/src/xml/import.xml:328
 #, python-format
 msgid "person_3,Eric,False,company_2"
 msgstr "person_3,Eric,False,company_2"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:330
+#: code:addons/base_import/static/src/xml/import.xml:329
 #, python-format
 msgid "person_4,Ramsy,False,company_3"
 msgstr "person_4,Ramsy,False,company_3"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:92
-#, python-format
-msgid ""
-"the\n"
-"                        ISO 8601 format"
-msgstr "η μορφή ISO 8601"
-
-#. module: base_import
-#. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:72
+#: code:addons/base_import/static/src/xml/import.xml:90
 #, python-format
 msgid "to the original unique identifier."
 msgstr "του αρχικού μοναδικού στοιχείου αναγνώρισης."
 
 #. module: base_import
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_noreadonly_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_readonly_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_required_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_states_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_stillreadonly_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_char_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_related_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_related_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_required_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_m2o_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_child_parent_id
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_child_value
-#: model:ir.model.fields,field_description:base_import.field_base_import_tests_models_o2m_value
+#: field:base_import.tests.models.char,value:0
+#: field:base_import.tests.models.char.noreadonly,value:0
+#: field:base_import.tests.models.char.readonly,value:0
+#: field:base_import.tests.models.char.required,value:0
+#: field:base_import.tests.models.char.states,value:0
+#: field:base_import.tests.models.char.stillreadonly,value:0
+#: field:base_import.tests.models.m2o,value:0
+#: field:base_import.tests.models.m2o.related,value:0
+#: field:base_import.tests.models.m2o.required,value:0
+#: field:base_import.tests.models.m2o.required.related,value:0
+#: field:base_import.tests.models.o2m,value:0
+#: field:base_import.tests.models.o2m.child,parent_id:0
+#: field:base_import.tests.models.o2m.child,value:0
 msgid "unknown"
 msgstr "άγνωστο"
 
 #. module: base_import
 #. openerp-web
-#: code:addons/base_import/static/src/xml/import.xml:74
+#: code:addons/base_import/static/src/xml/import.xml:92
 #, python-format
 msgid ""
 "will also be used to update the original\n"

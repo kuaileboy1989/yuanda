@@ -3,15 +3,14 @@
 # * account_test
 # 
 # Translators:
-# Bagavathikumar Ramakrishnan <bagavathikumar@gmail.com>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo 9.0\n"
+"Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-07 14:40+0000\n"
-"PO-Revision-Date: 2016-02-05 10:27+0000\n"
-"Last-Translator: Bagavathikumar Ramakrishnan <bagavathikumar@gmail.com>\n"
-"Language-Team: Tamil (http://www.transifex.com/odoo/odoo-9/language/ta/)\n"
+"POT-Creation-Date: 2015-01-21 14:07+0000\n"
+"PO-Revision-Date: 2015-05-18 11:26+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Tamil (http://www.transifex.com/odoo/odoo-8/language/ta/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,16 +18,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_test
-#: model:ir.ui.view,arch_db:account_test.report_accounttest
+#: model:ir.actions.act_window,help:account_test.action_accounting_assert
 msgid ""
-"<br/>\n"
-"                        <strong>Description:</strong>"
-msgstr "<br/>\n<strong>விளக்கம்:</strong>"
-
-#. module: account_test
-#: model:ir.ui.view,arch_db:account_test.report_accounttest
-msgid "<strong>Name:</strong>"
-msgstr "<strong>பெயர்:</strong>"
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Click to create Accounting Test.\n"
+"              </p>\n"
+"            "
+msgstr ""
 
 #. module: account_test
 #: model:ir.actions.act_window,name:account_test.action_accounting_assert
@@ -38,12 +34,12 @@ msgid "Accounting Tests"
 msgstr ""
 
 #. module: account_test
-#: model:ir.ui.view,arch_db:account_test.report_accounttest
+#: view:website:account_test.report_accounttest
 msgid "Accouting tests on"
 msgstr ""
 
 #. module: account_test
-#: model:ir.model.fields,field_description:account_test.field_accounting_assert_test_active
+#: field:accounting.assert.test,active:0
 msgid "Active"
 msgstr ""
 
@@ -53,10 +49,27 @@ msgid "Check if movement lines are balanced and have the same date and period"
 msgstr ""
 
 #. module: account_test
+#: model:accounting.assert.test,desc:account_test.account_test_02
+msgid ""
+"Check if the balance of the new opened fiscal year matches with last year's "
+"balance"
+msgstr ""
+
+#. module: account_test
+#: model:accounting.assert.test,desc:account_test.account_test_04
+msgid "Check if the totally reconciled movements are balanced"
+msgstr ""
+
+#. module: account_test
 #: model:accounting.assert.test,desc:account_test.account_test_07
 msgid ""
 "Check on bank statement that the Closing Balance = Starting Balance + sum of"
 " statement lines"
+msgstr ""
+
+#. module: account_test
+#: model:accounting.assert.test,desc:account_test.account_test_08
+msgid "Check that general accounts and partners on account moves are active"
 msgstr ""
 
 #. module: account_test
@@ -79,22 +92,22 @@ msgid ""
 msgstr ""
 
 #. module: account_test
+#: model:accounting.assert.test,desc:account_test.account_test_06_1
+msgid "Check that there's no move for any account with « View » account type"
+msgstr ""
+
+#. module: account_test
 #: model:accounting.assert.test,desc:account_test.account_test_01
 msgid "Check the balance: Debit sum = Credit sum"
 msgstr ""
 
 #. module: account_test
-#: model:ir.actions.act_window,help:account_test.action_accounting_assert
-msgid "Click to create Accounting Test."
-msgstr ""
-
-#. module: account_test
-#: model:ir.ui.view,arch_db:account_test.account_assert_form
+#: view:accounting.assert.test:account_test.account_assert_form
 msgid "Code Help"
 msgstr ""
 
 #. module: account_test
-#: model:ir.ui.view,arch_db:account_test.account_assert_form
+#: view:accounting.assert.test:account_test.account_assert_form
 msgid ""
 "Code should always set a variable named `result` with the result of your test, that can be a list or\n"
 "a dictionary. If `result` is an empty list, it means that the test was succesful. Otherwise it will\n"
@@ -119,65 +132,63 @@ msgid ""
 msgstr ""
 
 #. module: account_test
-#: model:ir.model.fields,field_description:account_test.field_accounting_assert_test_create_uid
+#: field:accounting.assert.test,create_uid:0
 msgid "Created by"
 msgstr "உருவாக்கியவர்"
 
 #. module: account_test
-#: model:ir.model.fields,field_description:account_test.field_accounting_assert_test_create_date
+#: field:accounting.assert.test,create_date:0
 msgid "Created on"
 msgstr "உருவாக்கப்பட்ட \nதேதி"
 
 #. module: account_test
-#: model:ir.ui.view,arch_db:account_test.account_assert_form
+#: view:accounting.assert.test:account_test.account_assert_form
 msgid "Description"
 msgstr "விளக்கம்"
 
 #. module: account_test
-#: model:ir.model.fields,field_description:account_test.field_accounting_assert_test_display_name
-#: model:ir.model.fields,field_description:account_test.field_report_account_test_report_accounttest_display_name
-msgid "Display Name"
-msgstr "காட்சி பெயர்"
+#: view:website:account_test.report_accounttest
+msgid "Description:"
+msgstr ""
 
 #. module: account_test
-#: model:ir.ui.view,arch_db:account_test.account_assert_form
+#: view:accounting.assert.test:account_test.account_assert_form
 msgid "Expression"
 msgstr ""
 
 #. module: account_test
-#: model:ir.model.fields,field_description:account_test.field_accounting_assert_test_id
-#: model:ir.model.fields,field_description:account_test.field_report_account_test_report_accounttest_id
+#: field:accounting.assert.test,id:0
+#: field:report.account_test.report_accounttest,id:0
 msgid "ID"
 msgstr "ID"
 
 #. module: account_test
-#: model:ir.model.fields,field_description:account_test.field_accounting_assert_test___last_update
-#: model:ir.model.fields,field_description:account_test.field_report_account_test_report_accounttest___last_update
-msgid "Last Modified on"
-msgstr "கடைசியாக திருத்திய"
-
-#. module: account_test
-#: model:ir.model.fields,field_description:account_test.field_accounting_assert_test_write_uid
+#: field:accounting.assert.test,write_uid:0
 msgid "Last Updated by"
 msgstr "கடைசியாக புதுப்பிக்கப்பட்டது"
 
 #. module: account_test
-#: model:ir.model.fields,field_description:account_test.field_accounting_assert_test_write_date
+#: field:accounting.assert.test,write_date:0
 msgid "Last Updated on"
 msgstr "கடைசியாக புதுப்பிக்கப்பட்டது"
 
 #. module: account_test
-#: model:ir.ui.view,arch_db:account_test.account_assert_form
+#: view:website:account_test.report_accounttest
+msgid "Name:"
+msgstr ""
+
+#. module: account_test
+#: view:accounting.assert.test:account_test.account_assert_form
 msgid "Python Code"
 msgstr ""
 
 #. module: account_test
-#: model:ir.model.fields,field_description:account_test.field_accounting_assert_test_code_exec
+#: field:accounting.assert.test,code_exec:0
 msgid "Python code"
 msgstr ""
 
 #. module: account_test
-#: model:ir.model.fields,field_description:account_test.field_accounting_assert_test_sequence
+#: field:accounting.assert.test,sequence:0
 msgid "Sequence"
 msgstr "வரிசை"
 
@@ -187,8 +198,18 @@ msgid "Test 1: General balance"
 msgstr ""
 
 #. module: account_test
+#: model:accounting.assert.test,name:account_test.account_test_02
+msgid "Test 2: Opening a fiscal year"
+msgstr ""
+
+#. module: account_test
 #: model:accounting.assert.test,name:account_test.account_test_03
 msgid "Test 3: Movement lines"
+msgstr ""
+
+#. module: account_test
+#: model:accounting.assert.test,name:account_test.account_test_04
+msgid "Test 4: Totally reconciled mouvements"
 msgstr ""
 
 #. module: account_test
@@ -208,38 +229,38 @@ msgid "Test 6 : Invoices status"
 msgstr ""
 
 #. module: account_test
-#: model:accounting.assert.test,name:account_test.account_test_07
-msgid "Test 7 : Closing balance on bank statements"
+#: model:accounting.assert.test,name:account_test.account_test_06_1
+msgid "Test 7: « View  » account type"
 msgstr ""
 
 #. module: account_test
-#: model:ir.model.fields,field_description:account_test.field_accounting_assert_test_desc
-msgid "Test Description"
-msgstr "சோதனை விளக்கம்"
+#: model:accounting.assert.test,name:account_test.account_test_07
+msgid "Test 8 : Closing balance on bank statements"
+msgstr ""
 
 #. module: account_test
-#: model:ir.model.fields,field_description:account_test.field_accounting_assert_test_name
+#: model:accounting.assert.test,name:account_test.account_test_08
+msgid "Test 9 : Accounts and partners on account moves"
+msgstr ""
+
+#. module: account_test
+#: field:accounting.assert.test,desc:0
+msgid "Test Description"
+msgstr "விளக்கம்"
+
+#. module: account_test
+#: field:accounting.assert.test,name:0
 msgid "Test Name"
 msgstr "சோதனை பெயர்"
 
 #. module: account_test
-#: model:ir.ui.view,arch_db:account_test.account_assert_form
-#: model:ir.ui.view,arch_db:account_test.account_assert_tree
+#: view:accounting.assert.test:account_test.account_assert_form
+#: view:accounting.assert.test:account_test.account_assert_tree
 msgid "Tests"
-msgstr "சோதனைகள்"
+msgstr "சோதனை"
 
 #. module: account_test
-#: code:addons/account_test/report/account_test_report.py:49
+#: code:addons/account_test/report/account_test_report.py:78
 #, python-format
 msgid "The test was passed successfully"
 msgstr ""
-
-#. module: account_test
-#: model:ir.model,name:account_test.model_accounting_assert_test
-msgid "accounting.assert.test"
-msgstr "accounting.assert.test"
-
-#. module: account_test
-#: model:ir.model,name:account_test.model_report_account_test_report_accounttest
-msgid "report.account_test.report_accounttest"
-msgstr "report.account_test.report_accounttest"

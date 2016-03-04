@@ -3,15 +3,14 @@
 # * report
 # 
 # Translators:
-# rtfm pliz <rtfmpliz@gmail.com>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo 9.0\n"
+"Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 10:26+0000\n"
-"PO-Revision-Date: 2015-12-02 23:35+0000\n"
-"Last-Translator: rtfm pliz <rtfmpliz@gmail.com>\n"
-"Language-Team: Indonesian (http://www.transifex.com/odoo/odoo-9/language/id/)\n"
+"POT-Creation-Date: 2015-01-21 14:08+0000\n"
+"PO-Revision-Date: 2015-11-27 14:49+0000\n"
+"Last-Translator: Wahyu Setiawan <wahyusetiaaa@gmail.com>\n"
+"Language-Team: Indonesian (http://www.transifex.com/odoo/odoo-8/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,20 +18,19 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: report
-#: model:ir.ui.view,arch_db:report.external_layout_footer
-msgid "&amp;bull;"
-msgstr "&amp;bull;"
-
-#. module: report
-#: model:ir.ui.view,arch_db:report.layout
-#: model:ir.ui.view,arch_db:report.minimal_layout
-msgid "&lt;!DOCTYPE html&gt;"
-msgstr "&lt;!DOCTYPE html&gt;"
+#: view:website:report.external_layout_footer
+msgid "&bull;"
+msgstr "&bull;"
 
 #. module: report
 #: selection:report.paperformat,format:0
 msgid ":B10    16  31 x 44 mm"
 msgstr ":B10    16  31 x 44 mm"
+
+#. module: report
+#: view:website:report.minimal_layout
+msgid "<!DOCTYPE html>"
+msgstr "<!DOCTYPE html>"
 
 #. module: report
 #: selection:report.paperformat,format:0
@@ -90,7 +88,7 @@ msgid "Allows customization of a report."
 msgstr "Memungkinkan kustomisasi laporan."
 
 #. module: report
-#: model:ir.model.fields,field_description:report.field_report_paperformat_report_ids
+#: field:report.paperformat,report_ids:0
 msgid "Associated reports"
 msgstr "Laporan terkait"
 
@@ -145,13 +143,13 @@ msgid "B9  23  33 x 62 mm"
 msgstr "B9  23  33 x 62 mm"
 
 #. module: report
-#: code:addons/report/models/report.py:257
+#: code:addons/report/models/report.py:295
 #, python-format
 msgid "Bad Report Reference"
 msgstr "Kerusakan Laporan Referensi"
 
 #. module: report
-#: model:ir.model.fields,field_description:report.field_report_paperformat_margin_bottom
+#: field:report.paperformat,margin_bottom:0
 msgid "Bottom Margin (mm)"
 msgstr "Bawah Margin (mm)"
 
@@ -171,14 +169,12 @@ msgid "Companies"
 msgstr "Perusahaan"
 
 #. module: report
-#: model:ir.model.fields,field_description:report.field_report_create_uid
-#: model:ir.model.fields,field_description:report.field_report_paperformat_create_uid
+#: field:report,create_uid:0 field:report.paperformat,create_uid:0
 msgid "Created by"
 msgstr "Dibuat oleh"
 
 #. module: report
-#: model:ir.model.fields,field_description:report.field_report_create_date
-#: model:ir.model.fields,field_description:report.field_report_paperformat_create_date
+#: field:report,create_date:0 field:report.paperformat,create_date:0
 msgid "Created on"
 msgstr "Dibuat pada"
 
@@ -193,39 +189,17 @@ msgid "DLE 26 110 x 220 mm"
 msgstr "DLE (110 x 220 mm)"
 
 #. module: report
-#: model:ir.model.fields,field_description:report.field_report_paperformat_default
+#: field:report.paperformat,default:0
 msgid "Default paper format ?"
 msgstr "Format kertas standar?"
 
 #. module: report
-#: model:ir.model.fields,field_description:report.field_report_abstract_report_display_name
-#: model:ir.model.fields,field_description:report.field_report_display_name
-#: model:ir.model.fields,field_description:report.field_report_paperformat_display_name
-msgid "Display Name"
-msgstr "Nama Tampilan"
-
-#. module: report
-#: model:ir.model.fields,field_description:report.field_report_paperformat_header_line
+#: field:report.paperformat,header_line:0
 msgid "Display a header line"
 msgstr "Menampilkan baris header"
 
 #. module: report
-#: model:ir.ui.view,arch_db:report.reporting_settings_form_inherited
-msgid "Edit external footer"
-msgstr "Ubah footer eksternal"
-
-#. module: report
-#: model:ir.ui.view,arch_db:report.reporting_settings_form_inherited
-msgid "Edit external header"
-msgstr "Ubah header eksternal"
-
-#. module: report
-#: model:ir.ui.view,arch_db:report.reporting_settings_form_inherited
-msgid "Edit internal header"
-msgstr "Ubah header internal"
-
-#. module: report
-#: model:ir.ui.view,arch_db:report.external_layout_footer
+#: view:website:report.external_layout_footer
 msgid "Email:"
 msgstr "Email:"
 
@@ -240,12 +214,12 @@ msgid "Executive 4   7.5 x 10 inches, 190.5 x 254 mm"
 msgstr "Executive 4 7,5 x 10 inci, 190,5 x 254 mm"
 
 #. module: report
-#: model:ir.model.fields,help:report.field_report_paperformat_report_ids
+#: help:report.paperformat,report_ids:0
 msgid "Explicitly associated reports"
 msgstr "Laporan secara eksplisit terkait"
 
 #. module: report
-#: model:ir.ui.view,arch_db:report.external_layout_footer
+#: view:website:report.external_layout_footer
 msgid "Fax:"
 msgstr "Fax:"
 
@@ -255,14 +229,13 @@ msgid "Folio 27  210 x 330 mm"
 msgstr "Folio (210 x 330 mm)"
 
 #. module: report
-#: model:ir.model.fields,field_description:report.field_report_paperformat_header_spacing
+#: field:report.paperformat,header_spacing:0
 msgid "Header spacing"
 msgstr "Header si"
 
 #. module: report
-#: model:ir.model.fields,field_description:report.field_report_abstract_report_id
-#: model:ir.model.fields,field_description:report.field_report_id
-#: model:ir.model.fields,field_description:report.field_report_paperformat_id
+#: field:report,id:0 field:report.abstract_report,id:0
+#: field:report.paperformat,id:0
 msgid "ID"
 msgstr "ID"
 
@@ -272,21 +245,12 @@ msgid "Landscape"
 msgstr "Lanskap"
 
 #. module: report
-#: model:ir.model.fields,field_description:report.field_report___last_update
-#: model:ir.model.fields,field_description:report.field_report_abstract_report___last_update
-#: model:ir.model.fields,field_description:report.field_report_paperformat___last_update
-msgid "Last Modified on"
-msgstr "Terakhir Dimodifikasi pada"
-
-#. module: report
-#: model:ir.model.fields,field_description:report.field_report_paperformat_write_uid
-#: model:ir.model.fields,field_description:report.field_report_write_uid
+#: field:report,write_uid:0 field:report.paperformat,write_uid:0
 msgid "Last Updated by"
 msgstr "Diperbaharui oleh"
 
 #. module: report
-#: model:ir.model.fields,field_description:report.field_report_paperformat_write_date
-#: model:ir.model.fields,field_description:report.field_report_write_date
+#: field:report,write_date:0 field:report.paperformat,write_date:0
 msgid "Last Updated on"
 msgstr "Diperbaharui pada"
 
@@ -296,7 +260,7 @@ msgid "Ledger  28  431.8 x 279.4 mm"
 msgstr "Ledger 28 431,8 x 279,4 mm"
 
 #. module: report
-#: model:ir.model.fields,field_description:report.field_report_paperformat_margin_left
+#: field:report.paperformat,margin_left:0
 msgid "Left Margin (mm)"
 msgstr "Margin kiri (mm)"
 
@@ -311,32 +275,32 @@ msgid "Letter 2 8.5 x 11 inches, 215.9 x 279.4 mm"
 msgstr "Letter 2 8.5 x 11 inches, 215.9 x 279.4 mm"
 
 #. module: report
-#: model:ir.model.fields,field_description:report.field_report_paperformat_name
+#: field:report.paperformat,name:0
 msgid "Name"
 msgstr "Nama"
 
 #. module: report
-#: model:ir.model.fields,field_description:report.field_report_paperformat_orientation
+#: field:report.paperformat,orientation:0
 msgid "Orientation"
 msgstr "Orientasi"
 
 #. module: report
-#: model:ir.model.fields,field_description:report.field_report_paperformat_dpi
+#: field:report.paperformat,dpi:0
 msgid "Output DPI"
 msgstr "Output DPI"
 
 #. module: report
-#: model:ir.model.fields,field_description:report.field_report_paperformat_page_height
+#: field:report.paperformat,page_height:0
 msgid "Page height (mm)"
 msgstr "Tinggi halaman (mm)"
 
 #. module: report
-#: model:ir.model.fields,field_description:report.field_report_paperformat_page_width
+#: field:report.paperformat,page_width:0
 msgid "Page width (mm)"
 msgstr "Lebar halaman (mm)"
 
 #. module: report
-#: model:ir.ui.view,arch_db:report.external_layout_footer
+#: view:website:report.external_layout_footer
 msgid "Page:"
 msgstr "Laman"
 
@@ -351,26 +315,26 @@ msgid "Paper Format General Configuration"
 msgstr "Kertas Format Konfigurasi Umum"
 
 #. module: report
-#: model:ir.model.fields,field_description:report.field_ir_act_report_xml_paperformat_id
-#: model:ir.model.fields,field_description:report.field_res_company_paperformat_id
+#: field:ir.actions.report.xml,paperformat_id:0
+#: field:res.company,paperformat_id:0
 msgid "Paper format"
 msgstr "Format kertas"
 
 #. module: report
-#: model:ir.ui.view,arch_db:report.paperformat_view_form
-#: model:ir.ui.view,arch_db:report.paperformat_view_tree
+#: view:report.paperformat:report.paperformat_view_form
+#: view:report.paperformat:report.paperformat_view_tree
 msgid "Paper format configuration"
 msgstr "Format kertas konfigurasi"
 
 #. module: report
-#: model:ir.model.fields,field_description:report.field_report_paperformat_format
+#: field:report.paperformat,format:0
 msgid "Paper size"
 msgstr "Ukuran kertas"
 
 #. module: report
-#: model:ir.ui.view,arch_db:report.external_layout_footer
+#: view:website:report.external_layout_footer
 msgid "Phone:"
-msgstr "Telepon"
+msgstr "Telepon:"
 
 #. module: report
 #: selection:report.paperformat,orientation:0
@@ -378,26 +342,20 @@ msgid "Portrait"
 msgstr "Potret"
 
 #. module: report
-#: model:ir.actions.report.xml,name:report.action_report_externalpreview
-#: model:ir.ui.view,arch_db:report.reporting_settings_form_inherited
-msgid "Preview External Report"
-msgstr "Tampilkan Laporan Eksternal"
-
-#. module: report
-#: model:ir.actions.report.xml,name:report.action_report_internalpreview
-#: model:ir.ui.view,arch_db:report.reporting_settings_form_inherited
-msgid "Preview Internal Report"
-msgstr "Tampilkan Laporan Internal"
-
-#. module: report
 #. openerp-web
-#: code:addons/report/static/src/js/qwebactionmanager.js:76
-#: code:addons/report/static/src/js/qwebactionmanager.js:84
-#: code:addons/report/static/src/js/qwebactionmanager.js:91
+#: code:addons/report/static/src/js/qwebactionmanager.js:67
+#: code:addons/report/static/src/js/qwebactionmanager.js:75
+#: code:addons/report/static/src/js/qwebactionmanager.js:82
 #: model:ir.model,name:report.model_report
 #, python-format
 msgid "Report"
 msgstr "Laporan"
+
+#. module: report
+#: code:addons/report/models/report.py:449
+#, python-format
+msgid "Report (PDF)"
+msgstr "Laporan (PDF)"
 
 #. module: report
 #: model:ir.actions.act_window,name:report.reports_action
@@ -407,24 +365,19 @@ msgid "Reports"
 msgstr "Laporan"
 
 #. module: report
-#: model:ir.model.fields,field_description:report.field_report_paperformat_margin_right
+#: field:report.paperformat,margin_right:0
 msgid "Right Margin (mm)"
 msgstr "Margin kanan (mm)"
 
 #. module: report
-#: model:ir.ui.view,arch_db:report.act_report_xml_view_inherit
+#: view:ir.actions.report.xml:report.act_report_xml_view_inherit
 msgid "Search associated QWeb views"
 msgstr "Cari terkait pandangan QWeb"
 
 #. module: report
-#: model:ir.model.fields,help:report.field_report_paperformat_format
+#: help:report.paperformat,format:0
 msgid "Select Proper Paper size"
 msgstr "Pilih Ukuran kertas yang tepat"
-
-#. module: report
-#: model:ir.ui.view,arch_db:report.external_layout_footer
-msgid "TIN:"
-msgstr "kaleng"
 
 #. module: report
 #: selection:report.paperformat,format:0
@@ -432,29 +385,19 @@ msgid "Tabloid 29 279.4 x 431.8 mm"
 msgstr "Tabloid 29 279,4 x 431,8 mm"
 
 #. module: report
-#: model:ir.ui.view,arch_db:report.preview_externalreport
-msgid "This is a sample of an external report."
-msgstr "Ini adalah contoh laporan eksternal"
-
-#. module: report
-#: model:ir.ui.view,arch_db:report.preview_internalreport
-msgid "This is a sample of an internal report."
-msgstr "Ini adalah contoh laporan internal"
-
-#. module: report
-#: code:addons/report/models/report.py:257
+#: code:addons/report/models/report.py:296
 #, python-format
 msgid "This report is not loaded into the database: %s."
 msgstr "Laporan ini tidak dimuat ke dalam database:%s."
 
 #. module: report
-#: model:ir.model.fields,field_description:report.field_report_paperformat_margin_top
+#: field:report.paperformat,margin_top:0
 msgid "Top Margin (mm)"
 msgstr "Top Margin (mm)"
 
 #. module: report
 #. openerp-web
-#: code:addons/report/static/src/js/qwebactionmanager.js:76
+#: code:addons/report/static/src/js/qwebactionmanager.js:67
 #, python-format
 msgid ""
 "Unable to find Wkhtmltopdf on this \n"
@@ -463,19 +406,19 @@ msgid ""
 msgstr "Tidak dapat menemukan wkhtmltopdf pada sistem ini. Laporan tersebut akan ditampilkan dalam html. <br><br> <a href=\"http://wkhtmltopdf.org/\" target=\"_blank\">wkhtmltopdf.org</a>"
 
 #. module: report
-#: model:ir.ui.view,arch_db:report.external_layout_footer
+#: view:website:report.external_layout_footer
 msgid "Website:"
 msgstr "Website:"
 
 #. module: report
-#: code:addons/report/models/report.py:413
+#: code:addons/report/models/report.py:450
 #, python-format
 msgid "Wkhtmltopdf failed (error code: %s). Message: %s"
 msgstr "Wkhtmltopdf gagal (kode kesalahan:%s). Pesan:%s"
 
 #. module: report
 #. openerp-web
-#: code:addons/report/static/src/js/qwebactionmanager.js:84
+#: code:addons/report/static/src/js/qwebactionmanager.js:75
 #, python-format
 msgid ""
 "You need to start OpenERP with at least two \n"
@@ -484,21 +427,31 @@ msgstr "Anda perlu mulai OpenERP dengan setidaknya dua pekerja untuk mencetak ve
 
 #. module: report
 #. openerp-web
-#: code:addons/report/static/src/js/qwebactionmanager.js:91
+#: code:addons/report/static/src/js/qwebactionmanager.js:82
 #, python-format
 msgid ""
 "You should upgrade your version of\n"
-"Wkhtmltopdf to at least 0.12.0 in order to get a correct display of headers and footers as well as\n"
-"support for table-breaking between pages.<br><br><a href=\"http://wkhtmltopdf.org/\" \n"
-"target=\"_blank\">wkhtmltopdf.org</a>"
-msgstr ""
+" Wkhtmltopdf to at least 0.12.0 in order to get a correct display of headers and footers as well as\n"
+" support for table-breaking between pages.<br><br><a href=\"http://wkhtmltopdf.org/\" \n"
+" target=\"_blank\">wkhtmltopdf.org</a>"
+msgstr "Anda harus meng-upgrade versi wkhtmltopdf untuk setidaknya 0.12.0 untuk mendapatkan tampilan yang benar dari header dan footer serta dukungan untuk tabel-melanggar antar halaman. <br><br> <a href=\"http://wkhtmltopdf.org/\" \n target=\"_blank\">wkhtmltopdf.org</a>"
 
 #. module: report
-#: model:ir.model,name:report.model_ir_actions_report_xml
-msgid "ir.actions.report.xml"
-msgstr ""
+#: view:website:report.layout
+msgid "data_report_dpi if data_report_dpi else None"
+msgstr "data_report_dpi if data_report_dpi else None"
 
 #. module: report
-#: model:ir.model,name:report.model_report_abstract_report
-msgid "report.abstract_report"
-msgstr ""
+#: view:website:report.layout
+msgid "data_report_header_spacing if data_report_header_spacing else None"
+msgstr "data_report_header_spacing if data_report_header_spacing else None"
+
+#. module: report
+#: view:website:report.layout
+msgid "data_report_margin_top if data_report_margin_top else None"
+msgstr "data_report_margin_top if data_report_margin_top else None"
+
+#. module: report
+#: view:website:report.layout
+msgid "report.layout"
+msgstr "report.layout"

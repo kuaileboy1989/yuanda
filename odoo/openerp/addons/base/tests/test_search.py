@@ -1,4 +1,4 @@
-import unittest
+import unittest2
 
 import openerp.tests.common as common
 
@@ -161,4 +161,4 @@ class test_search(common.TransactionCase):
         self.assertEqual(search_result, expected_order)
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest2.main()

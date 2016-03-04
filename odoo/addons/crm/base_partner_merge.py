@@ -9,7 +9,6 @@ import operator
 import psycopg2
 import re
 from ast import literal_eval
-from openerp.exceptions import ValidationError
 from openerp.tools import mute_logger
 
 # Validation Library https://pypi.python.org/pypi/validate_email/1.1
@@ -20,7 +19,6 @@ from openerp.osv import osv, orm
 from openerp.osv import fields
 from openerp.osv.orm import browse_record
 from openerp.tools.translate import _
-from openerp.exceptions import UserError
 
 pattern = re.compile("&(\w+?);")
 
@@ -288,7 +286,7 @@ class MergePartnerAutomatic(osv.TransientModel):
         if parent_id and parent_id != dst_partner.id:
             try:
                 dst_partner.write({'parent_id': parent_id})
-            except ValidationError:
+            except (osv.except_osv, orm.except_orm):
                 _logger.info('Skip recursive partner hierarchies for parent_id %s of partner: %s', parent_id, dst_partner.id)
 
     @mute_logger('openerp.osv.expression', 'openerp.models')
@@ -300,10 +298,10 @@ class MergePartnerAutomatic(osv.TransientModel):
             return
 
         if len(partner_ids) > 3:
-            raise UserError(_("For safety reasons, you cannot merge more than 3 contacts together. You can re-open the wizard several times if needed."))
+            raise osv.except_osv(_('Error'), _("For safety reasons, you cannot merge more than 3 contacts together. You can re-open the wizard several times if needed."))
 
         if openerp.SUPERUSER_ID != uid and len(set(partner.email for partner in proxy.browse(cr, uid, partner_ids, context=context))) > 1:
-            raise UserError(_("All contacts must have the same email. Only the Administrator can merge contacts with different emails."))
+            raise osv.except_osv(_('Error'), _("All contacts must have the same email. Only the Administrator can merge contacts with different emails."))
 
         if dst_partner and dst_partner.id in partner_ids:
             src_partners = proxy.browse(cr, uid, [id for id in partner_ids if id != dst_partner.id], context=context)
@@ -315,7 +313,7 @@ class MergePartnerAutomatic(osv.TransientModel):
 
         if openerp.SUPERUSER_ID != uid and self._model_is_installed(cr, uid, 'account.move.line', context=context) and \
                 self.pool.get('account.move.line').search(cr, openerp.SUPERUSER_ID, [('partner_id', 'in', [partner.id for partner in src_partners])], context=context):
-            raise UserError(_("Only the destination contact may be linked to existing Journal Items. Please ask the Administrator if you need to merge several contacts linked to existing Journal Items."))
+            raise osv.except_osv(_('Error'), _("Only the destination contact may be linked to existing Journal Items. Please ask the Administrator if you need to merge several contacts linked to existing Journal Items."))
 
         call_it = lambda function: function(cr, uid, src_partners, dst_partner,
                                             context=context)
@@ -444,7 +442,8 @@ class MergePartnerAutomatic(osv.TransientModel):
         ]
 
         if not groups:
-            raise UserError(_("You have to specify a filter for your selection"))
+            raise osv.except_osv(_('Error'),
+                                 _("You have to specify a filter for your selection"))
 
         return groups
 

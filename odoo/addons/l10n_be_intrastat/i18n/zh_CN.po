@@ -3,14 +3,18 @@
 # * l10n_be_intrastat
 # 
 # Translators:
+# jeffery chen fan <jeffery9@gmail.com>, 2016
+# 珠海-老天 <liangjia@qq.com>, 2015
+# mrshelly <mrshelly@hotmail.com>, 2015
+# 珠海-老天 <liangjia@qq.com>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo 9.0\n"
+"Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-21 09:29+0000\n"
-"PO-Revision-Date: 2015-12-30 06:38+0000\n"
-"Last-Translator: 珠海-老天 <liangjia@qq.com>\n"
-"Language-Team: Chinese (China) (http://www.transifex.com/odoo/odoo-9/language/zh_CN/)\n"
+"POT-Creation-Date: 2015-02-03 18:32+0000\n"
+"PO-Revision-Date: 2016-01-21 01:16+0000\n"
+"Last-Translator: jeffery chen fan <jeffery9@gmail.com>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/odoo/odoo-8/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -20,10 +24,10 @@ msgstr ""
 #. module: l10n_be_intrastat
 #: selection:l10n_be_intrastat_xml.xml_decl,month:0
 msgid "April"
-msgstr "4月"
+msgstr "4"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_xml_xml_decl_arrivals
+#: field:l10n_be_intrastat_xml.xml_decl,arrivals:0
 msgid "Arrivals"
 msgstr "到达"
 
@@ -38,19 +42,19 @@ msgid "Brussels region"
 msgstr "布鲁塞尔地区"
 
 #. module: l10n_be_intrastat
-#: model:ir.ui.view,arch_db:l10n_be_intrastat.view_intrastat_declaration_xml
+#: view:l10n_be_intrastat_xml.xml_decl:l10n_be_intrastat.view_intrastat_declaration_xml
 msgid "Cancel"
 msgstr "取消"
 
 #. module: l10n_be_intrastat
-#: model:ir.ui.view,arch_db:l10n_be_intrastat.view_intrastat_declaration_xml
+#: view:l10n_be_intrastat_xml.xml_decl:l10n_be_intrastat.view_intrastat_declaration_xml
 msgid "Close"
 msgstr "关闭"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_region_code
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_transaction_code
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_transport_mode_code
+#: field:l10n_be_intrastat.region,code:0
+#: field:l10n_be_intrastat.transaction,code:0
+#: field:l10n_be_intrastat.transport_mode,code:0
 msgid "Code"
 msgstr "代码"
 
@@ -67,35 +71,35 @@ msgid "Companies"
 msgstr "公司"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_xml_xml_decl_company_id
-msgid "Company"
-msgstr ""
+#: field:l10n_be_intrastat_xml.xml_decl,tax_code_id:0
+msgid "Company Tax Chart"
+msgstr "公司税表"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_region_country_id
+#: field:l10n_be_intrastat.region,country_id:0
 msgid "Country"
 msgstr "国家"
 
 #. module: l10n_be_intrastat
-#: model:ir.ui.view,arch_db:l10n_be_intrastat.view_intrastat_declaration_xml
+#: view:l10n_be_intrastat_xml.xml_decl:l10n_be_intrastat.view_intrastat_declaration_xml
 msgid "Create XML"
 msgstr "创建XML"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_region_create_uid
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_transaction_create_uid
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_transport_mode_create_uid
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_xml_xml_decl_create_uid
+#: field:l10n_be_intrastat.region,create_uid:0
+#: field:l10n_be_intrastat.transaction,create_uid:0
+#: field:l10n_be_intrastat.transport_mode,create_uid:0
+#: field:l10n_be_intrastat_xml.xml_decl,create_uid:0
 msgid "Created by"
-msgstr "创建于"
+msgstr "创建人"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_region_create_date
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_transaction_create_date
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_transport_mode_create_date
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_xml_xml_decl_create_date
+#: field:l10n_be_intrastat.region,create_date:0
+#: field:l10n_be_intrastat.transaction,create_date:0
+#: field:l10n_be_intrastat.transport_mode,create_date:0
+#: field:l10n_be_intrastat_xml.xml_decl,create_date:0
 msgid "Created on"
-msgstr "创建于"
+msgstr "创建"
 
 #. module: l10n_be_intrastat
 #: selection:l10n_be_intrastat_xml.xml_decl,month:0
@@ -103,34 +107,26 @@ msgid "December"
 msgstr "12月"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_res_company_incoterm_id
+#: field:res.company,incoterm_id:0
 msgid "Default incoterm for Intrastat"
-msgstr "默认的国际贸易术语欧盟内部"
+msgstr "国际间组织的默认的国际贸易术语"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_res_company_transport_mode_id
+#: field:res.company,transport_mode_id:0
 msgid "Default transport mode"
 msgstr "默认应付帐款科目"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_region_description
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_transaction_description
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_transport_mode_name
+#: field:l10n_be_intrastat.region,description:0
+#: field:l10n_be_intrastat.transaction,description:0
+#: field:l10n_be_intrastat.transport_mode,name:0
 msgid "Description"
 msgstr "说明"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_xml_xml_decl_dispatches
+#: field:l10n_be_intrastat_xml.xml_decl,dispatches:0
 msgid "Dispatches"
 msgstr "派遣"
-
-#. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_region_display_name
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_transaction_display_name
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_transport_mode_display_name
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_xml_xml_decl_display_name
-msgid "Display Name"
-msgstr "显示名称"
 
 #. module: l10n_be_intrastat
 #: selection:l10n_be_intrastat_xml.xml_decl,state:0
@@ -160,7 +156,7 @@ msgid "February"
 msgstr "2月"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_xml_xml_decl_name
+#: field:l10n_be_intrastat_xml.xml_decl,name:0
 msgid "File Name"
 msgstr "文件名"
 
@@ -170,124 +166,122 @@ msgid "Flemish region"
 msgstr "Flemish region"
 
 #. module: l10n_be_intrastat
-#: code:addons/l10n_be_intrastat/wizard/xml_decl.py:71
+#: code:addons/l10n_be_intrastat/wizard/xml_decl.py:96
 #, python-format
 msgid "Go to company configuration screen"
 msgstr "去公司配置屏幕"
 
 #. module: l10n_be_intrastat
-#: model:ir.ui.view,arch_db:l10n_be_intrastat.view_intrastat_declaration_xml
+#: view:l10n_be_intrastat_xml.xml_decl:l10n_be_intrastat.view_intrastat_declaration_xml
 msgid "Here is the XML file with your intrastat declaration:"
-msgstr "这是您的地税申报XML文件："
+msgstr "这是您的国际间组织申报XML文件："
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_region_id
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_transaction_id
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_transport_mode_id
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_xml_xml_decl_id
+#: field:l10n_be_intrastat.region,id:0
+#: field:l10n_be_intrastat.transaction,id:0
+#: field:l10n_be_intrastat.transport_mode,id:0
+#: field:l10n_be_intrastat_xml.xml_decl,id:0
 msgid "ID"
-msgstr "ID"
+msgstr "标识"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_account_invoice_incoterm_id
+#: field:account.invoice,incoterm_id:0
 msgid "Incoterm"
-msgstr "贸易术语"
+msgstr "国际贸易术语"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,help:l10n_be_intrastat.field_account_invoice_incoterm_id
-#: model:ir.model.fields,help:l10n_be_intrastat.field_res_company_incoterm_id
+#: help:account.invoice,incoterm_id:0 help:res.company,incoterm_id:0
 msgid ""
 "International Commercial Terms are a series of predefined commercial terms "
 "used in international transactions."
 msgstr "国际商业条款是一系列预定义的用于国际贸易的商业条款。"
 
 #. module: l10n_be_intrastat
-#: model:ir.ui.view,arch_db:l10n_be_intrastat.l10n_be_intrastat_xml_decl_product_category_view
+#: view:product.category:l10n_be_intrastat.l10n_be_intrastat_xml_decl_product_category_view
 msgid "Intrastat"
-msgstr "内部统计"
+msgstr "国际间组织"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_product_category_intrastat_id
+#: field:product.category,intrastat_id:0
 msgid "Intrastat Code"
-msgstr "欧盟内部代码"
+msgstr "国际间组织代码"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_account_invoice_intrastat_country_id
+#: field:account.invoice,intrastat_country_id:0
 msgid "Intrastat Country"
-msgstr "欧盟内部国家"
+msgstr "国际间组织国家"
 
 #. module: l10n_be_intrastat
 #: model:ir.actions.act_window,name:l10n_be_intrastat.action_intrastat_xml_declaration
 #: model:ir.ui.menu,name:l10n_be_intrastat.l10n_be_intrastat_xml_declaration
-#: model:ir.ui.view,arch_db:l10n_be_intrastat.view_intrastat_declaration_xml
+#: view:l10n_be_intrastat_xml.xml_decl:l10n_be_intrastat.view_intrastat_declaration_xml
 msgid "Intrastat Declaration"
-msgstr "欧盟内部宣言"
+msgstr "国际间组织申报"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_xml_xml_decl_file_save
+#: field:l10n_be_intrastat_xml.xml_decl,file_save:0
 msgid "Intrastat Report File"
-msgstr "欧盟内部报告文件"
+msgstr "国际间组织报告文件"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_account_invoice_line_intrastat_transaction_id
+#: field:account.invoice,intrastat_transaction_id:0
 msgid "Intrastat Transaction Type"
-msgstr "交易类型"
+msgstr "国际间组织交易类型"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_account_invoice_transport_mode_id
+#: field:account.invoice,transport_mode_id:0
 msgid "Intrastat Transport Mode"
-msgstr "欧盟内部传输模式"
+msgstr "国际间组织运输模式"
 
 #. module: l10n_be_intrastat
 #: model:ir.model,name:l10n_be_intrastat.model_l10n_be_intrastat_xml_xml_decl
 msgid "Intrastat XML Declaration"
-msgstr "欧盟内部的XML声明"
+msgstr "国际间组织XML声明"
 
 #. module: l10n_be_intrastat
 #: model:ir.model,name:l10n_be_intrastat.model_report_intrastat_code
 msgid "Intrastat code"
-msgstr "欧盟内部代码"
+msgstr "国际间组织代码"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,help:l10n_be_intrastat.field_account_invoice_intrastat_country_id
+#: help:account.invoice,intrastat_country_id:0
 msgid "Intrastat country, delivery for sales, origin for purchases"
-msgstr "欧盟内部的国家，交付销售，产地为购买"
+msgstr "国际间组织国家，销售交付，原产地采购"
 
 #. module: l10n_be_intrastat
 #: model:res.groups,name:l10n_be_intrastat.intrastat_extended
 msgid "Intrastat extended"
-msgstr "欧盟内部扩展"
+msgstr "国际间组织扩展"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,help:l10n_be_intrastat.field_account_invoice_line_intrastat_transaction_id
+#: help:account.invoice,intrastat_transaction_id:0
 msgid "Intrastat nature of transaction"
-msgstr "交易的本质欧盟内部"
+msgstr "国际间组织交易的自然"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_res_company_region_id
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_stock_warehouse_region_id
+#: field:res.company,region_id:0 field:stock.warehouse,region_id:0
 msgid "Intrastat region"
-msgstr "Intrastat region"
+msgstr "国际间组织区域"
 
 #. module: l10n_be_intrastat
-#: model:ir.ui.view,arch_db:l10n_be_intrastat.intra_view_transaction_form
+#: view:l10n_be_intrastat.transaction:l10n_be_intrastat.intra_view_transaction_form
 msgid "Intrastat transaction form"
-msgstr "Intrastat transaction form"
+msgstr "国际间组织交易自"
 
 #. module: l10n_be_intrastat
-#: model:ir.ui.view,arch_db:l10n_be_intrastat.intra_view_transaction_tree
+#: view:l10n_be_intrastat.transaction:l10n_be_intrastat.intra_view_transaction_tree
 msgid "Intrastat transaction types"
-msgstr "欧盟内部事务类型"
+msgstr "国际间组织交易类型"
 
 #. module: l10n_be_intrastat
-#: model:ir.ui.view,arch_db:l10n_be_intrastat.intra_view_transport_mode_form
+#: view:l10n_be_intrastat.transport_mode:l10n_be_intrastat.intra_view_transport_mode_form
 msgid "Intrastat transportation mode form"
-msgstr "Intrastat transportation mode form"
+msgstr "国际间组织运输模式自"
 
 #. module: l10n_be_intrastat
-#: model:ir.ui.view,arch_db:l10n_be_intrastat.intra_view_transport_mode_tree
+#: view:l10n_be_intrastat.transport_mode:l10n_be_intrastat.intra_view_transport_mode_tree
 msgid "Intrastat transportation modes"
-msgstr "Intrastat transportation modes"
+msgstr "国际间组织运输模式"
 
 #. module: l10n_be_intrastat
 #: model:ir.model,name:l10n_be_intrastat.model_account_invoice
@@ -295,66 +289,53 @@ msgid "Invoice"
 msgstr "发票"
 
 #. module: l10n_be_intrastat
-#: model:ir.model,name:l10n_be_intrastat.model_account_invoice_line
-msgid "Invoice Line"
-msgstr "发票行"
-
-#. module: l10n_be_intrastat
 #: selection:l10n_be_intrastat_xml.xml_decl,month:0
 msgid "January"
-msgstr "1月"
+msgstr "1"
 
 #. module: l10n_be_intrastat
 #: selection:l10n_be_intrastat_xml.xml_decl,month:0
 msgid "July"
-msgstr "七月"
+msgstr "7月"
 
 #. module: l10n_be_intrastat
 #: selection:l10n_be_intrastat_xml.xml_decl,month:0
 msgid "June"
-msgstr "六月"
+msgstr "6月"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_region___last_update
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_transaction___last_update
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_transport_mode___last_update
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_xml_xml_decl___last_update
-msgid "Last Modified on"
-msgstr "最后修改时间"
-
-#. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_region_write_uid
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_transaction_write_uid
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_transport_mode_write_uid
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_xml_xml_decl_write_uid
+#: field:l10n_be_intrastat.region,write_uid:0
+#: field:l10n_be_intrastat.transaction,write_uid:0
+#: field:l10n_be_intrastat.transport_mode,write_uid:0
+#: field:l10n_be_intrastat_xml.xml_decl,write_uid:0
 msgid "Last Updated by"
 msgstr "最后更新"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_region_write_date
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_transaction_write_date
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_transport_mode_write_date
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_xml_xml_decl_write_date
+#: field:l10n_be_intrastat.region,write_date:0
+#: field:l10n_be_intrastat.transaction,write_date:0
+#: field:l10n_be_intrastat.transport_mode,write_date:0
+#: field:l10n_be_intrastat_xml.xml_decl,write_date:0
 msgid "Last Updated on"
-msgstr "最后更新"
+msgstr "最后一次更新"
 
 #. module: l10n_be_intrastat
 #: selection:l10n_be_intrastat_xml.xml_decl,month:0
 msgid "March"
-msgstr "3月"
+msgstr "3"
 
 #. module: l10n_be_intrastat
 #: selection:l10n_be_intrastat_xml.xml_decl,month:0
 msgid "May"
-msgstr "5月"
+msgstr "5"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_xml_xml_decl_month
+#: field:l10n_be_intrastat_xml.xml_decl,month:0
 msgid "Month"
-msgstr "月份"
+msgstr "月"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_region_name
+#: field:l10n_be_intrastat.region,name:0
 msgid "Name"
 msgstr "名称"
 
@@ -366,7 +347,7 @@ msgstr "11月"
 #. module: l10n_be_intrastat
 #: selection:l10n_be_intrastat_xml.xml_decl,month:0
 msgid "October"
-msgstr "十月"
+msgstr "10月"
 
 #. module: l10n_be_intrastat
 #: model:ir.model,name:l10n_be_intrastat.model_product_product
@@ -374,15 +355,15 @@ msgid "Product"
 msgstr "产品"
 
 #. module: l10n_be_intrastat
-#: code:addons/l10n_be_intrastat/wizard/xml_decl.py:266
+#: code:addons/l10n_be_intrastat/wizard/xml_decl.py:291
 #, python-format
 msgid "Product \"%s\" has no intrastat code, please configure it"
-msgstr "产品 \"%s\" 欧盟的内部代码，请配置"
+msgstr "产品 \"%s\" 没有国际间组织代码，请配置它"
 
 #. module: l10n_be_intrastat
 #: model:ir.model,name:l10n_be_intrastat.model_product_category
 msgid "Product Category"
-msgstr "产品类别"
+msgstr "产品分类"
 
 #. module: l10n_be_intrastat
 #: model:ir.model,name:l10n_be_intrastat.model_purchase_order
@@ -395,7 +376,7 @@ msgid "Sales Order"
 msgstr "销售订单"
 
 #. module: l10n_be_intrastat
-#: code:addons/l10n_be_intrastat/wizard/xml_decl.py:131
+#: code:addons/l10n_be_intrastat/wizard/xml_decl.py:156
 #, python-format
 msgid "Save"
 msgstr "保存"
@@ -403,7 +384,7 @@ msgstr "保存"
 #. module: l10n_be_intrastat
 #: selection:l10n_be_intrastat_xml.xml_decl,month:0
 msgid "September"
-msgstr "9月"
+msgstr "九月"
 
 #. module: l10n_be_intrastat
 #: selection:l10n_be_intrastat_xml.xml_decl,arrivals:0
@@ -412,20 +393,20 @@ msgid "Standard"
 msgstr "标准"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_xml_xml_decl_state
+#: field:l10n_be_intrastat_xml.xml_decl,state:0
 msgid "State"
-msgstr "状态"
+msgstr "省"
 
 #. module: l10n_be_intrastat
-#: code:addons/l10n_be_intrastat/wizard/xml_decl.py:255
+#: code:addons/l10n_be_intrastat/wizard/xml_decl.py:280
 #, python-format
 msgid ""
 "The Intrastat Region of the selected company is not set, please make sure to"
 " configure it first."
-msgstr "所选择的公司的州内地区没有设置，请务必首先配置。"
+msgstr "所选择的公司没有设置国际间组织区域，请务必首先配置它。"
 
 #. module: l10n_be_intrastat
-#: code:addons/l10n_be_intrastat/wizard/xml_decl.py:84
+#: code:addons/l10n_be_intrastat/wizard/xml_decl.py:109
 #, python-format
 msgid ""
 "The country of your company is not set, please make sure to configure it "
@@ -433,7 +414,7 @@ msgid ""
 msgstr "贵公司的国家没有设置，请务必首先配置。"
 
 #. module: l10n_be_intrastat
-#: code:addons/l10n_be_intrastat/wizard/xml_decl.py:291
+#: code:addons/l10n_be_intrastat/wizard/xml_decl.py:316
 #, python-format
 msgid ""
 "The default Incoterm of your company is not set, please make sure to "
@@ -441,15 +422,15 @@ msgid ""
 msgstr "贵公司的贸易术语未设置默认值，请务必首先配置。"
 
 #. module: l10n_be_intrastat
-#: code:addons/l10n_be_intrastat/wizard/xml_decl.py:279
+#: code:addons/l10n_be_intrastat/wizard/xml_decl.py:304
 #, python-format
 msgid ""
 "The default Intrastat transport mode of your company is not set, please make"
 " sure to configure it first."
-msgstr "贵公司的共同体内默认的传输模式未设置，请务必首先配置。"
+msgstr "贵公司的国际间组织默认运输模式未设置，请务必首先配置它。"
 
 #. module: l10n_be_intrastat
-#: code:addons/l10n_be_intrastat/wizard/xml_decl.py:91
+#: code:addons/l10n_be_intrastat/wizard/xml_decl.py:116
 #, python-format
 msgid ""
 "The registry number of your company is not set, please make sure to "
@@ -467,32 +448,22 @@ msgid "Warehouse"
 msgstr "仓库"
 
 #. module: l10n_be_intrastat
-#: model:ir.ui.view,arch_db:l10n_be_intrastat.view_intrastat_declaration_xml
+#: view:l10n_be_intrastat_xml.xml_decl:l10n_be_intrastat.view_intrastat_declaration_xml
 msgid "XML Intratstat Declaration"
-msgstr "将 XML 保存"
+msgstr "XML 国际间组织申报"
 
 #. module: l10n_be_intrastat
-#: model:ir.model.fields,field_description:l10n_be_intrastat.field_l10n_be_intrastat_xml_xml_decl_year
+#: field:l10n_be_intrastat_xml.xml_decl,year:0
 msgid "Year"
 msgstr "年"
 
 #. module: l10n_be_intrastat
-#: code:addons/l10n_be_intrastat/wizard/xml_decl.py:95
+#: code:addons/l10n_be_intrastat/wizard/xml_decl.py:120
 #, python-format
 msgid "Year must be 4 digits number (YYYY)"
 msgstr "年份必须是4位数 (YYYY)"
 
 #. module: l10n_be_intrastat
-#: model:ir.model,name:l10n_be_intrastat.model_l10n_be_intrastat_region
-msgid "l10n_be_intrastat.region"
-msgstr ""
-
-#. module: l10n_be_intrastat
-#: model:ir.model,name:l10n_be_intrastat.model_l10n_be_intrastat_transaction
-msgid "l10n_be_intrastat.transaction"
-msgstr ""
-
-#. module: l10n_be_intrastat
-#: model:ir.model,name:l10n_be_intrastat.model_l10n_be_intrastat_transport_mode
-msgid "l10n_be_intrastat.transport_mode"
-msgstr ""
+#: view:l10n_be_intrastat_xml.xml_decl:l10n_be_intrastat.view_intrastat_declaration_xml
+msgid "or"
+msgstr "or"

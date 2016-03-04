@@ -12,8 +12,9 @@
                         <field name="invoice_state" />
                     </group>
                     <footer>
-                        <button name="action_open_window" string="Open Margins" type="object" class="btn-primary"/>
-                        <button string="Cancel" class="btn-default" special="cancel" />
+                        <button name="action_open_window" string="Open Margins" type="object"  class="oe_highlight"  />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
                     </footer>
                 </form>
             </field>

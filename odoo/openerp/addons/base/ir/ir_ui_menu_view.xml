@@ -16,7 +16,7 @@
                         <group>
                             <field name="complete_name"/>
                             <field name="action"/>
-                            <field name="web_icon"/>
+                            <field name="icon"/>
                         </group>
                     </group>
                     <notebook>

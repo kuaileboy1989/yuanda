@@ -1,30 +1,19 @@
 # -*- coding: utf-8 -*-
 
-from openerp import models, fields, api
+from openerp.osv import osv, fields
 
 
-class gamification_challenge(models.Model):
+class gamification_challenge(osv.Model):
     _inherit = 'gamification.challenge'
 
-    @api.model
-    def _get_categories(self):
-        res = super(gamification_challenge, self)._get_categories()
+    def _get_categories(self, cr, uid, context=None):
+        res = super(gamification_challenge, self)._get_categories(cr, uid, context=context)
         res.append(('forum', 'Website / Forum'))
         return res
 
 
-class Badge(models.Model):
+class Badge(osv.Model):
     _inherit = 'gamification.badge'
-
-    level = fields.Selection([('bronze', 'bronze'), ('silver', 'silver'), ('gold', 'gold')], string='Forum Badge Level')
-
-
-class UserBadge(models.Model):
-    _inherit = 'gamification.badge.user'
-
-    level = fields.Selection(
-        [('bronze', 'bronze'),
-         ('silver', 'silver'),
-         ('gold', 'gold')],
-        string='Forum Badge Level',
-        related="badge_id.level", store=True)
+    _columns = {
+        'level': fields.selection([('bronze', 'bronze'), ('silver', 'silver'), ('gold', 'gold')], 'Forum Badge Level'),
+    }

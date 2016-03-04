@@ -1,5 +1,23 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
 """ Models registries.
 
@@ -11,7 +29,7 @@ import threading
 
 import openerp
 from .. import SUPERUSER_ID
-from openerp.tools import assertion_report, lazy_property, classproperty, config, topological_sort
+from openerp.tools import assertion_report, lazy_property, classproperty, config
 from openerp.tools.lru import LRU
 
 _logger = logging.getLogger(__name__)
@@ -88,10 +106,6 @@ class Registry(Mapping):
         return self.models[model_name]
 
     @lazy_property
-    def model_cache(self):
-        return RegistryManager.model_cache
-
-    @lazy_property
     def pure_function_fields(self):
         """ Return the list of pure function fields (field objects) """
         fields = []
@@ -100,25 +114,6 @@ class Registry(Mapping):
             for fname in fnames:
                 fields.append(model_fields[fname])
         return fields
-
-    @lazy_property
-    def field_sequence(self):
-        """ Return a function mapping a field to an integer. The value of a
-            field is guaranteed to be strictly greater than the value of the
-            field's dependencies.
-        """
-        # map fields on their dependents
-        dependents = {
-            field: set(dep for dep, _ in model._field_triggers[field] if dep != field)
-            for model in self.itervalues()
-            for field in model._fields.itervalues()
-        }
-        # sort them topologically, and associate a sequence number to each field
-        mapping = {
-            field: num
-            for num, field in enumerate(reversed(topological_sort(dependents)))
-        }
-        return mapping.get
 
     def clear_manual_fields(self):
         """ Invalidate the cache for manual fields. """
@@ -135,9 +130,8 @@ class Registry(Mapping):
         return self._fields_by_model[model_name]
 
     def do_parent_store(self, cr):
-        for model in self._init_parent:
-            if model in self:
-                self[model]._parent_store_compute(cr)
+        for o in self._init_parent:
+            self.get(o)._parent_store_compute(cr)
         self._init = False
 
     def obj_list(self):
@@ -183,9 +177,9 @@ class Registry(Mapping):
 
         # load custom models
         ir_model = self['ir.model']
-        cr.execute('select model, transient from ir_model where state=%s', ('manual',))
-        for (model_name, transient) in cr.fetchall():
-            ir_model.instanciate(cr, SUPERUSER_ID, model_name, transient, {})
+        cr.execute('select model from ir_model where state=%s', ('manual',))
+        for (model_name,) in cr.fetchall():
+            ir_model.instanciate(cr, SUPERUSER_ID, model_name, {})
 
         # prepare the setup on all models
         for model in self.models.itervalues():
@@ -207,9 +201,13 @@ class Registry(Mapping):
         This clears the caches associated to methods decorated with
         ``tools.ormcache`` or ``tools.ormcache_multi`` for all the models.
         """
-        self.cache.clear()
         for model in self.models.itervalues():
             model.clear_caches()
+        # Special case for ir_ui_menu which does not use openerp.tools.ormcache.
+        ir_ui_menu = self.models.get('ir.ui.menu')
+        if ir_ui_menu is not None:
+            ir_ui_menu.clear_cache()
+
 
     # Useful only in a multi-process context.
     def reset_any_cache_cleared(self):
@@ -246,10 +244,6 @@ class Registry(Mapping):
                     r, c)
         return r, c
 
-    def in_test_mode(self):
-        """ Test whether the registry is in 'test' mode. """
-        return self.test_cr is not None
-
     def enter_test_mode(self):
         """ Enter the 'test' mode, where one cursor serves several requests. """
         assert self.test_cr is None
@@ -259,7 +253,6 @@ class Registry(Mapping):
     def leave_test_mode(self):
         """ Leave the test mode. """
         assert self.test_cr is not None
-        self.clear_caches()
         self.test_cr.force_close()
         self.test_cr = None
         RegistryManager.leave_test_mode()
@@ -297,7 +290,6 @@ class RegistryManager(object):
 
     """
     _registries = None
-    _model_cache = None
     _lock = threading.RLock()
     _saved_lock = None
 
@@ -318,14 +310,6 @@ class RegistryManager(object):
 
             cls._registries = LRU(size)
         return cls._registries
-
-    @classproperty
-    def model_cache(cls):
-        """ A cache for model classes, indexed by their base classes. """
-        if cls._model_cache is None:
-            # we cache 256 classes per registry on average
-            cls._model_cache = LRU(cls.registries.count * 256)
-        return cls._model_cache
 
     @classmethod
     def lock(cls):
@@ -385,16 +369,13 @@ class RegistryManager(object):
                     # This should be a method on Registry
                     openerp.modules.load_modules(registry._db, force_demo, status, update_module)
                 except Exception:
-                    _logger.exception('Failed to load registry')
                     del cls.registries[db_name]
                     raise
 
                 # load_modules() above can replace the registry by calling
                 # indirectly new() again (when modules have to be uninstalled).
                 # Yeah, crazy.
-                init_parent = registry._init_parent
                 registry = cls.registries[db_name]
-                registry._init_parent.update(init_parent)
 
                 cr = registry.cursor()
                 try:
@@ -514,3 +495,5 @@ class RegistryManager(object):
             finally:
                 cr.close()
             registry.base_registry_signaling_sequence = r
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

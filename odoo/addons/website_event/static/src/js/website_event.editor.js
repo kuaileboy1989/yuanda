@@ -1,24 +1,20 @@
-odoo.define('website_event.editor', function (require) {
-"use strict";
+(function() {
+    "use strict";
 
-var core = require('web.core');
-var contentMenu = require('website.contentMenu');
-var website = require('website.website');
+    var website = openerp.website;
+    var _t = openerp._t;
 
-var _t = core._t;
-
-contentMenu.TopBar.include({
-    new_event: function() {
-        website.prompt({
-            id: "editor_new_event",
-            window_title: _t("New Event"),
-            input: "Event Name",
-        }).then(function (event_name) {
-            website.form('/event/add_event', 'POST', {
-                event_name: event_name
+    website.EditorBarContent.include({
+        new_event: function() {
+            website.prompt({
+                id: "editor_new_event",
+                window_title: _t("New Event"),
+                input: "Event Name",
+            }).then(function (event_name) {
+                website.form('/event/add_event', 'POST', {
+                    event_name: event_name
+                });
             });
-        });
-    },
-});
-
-});
+        },
+    });
+})();
